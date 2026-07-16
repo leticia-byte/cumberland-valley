@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Pet Resort | Dog &amp; Cat Boarding in Hagerstown, MD | Cumberland Valley</title>
+<meta name="description" content="Dog and cat boarding and doggie daycare at the Cumberland Valley Pet Resort in Hagerstown, MD — with a veterinarian just a building away. Call (301) 739-3121.">
+
+<link rel="icon" href="assets/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+<link rel="manifest" href="assets/site.webmanifest">
+<meta name="theme-color" content="#0D244D">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "AnimalShelter",
+  "name": "Cumberland Valley Pet Resort",
+  "description": "Dog and cat boarding and doggie daycare at Cumberland Valley Veterinary Clinic & Pet Resort in Hagerstown, MD.",
+  "url": "https://cumberlandvalleyvets.com/pet-resort",
+  "telephone": "+1-301-739-3121",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "17747 Virginia Ave.",
+    "addressLocality": "Hagerstown",
+    "addressRegion": "MD",
+    "postalCode": "21740",
+    "addressCountry": "US"
+  },
+  "parentOrganization": {
+    "@type": "VeterinaryCare",
+    "name": "Cumberland Valley Veterinary Clinic & Pet Resort"
+  }
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link rel="stylesheet" href="assets/site.css">
+
+<style>
+  /* Rail styles live in assets/site.css (.railgrid/.rail/.railsec) — shared, so the sticky and
+     min-width fixes apply everywhere. Only the Pet Resort's own bits are here. */
+  .pr-eyebrow{font:600 11px/1 'Inter';letter-spacing:.18em;text-transform:uppercase;
+    color:var(--blue);margin-bottom:14px;display:inline-flex;align-items:center;gap:9px}
+  .pr-eyebrow i{font-size:14px}
+
+  /* the practical facts, lifted out of the prose so they're scannable before someone calls */
+  .facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr));
+    gap:18px;margin-top:30px}
+  /* a lone card in an auto-fit grid stretches the whole track — cap it so one fact reads as a
+     card, not a banner (Feline Boarding has exactly one) */
+  .facts .fact:only-child{max-width:520px}
+  .fact{display:flex;gap:14px;align-items:flex-start;background:#fff;
+    border:1px solid rgba(13,36,77,.12);border-radius:14px;padding:20px;box-shadow:var(--sh-sm);
+    transition:transform .3s cubic-bezier(.2,.8,.2,1),box-shadow .3s}
+  .fact:hover{transform:translateY(-3px);box-shadow:var(--sh-md)}
+  .fact-i{width:40px;height:40px;border-radius:10px;flex:none;background:rgba(22,82,155,.10);
+    color:var(--blue);display:flex;align-items:center;justify-content:center;font-size:16px}
+  .fact-t{font:700 14px/1.3 'Inter';color:var(--navy);margin-bottom:5px}
+  .fact p{font:400 14px/1.6 'Inter';color:#4A525C}
+</style>
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to main content</a>
+
+<div class="topstrip">
+  <div class="bar2">
+    <a class="loc" href="https://maps.google.com/?q=17747+Virginia+Ave,+Hagerstown,+MD+21740" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot" aria-hidden="true"></i> 17747 Virginia Ave., Hagerstown, MD</a>
+    <div class="status" id="status">
+      <button class="pill" id="statusBtn" type="button" aria-expanded="false" aria-controls="hoursPanel">
+        <span class="dot" id="statusDot"></span>
+        <span id="statusText">Hours</span>
+        <i class="fa-solid fa-chevron-down chev" aria-hidden="true"></i>
+      </button>
+      <div class="panel" id="hoursPanel" role="region" aria-label="Opening hours">
+        <div class="panel-title">Our Hours</div>
+        <div id="hoursRows"></div>
+        <a class="callrow" href="tel:3017393121"><i class="fa-solid fa-phone" aria-hidden="true"></i> Call (301) 739-3121</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<nav id="nav" class="" aria-label="Primary">
+  <div class="wrap bar">
+    <div class="mark"><a href="index.html" aria-label="Cumberland Valley Veterinary Clinic &amp; Pet Resort — home"><picture><source srcset="assets/cvvc-logo.webp" type="image/webp"><img src="assets/cvvc-logo.png" alt="Cumberland Valley Veterinary Clinic &amp; Pet Resort"></picture></a></div>
+    <div class="links">
+      <a href="index.html">Home</a><span class="has-sub"><button class="subtoggle-main" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="sub1" id="sub1-t">About<i class="fa-solid fa-chevron-down chev" aria-hidden="true"></i></button><span class="submenu" id="sub1" role="menu" aria-labelledby="sub1-t"><a href="team.html" role="menuitem">Team</a></span></span><a href="services.html">Services</a><a href="pet-resort.html" aria-current="page">Pet Resort</a><span class="has-sub"><button class="subtoggle-main" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="sub4" id="sub4-t">Client Corner<i class="fa-solid fa-chevron-down chev" aria-hidden="true"></i></button><span class="submenu" id="sub4" role="menu" aria-labelledby="sub4-t"><a href="https://cumberlandvalleyvetclinic.securevetsource.com/site/view/site/view/HomeDelivery.pml?retUrl=http://cumberlandvalleyvetclinic.vetsourcecms.com&cmsTitle=Cumberland%20Valley%20Veterinary%20Clinic" target="_blank" rel="noopener" role="menuitem">Online Pharmacy <i class="fa-solid fa-arrow-up-right-from-square xicon" aria-hidden="true"></i> <span class="sr-only">(opens in a new tab)</span></a><a href="http://b.shspclick.com/click/308496326/www.petsites.com/?p=esEtjMQqPPsqSHjcktHLuQTV7ZiGe_DA7OzrbeqlS7KIGDO725aZedHZr8nJF0_X6mjhdaS0qaGaYV9VPRAVriUqi0y1E9E9-JGRBUfArfuHRNtSo1G2TzK42Lrzdt8yGdEXpAWDq2sIOPD48b3hIDh_tVXesh6T-HNbTjtFPQb9diLtTkmQdBQXXoaD-UlOzqP1ljBu272AxyGP_ccMsIanKg-r_m8owblI-3pLJn4jtDs-i11POOd0cyJ6ZHDz9vOl0mdfq_Rkq-xrP6sVk5kXpOObrkrLJQpO6pCVKVNA_8p_fhgreE91Q5DCeYMbl0FTsOI9IHzdKdHNfub6gw==" target="_blank" rel="noopener" role="menuitem">PetSites Login <i class="fa-solid fa-arrow-up-right-from-square xicon" aria-hidden="true"></i> <span class="sr-only">(opens in a new tab)</span></a></span></span><a href="contact.html">Contact</a>
+    </div>
+    <div style="display:flex;align-items:center;gap:12px">
+      <a class="callbtn" href="tel:3017393121" aria-label="Call Cumberland Valley at (301) 739-3121"><i class="fa-solid fa-phone" aria-hidden="true"></i> <span class="lbl">(301) 739-3121</span></a>
+      <button class="navtoggle" id="navToggle" type="button" aria-expanded="false" aria-controls="navDrawer" aria-label="Open menu">
+        <i class="fa-solid fa-bars" aria-hidden="true"></i>
+      </button>
+    </div>
+  </div>
+  <div class="drawer" id="navDrawer">
+      <a href="index.html">Home</a>
+      <div class="drawer-head">About</div>
+      <a href="team.html" class="sub" role="menuitem">Team</a>
+      <a href="services.html">Services</a>
+      <a href="pet-resort.html" aria-current="page">Pet Resort</a>
+      <div class="drawer-head">Client Corner</div>
+      <a href="https://cumberlandvalleyvetclinic.securevetsource.com/site/view/site/view/HomeDelivery.pml?retUrl=http://cumberlandvalleyvetclinic.vetsourcecms.com&cmsTitle=Cumberland%20Valley%20Veterinary%20Clinic" target="_blank" rel="noopener" class="sub" role="menuitem">Online Pharmacy <i class="fa-solid fa-arrow-up-right-from-square xicon" aria-hidden="true"></i> <span class="sr-only">(opens in a new tab)</span></a>
+      <a href="http://b.shspclick.com/click/308496326/www.petsites.com/?p=esEtjMQqPPsqSHjcktHLuQTV7ZiGe_DA7OzrbeqlS7KIGDO725aZedHZr8nJF0_X6mjhdaS0qaGaYV9VPRAVriUqi0y1E9E9-JGRBUfArfuHRNtSo1G2TzK42Lrzdt8yGdEXpAWDq2sIOPD48b3hIDh_tVXesh6T-HNbTjtFPQb9diLtTkmQdBQXXoaD-UlOzqP1ljBu272AxyGP_ccMsIanKg-r_m8owblI-3pLJn4jtDs-i11POOd0cyJ6ZHDz9vOl0mdfq_Rkq-xrP6sVk5kXpOObrkrLJQpO6pCVKVNA_8p_fhgreE91Q5DCeYMbl0FTsOI9IHzdKdHNfub6gw==" target="_blank" rel="noopener" class="sub" role="menuitem">PetSites Login <i class="fa-solid fa-arrow-up-right-from-square xicon" aria-hidden="true"></i> <span class="sr-only">(opens in a new tab)</span></a>
+      <a href="contact.html">Contact</a>
+  </div>
+</nav>
+
+<header class="hero herolite">
+  <video class="bgvid" aria-hidden="true" autoplay muted loop playsinline preload="auto"
+         poster="assets/pet-resort-poster.jpg">
+    <source src="assets/pet-resort.mp4" type="video/mp4">
+  </video>
+  <div class="scenetint"></div>
+  <div class="grain"></div>
+  <div class="wrap inner">
+    <h1>The Pet Resort,<br><em>a building away from the vet.</em></h1>
+    <p class="sub">Boarding and daycare for dogs and cats — looked after by our own staff, with a veterinarian on site.</p>
+    <a class="cta-big" href="tel:3017393121" aria-label="Call Cumberland Valley at (301) 739-3121"><i class="fa-solid fa-phone" aria-hidden="true"></i> Call (301) 739-3121</a>
+    <div class="note">We answer the phone. No portal, no booking form, no phone tree.</div>
+  </div>
+  <div class="wall">
+    <div class="tex">
+      <img src="assets/stone-background.svg" alt="" aria-hidden="true">
+    </div>
+    <div class="topshade"></div><div class="graze"></div>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- Layout B · sticky rail. The three services pin on the left while the content scrolls past,
+     phone number always in the rail — so the whole offering stays visible. Someone boarding a
+     cat and someone booking daycare are different people landing on the same page.
+     TRADE-OFF: all three live in ONE .tex band, so per-service backgrounds (the navy Feline
+     band) aren't possible in this layout. -->
+<section class="sec tex">
+  <div class="texclip" aria-hidden="true"><div class="whobg"></div></div>
+  <div class="wrap">
+    <div class="railgrid">
+      <nav class="rail" aria-label="Pet Resort services">
+        <div class="rail-t">Our services</div>
+        <a href="#canine-boarding"><span class="r-i"><i class="fa-solid fa-dog" aria-hidden="true"></i></span>Canine Boarding</a>
+        <a href="#feline-boarding"><span class="r-i"><i class="fa-solid fa-cat" aria-hidden="true"></i></span>Feline Boarding</a>
+        <a href="#doggie-daycare"><span class="r-i"><i class="fa-solid fa-bone" aria-hidden="true"></i></span>Doggie Daycare</a>
+        <a class="rail-call" href="tel:3017393121" aria-label="Call Cumberland Valley at (301) 739-3121"><i class="fa-solid fa-phone" aria-hidden="true"></i> (301) 739-3121</a>
+      </nav>
+      <div class="railbody">
+
+        <div class="railsec rv" id="canine-boarding">
+          <div class="pr-eyebrow"><i class="fa-solid fa-dog" aria-hidden="true"></i> Pet Resort</div>
+          <h2 class="big">Canine Boarding</h2>
+          <div class="rule"></div>
+          <p class="lead" style="margin-top:18px">When going out of town, a reliable pet sitter is definitely a need. At our pet resort, your doggie will be tended to by our amazing and caring staff. With the ability to choose group play, your pup will get lots of play time with or without playmates. Our staff works diligently to provide the best care for your pets, and have a vet available just a building away!</p>
+          <div class="prose" style="margin-top:18px">
+            <p>There are two boarding options, standard, and luxury. Standard is a smaller kennel compared to luxury. Suites include raised beds and raised food/water bowls.</p>
+            <p>In both Standard and Luxury kennels are equipped with heated floors, separate air exchanges, and complete climate control. We provide bedding, blankets, and water/food bowls.</p>
+            <p>While dropping-off or picking-up your pet don&rsquo;t forget to check out our awesome pet boutique located in the lobby of the Pet Resort!</p>
+          </div>
+          <div class="facts">
+            <div class="fact">
+              <div class="fact-i"><i class="fa-solid fa-tag" aria-hidden="true"></i></div>
+              <div>
+                <div class="fact-t">Multi-pet discount</div>
+                <p>25% per animal, as long as your animals stay in the same kennel. The discount does not apply if they must be separated for feedings.</p>
+              </div>
+            </div>
+            <div class="fact">
+              <div class="fact-i"><i class="fa-solid fa-bowl-food" aria-hidden="true"></i></div>
+              <div>
+                <div class="fact-t">Feeding &amp; medication</div>
+                <p>Must be supplied at drop-off, with instructions.</p>
+              </div>
+            </div>
+            <div class="fact">
+              <div class="fact-i"><i class="fa-solid fa-scissors" aria-hidden="true"></i></div>
+              <div>
+                <div class="fact-t">Before pick-up</div>
+                <p>Don&rsquo;t forget about clean up baths or grooming prior to pick-up.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="railsec rv" id="feline-boarding">
+          <div class="pr-eyebrow"><i class="fa-solid fa-cat" aria-hidden="true"></i> Pet Resort</div>
+          <h2 class="big">Feline Boarding</h2>
+          <div class="rule"></div>
+          <p class="lead" style="margin-top:18px">Cats need the perfect balance of laziness and stimulation and our cat condos provide just that. A multi-level space for cats to climb or to lounge in, with separate compartments for litter boxes is perfect for a cats stay.</p>
+          <div class="prose" style="margin-top:18px">
+            <p>We provide bedding, litter boxes, and water/food bowls. All food and medications that must be administered throughout their stay must be provided with instructions.</p>
+          </div>
+          <div class="facts">
+            <div class="fact">
+              <div class="fact-i"><i class="fa-solid fa-syringe" aria-hidden="true"></i></div>
+              <div>
+                <div class="fact-t">Vaccines required</div>
+                <p>Rabies and Distemper vaccines are required for your cat&rsquo;s stay here.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="railsec rv" id="doggie-daycare">
+          <div class="pr-eyebrow"><i class="fa-solid fa-bone" aria-hidden="true"></i> Pet Resort</div>
+          <h2 class="big">Doggie Daycare</h2>
+          <div class="rule"></div>
+          <p class="lead" style="margin-top:18px">Being in doggy daycare a few times a week will keep your dog mentally stimulated and physically active, all while meeting new furry friends to play with. Your pooch will also be relaxed and exhausted by the time you pick them up, meaning an evening walk will be less necessary.</p>
+          <div class="prose" style="margin-top:18px">
+            <p>The dogs have a big indoor playroom, meaning no matter the weather, they won&rsquo;t have to stop playing! There are also doggy doors that allow dogs to go out into a fenced yard as they please. But puppy naps are always necessary, so in the middle of the day, we allow a quiet time.</p>
+            <p>If feedings or medication administration is needed during your pet&rsquo;s stay, please supply those items upon drop-off with instructions.</p>
+          </div>
+          <div class="facts">
+            <div class="fact">
+              <div class="fact-i"><i class="fa-solid fa-calendar-days" aria-hidden="true"></i></div>
+              <div>
+                <div class="fact-t">Hours</div>
+                <p>Available 7 days a week. Drop-off and pick-up between 7&ndash;9 a.m. and 4&ndash;6 p.m.</p>
+              </div>
+            </div>
+            <div class="fact">
+              <div class="fact-i"><i class="fa-solid fa-paw" aria-hidden="true"></i></div>
+              <div>
+                <div class="fact-t">Group play requirement</div>
+                <p>Dogs must be spayed or neutered by 1 year of age for group play.</p>
+              </div>
+            </div>
+            <div class="fact">
+              <div class="fact-i"><i class="fa-solid fa-credit-card" aria-hidden="true"></i></div>
+              <div>
+                <div class="fact-t">Paying</div>
+                <p>Pay by the day, or buy a package &mdash; packages do not need to be used consecutively.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="close-cta">
+  <div class="wrap inner rv">
+    <h2>Planning a trip?</h2>
+    <p>Call and we&rsquo;ll walk you through kennel options, what to bring, and what your pet needs before their stay.</p>
+    <a class="phone" href="tel:3017393121" aria-label="Call Cumberland Valley at (301) 739-3121">(301) 739-3121</a>
+    <div class="sm">The Pet Resort keeps its own schedule &mdash; call for drop-off and pick-up times</div>
+  </div>
+</section>
+
+</main>
+
+<footer class="f">
+  <div class="wrap g">
+    <div class="mk"><picture><source srcset="assets/cvvc-logo.webp" type="image/webp"><img src="assets/cvvc-logo.png" alt=""></picture></div>
+
+  <div class="hoursbox" id="hoursbox-footer">
+    <div class="hb-head">
+      <div class="hb-title">Clinic Hours</div>
+      <span class="hb-status" id="hbStatus-footer"><span class="dot"></span><span class="t">Hours</span></span>
+    </div>
+    <div class="hb-rows">
+      <div class="hrow" data-days="Monday,Tuesday,Wednesday,Thursday,Friday"><span>Mon &ndash; Fri</span><span>7:00 AM &ndash; 5:00 PM</span></div>
+      <div class="hrow" data-days="Saturday"><span>Saturday</span><span>7:30 AM &ndash; 1:00 PM</span></div>
+      <div class="hrow" data-days="Sunday"><span>Sunday</span><span class="cl">Closed</span></div>
+    </div>
+  </div>
+    <address class="nap">
+      <div class="nap-name">Cumberland Valley Veterinary Clinic &amp; Pet Resort</div>
+      <a class="nap-addr" href="https://maps.google.com/?q=17747+Virginia+Ave,+Hagerstown,+MD+21740" target="_blank" rel="noopener">
+        <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+        <span>17747 Virginia Ave.<br>Hagerstown, Maryland 21740</span>
+      </a>
+      <a class="nap-tel telinline" href="tel:3017393121" aria-label="Call Cumberland Valley at (301) 739-3121">
+        <i class="fa-solid fa-phone" aria-hidden="true"></i> (301) 739-3121
+      </a>
+    </address>
+  </div>
+</footer>
+
+<script>
+(function(){
+  const nav=document.getElementById('nav');
+  if(nav){
+    const onScroll=()=>nav.classList.toggle('solid',window.scrollY>60);
+    onScroll(); window.addEventListener('scroll',onScroll,{passive:true});
+  }
+
+  /* ---- desktop submenu (About > Team) ----
+     CSS handles hover and focus-within. This adds explicit click/Esc control so the menu is
+     operable by keyboard and on touch, where :hover never fires. */
+  (function(){
+    const subs=document.querySelectorAll('nav .links .has-sub');
+    if(!subs.length) return;
+    /* NOTE: must match BOTH trigger shapes — '.subtoggle' (chevron beside a real link) and
+       '.subtoggle-main' (label-only parent, e.g. About). Matching only the former left the
+       label-only trigger stuck at aria-expanded="true" after closing. */
+    const closeAll=except=>subs.forEach(s=>{
+      if(s===except) return;
+      s.classList.remove('open');
+      s.querySelectorAll(':scope > .subtoggle, :scope > .subtoggle-main, :scope > a[aria-haspopup]')
+       .forEach(el=>el.setAttribute('aria-expanded','false'));
+    });
+    subs.forEach(s=>{
+      // either a chevron next to a real link, or a label-only <button> trigger
+      const btn=s.querySelector(':scope > .subtoggle, :scope > .subtoggle-main');
+      const trig=s.querySelector(':scope > a[aria-haspopup]');
+      if(!btn) return;
+      btn.addEventListener('click',e=>{
+        e.preventDefault(); e.stopPropagation();
+        const open=!s.classList.contains('open');
+        closeAll(s);
+        s.classList.toggle('open',open);
+        btn.setAttribute('aria-expanded',open?'true':'false');
+        if(trig) trig.setAttribute('aria-expanded',open?'true':'false');
+      });
+    });
+    document.addEventListener('click',e=>{ if(!e.target.closest('.has-sub')) closeAll(null); });
+    document.addEventListener('keydown',e=>{
+      if(e.key!=='Escape') return;
+      const open=document.querySelector('nav .links .has-sub.open');
+      if(!open) return;
+      const b=open.querySelector(':scope > .subtoggle, :scope > .subtoggle-main');
+      closeAll(null);
+      if(b) b.focus();     /* focus returns to the trigger; it will NOT re-open (no :focus-within) */
+    });
+    /* Tabbing out of the group closes it — otherwise the panel hangs open behind the rest of the nav. */
+    subs.forEach(s=>{
+      s.addEventListener('focusout',e=>{
+        if(!s.contains(e.relatedTarget)) {
+          s.classList.remove('open');
+          s.querySelectorAll(':scope > .subtoggle, :scope > .subtoggle-main, :scope > a[aria-haspopup]')
+           .forEach(el=>el.setAttribute('aria-expanded','false'));
+        }
+      });
+    });
+  })();
+
+  /* ---- mobile drawer ---- */
+  (function(){
+    const t=document.getElementById('navToggle'), d=document.getElementById('navDrawer');
+    if(!t||!d) return;
+    t.addEventListener('click',()=>{
+      const open=d.classList.toggle('open');
+      t.setAttribute('aria-expanded',open?'true':'false');
+      t.setAttribute('aria-label',open?'Close menu':'Open menu');
+      t.querySelector('i').className=open?'fa-solid fa-xmark':'fa-solid fa-bars';
+    });
+    /* Esc closes and returns focus to the button — keyboard users must not get trapped. */
+    document.addEventListener('keydown',e=>{
+      if(e.key==='Escape'&&d.classList.contains('open')){ t.click(); t.focus(); }
+    });
+  })();
+
+  /* ---- open/closed widget ----
+     CONFIRMED HOURS (client-supplied 2026-07-15). */
+  (function(){
+    const HOURS=[
+      {d:'Sunday', o:null, c:null},
+      {d:'Monday', o:420, c:1020},
+      {d:'Tuesday', o:420, c:1020},
+      {d:'Wednesday', o:420, c:1020},
+      {d:'Thursday', o:420, c:1020},
+      {d:'Friday', o:420, c:1020},
+      {d:'Saturday', o:450, c:780}
+    ];
+    const wrap=document.getElementById('status'), btn=document.getElementById('statusBtn'),
+          dot=document.getElementById('statusDot'), txt=document.getElementById('statusText'),
+          rows=document.getElementById('hoursRows');
+    if(!wrap) return;
+    const fmt=m=>{const h=Math.floor(m/60),mm=m%60,ap=h>=12?'PM':'AM',h12=h%12===0?12:h%12;
+      return h12+(mm?':'+String(mm).padStart(2,'0'):'')+' '+ap;};
+    /* Pinned to the CLINIC's clock, not the visitor's. Someone checking from Denver at 4 PM
+       must see "Closed" — Hagerstown is already at 6 PM. */
+    const clinicNow=()=>{
+      try{ return new Date(new Date().toLocaleString('en-US',{timeZone:'America/New_York'})); }
+      catch(e){ return new Date(); }
+    };
+    const now=clinicNow(), day=now.getDay(), mins=now.getHours()*60+now.getMinutes();
+    const t=HOURS[day];
+    let isOpen=false;
+    if(t.o!==null && mins>=t.o && mins<t.c) isOpen=true;
+    if(isOpen){
+      dot.className='dot on';
+      const left=t.c-mins;
+      txt.textContent = left<=60 ? 'Open · closes in '+left+' min' : 'Open now · until '+fmt(t.c);
+    }else{
+      dot.className='dot off';
+      let n=day, hops=0, nx=null;
+      while(hops<7){ n=(n+1)%7; hops++; if(HOURS[n].o!==null){nx=HOURS[n];break;} }
+      if(t.o!==null && mins<t.o) txt.textContent='Closed · opens '+fmt(t.o);
+      else if(nx) txt.textContent='Closed · opens '+nx.d.slice(0,3)+' '+fmt(nx.o);
+      else txt.textContent='Closed';
+    }
+    rows.innerHTML=HOURS.map((h,i)=>
+      '<div class="hrow'+(i===day?' today':'')+'"><span>'+h.d+'</span><span>'+
+      (h.o===null?'Closed':fmt(h.o)+' – '+fmt(h.c))+'</span></div>').join('');
+    btn.addEventListener('click',()=>{
+      const open=wrap.classList.toggle('open');
+      btn.setAttribute('aria-expanded',open?'true':'false');
+    });
+    document.addEventListener('click',e=>{
+      if(!wrap.contains(e.target)&&wrap.classList.contains('open')){
+        wrap.classList.remove('open'); btn.setAttribute('aria-expanded','false');
+      }
+    });
+    document.addEventListener('keydown',e=>{
+      if(e.key==='Escape'&&wrap.classList.contains('open')){
+        wrap.classList.remove('open'); btn.setAttribute('aria-expanded','false'); btn.focus();
+      }
+    });
+  })();
+
+  /* ---- standalone hours blocks (footer / contact page) ----
+     Driven by the same HOURS + clinic-clock logic as the header widget. */
+  (function(){
+    const boxes=document.querySelectorAll('.hoursbox');
+    if(!boxes.length) return;
+    const HOURS=[
+      {d:'Sunday', o:null, c:null},
+      {d:'Monday', o:420, c:1020},
+      {d:'Tuesday', o:420, c:1020},
+      {d:'Wednesday', o:420, c:1020},
+      {d:'Thursday', o:420, c:1020},
+      {d:'Friday', o:420, c:1020},
+      {d:'Saturday', o:450, c:780}
+    ];
+    const fmt=m=>{const h=Math.floor(m/60),mm=m%60,ap=h>=12?'PM':'AM',h12=h%12===0?12:h%12;
+      return h12+(mm?':'+String(mm).padStart(2,'0'):'')+' '+ap;};
+    const clinicNow=()=>{
+      try{ return new Date(new Date().toLocaleString('en-US',{timeZone:'America/New_York'})); }
+      catch(e){ return new Date(); }
+    };
+    const now=clinicNow(), day=now.getDay(), mins=now.getHours()*60+now.getMinutes();
+    const t=HOURS[day];
+    let isOpen = t.o!==null && mins>=t.o && mins<t.c;
+    let label;
+    if(isOpen){
+      const left=t.c-mins;
+      label = left<=60 ? 'Open · closes in '+left+' min' : 'Open now · until '+fmt(t.c);
+    }else{
+      let n=day,hops=0,nx=null;
+      while(hops<7){ n=(n+1)%7; hops++; if(HOURS[n].o!==null){nx=HOURS[n];break;} }
+      if(t.o!==null && mins<t.o) label='Closed · opens '+fmt(t.o);
+      else if(nx) label='Closed · opens '+nx.d.slice(0,3)+' '+fmt(nx.o);
+      else label='Closed';
+    }
+    boxes.forEach(box=>{
+      const st=box.querySelector('.hb-status');
+      if(st){
+        st.classList.add(isOpen?'on':'off');
+        st.querySelector('.t').textContent=label;
+      }
+      /* rows are day RANGES now — highlight the range that contains today */
+      box.querySelectorAll('.hrow').forEach(r=>{
+        const days=(r.dataset.days||'').split(',');
+        if(days.indexOf(HOURS[day].d)>-1) r.classList.add('today');
+      });
+    });
+  })();
+
+  /* ---- bio sheets (D3 · adaptive sheet) ----
+     showModal() gives focus trapping, Esc and an inert background for free. */
+  (function(){
+    const triggers=document.querySelectorAll('[data-bio]');
+    if(!triggers.length) return;
+    triggers.forEach(b=>{
+      const dlg=document.getElementById(b.dataset.bio);
+      if(!dlg) return;
+      b.addEventListener('click',()=>{
+        dlg.showModal();
+        dlg._trigger=b;
+        const h=dlg.querySelector('h3');
+        if(h) h.focus({preventScroll:true});   /* land on the name, not the close button */
+      });
+    });
+    document.querySelectorAll('dialog.biosheet').forEach(dlg=>{
+      const x=dlg.querySelector('.bs-x');
+      if(x) x.addEventListener('click',()=>dlg.close());
+      /* the backdrop is the dialog element itself — click outside the panel to dismiss */
+      dlg.addEventListener('click',e=>{ if(e.target===dlg) dlg.close(); });
+      dlg.addEventListener('close',()=>{ if(dlg._trigger) dlg._trigger.focus(); });
+    });
+  })();
+
+  /* ---- parallax stone texture ----
+     Same handler as the homepage: drift .whobg as its section crosses the viewport.
+     rAF-throttled, and skipped entirely under prefers-reduced-motion. */
+  (function(){
+    /* resolve the SECTION explicitly — .whobg's parent is now .texclip (the clipping wrapper),
+       and relying on parentElement would silently measure the wrong box if that nesting changes */
+    const layers=[...document.querySelectorAll('.whobg')].map(bg=>({bg,sec:bg.closest('section')||bg.parentElement}));
+    if(!layers.length) return;
+    if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const DRIFT=220;
+    let ticking=false;
+    const update=()=>{
+      const vh=window.innerHeight;
+      layers.forEach(({bg,sec})=>{
+        const r=sec.getBoundingClientRect();
+        if(r.bottom>0&&r.top<vh){
+          const p=(vh-r.top)/(vh+r.height);
+          bg.style.transform='translate3d(0,'+((p-.5)*DRIFT).toFixed(1)+'px,0)';
+        }
+      });
+      ticking=false;
+    };
+    const onP=()=>{if(!ticking){ticking=true;requestAnimationFrame(update);}};
+    update();
+    window.addEventListener('scroll',onP,{passive:true});
+    window.addEventListener('resize',onP);
+  })();
+
+  /* ---- scroll reveals ---- */
+  const rv=document.querySelectorAll('.rv');
+  if(rv.length){
+    if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+      rv.forEach(el=>el.classList.add('in'));
+    }else{
+      const io=new IntersectionObserver(es=>es.forEach(e=>{
+        if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+      }),{threshold:.16,rootMargin:'0px 0px -8% 0px'});
+      rv.forEach(el=>io.observe(el));
+    }
+  }
+})();
+</script>
+</body>
+</html>

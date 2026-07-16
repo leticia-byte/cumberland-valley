@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Veterinarian bios — 3 takes on Card + expand | Cumberland Valley</title>
+<meta name="description" content="Three variants of the card-and-expand bio layout.">
+
+<link rel="icon" href="assets/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+<link rel="manifest" href="assets/site.webmanifest">
+<meta name="theme-color" content="#0D244D">
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link rel="stylesheet" href="assets/site.css">
+
+<style>
+  .vhead{background:var(--navy);color:#fff;padding:120px 0 34px}
+  .vhead h1{color:#fff;font-size:38px}
+  .vhead p{color:#CFDCEC;margin-top:12px;max-width:76ch;font-size:16px;line-height:1.6}
+  .vbar{position:sticky;top:0;z-index:40;background:#0B1E3E;border-bottom:1px solid rgba(255,255,255,.14)}
+  .vbar .wrap{display:flex;gap:8px;padding:10px 28px;flex-wrap:wrap}
+  .vbar a{color:#CFDCEC;text-decoration:none;font:600 13px/1 'Inter';padding:10px 14px;border-radius:999px;border:1px solid rgba(255,255,255,.24)}
+  .vbar a:hover{background:rgba(255,255,255,.10);color:#fff}
+  .vlabel{background:var(--blue);color:#fff;padding:18px 0}
+  .vlabel .wrap{display:flex;align-items:baseline;gap:16px;flex-wrap:wrap}
+  .vlabel h2{color:#fff;font-size:26px}
+  .vlabel span{font:500 14px/1.5 'Inter';color:#DCEAFB;max-width:84ch}
+
+  /* shared card shell */
+  .vcards,.dcards{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));
+    gap:24px;margin-top:36px;align-items:start}
+  .vcard,.dcard{background:#fff;border:1px solid rgba(13,36,77,.12);border-radius:16px;overflow:hidden;
+    box-shadow:var(--sh-md);transition:box-shadow .35s}
+  .vcard:hover,.dcard:hover{box-shadow:var(--sh-lg)}
+  .vcard .p-photo,.dcard .p-photo{aspect-ratio:4/3;background:linear-gradient(160deg,#E8EEF5,#D1D2D4);
+    display:flex;align-items:center;justify-content:center;color:var(--blue);font-size:44px}
+  .vcard .p-body,.dcard .p-body{padding:26px}
+  .vcard h3,.dcard h3{font-size:23px;color:var(--navy)}
+  .vlede{font:400 15px/1.7 'Inter';color:#4A525C}
+
+  /* ---------- B1 · inline reveal ---------- */
+  .vmore{margin-top:12px}
+  .vmore summary{list-style:none;cursor:pointer;display:inline-flex;align-items:center;gap:8px;
+    font:600 14px/1 'Inter';color:var(--blue);padding:11px 0;min-height:24px}
+  .vmore summary::-webkit-details-marker{display:none}
+  .vmore summary:hover{text-decoration:underline}
+  .vmore summary i{font-size:11px;transition:transform .3s}
+  .vmore[open] summary i{transform:rotate(180deg)}
+  .vmore[open] summary span::after{content:" (hide)";font-weight:500;opacity:.7}
+  .vmore-body p{font:400 15px/1.7 'Inter';color:#4A525C;margin-top:12px}
+
+  /* ---------- B2 · full-width drawer ---------- */
+  .dbtn{background:transparent;border:0;padding:11px 0;cursor:pointer;
+    display:inline-flex;align-items:center;gap:8px;font:600 14px/1 'Inter';color:var(--blue);min-height:24px}
+  .dbtn:hover{text-decoration:underline}
+  .dbtn i{font-size:11px;transition:transform .3s}
+  .dbtn[aria-expanded="true"] i{transform:rotate(180deg)}
+  .dcard.active{border-color:var(--blue);box-shadow:var(--sh-lg)}
+  .drawerwrap{margin-top:24px}
+  .drawerpanel{background:#fff;border:1px solid rgba(13,36,77,.14);border-radius:16px;
+    box-shadow:var(--sh-lg);overflow:hidden;position:relative;
+    animation:dOpen .4s cubic-bezier(.2,.8,.2,1)}
+  @keyframes dOpen{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
+  @media (prefers-reduced-motion: reduce){.drawerpanel{animation:none}}
+  .dp-inner{display:grid;grid-template-columns:190px 1fr;gap:30px;padding:30px;align-items:start}
+  .dp-photo{aspect-ratio:1/1;border-radius:12px;background:linear-gradient(160deg,#E8EEF5,#D1D2D4);
+    display:flex;align-items:center;justify-content:center;color:var(--blue);font-size:40px}
+  .dp-body h3{font-size:26px;color:var(--navy)}
+  .dp-body p{font:400 15.5px/1.75 'Inter';color:#4A525C;margin-top:12px;max-width:70ch}
+  .dp-close{position:absolute;right:14px;top:14px;width:38px;height:38px;border-radius:50%;
+    background:var(--oat);border:1px solid rgba(13,36,77,.14);cursor:pointer;color:var(--navy);
+    display:flex;align-items:center;justify-content:center}
+  .dp-close:hover{background:#E6E1D5}
+  @media(max-width:760px){.dp-inner{grid-template-columns:1fr;gap:20px}.dp-photo{max-width:150px}}
+
+  /* ---------- B3 · dialog ---------- */
+  .mbtn{background:var(--blue);border:0;color:#fff;cursor:pointer;margin-top:14px;
+    padding:12px 18px;border-radius:999px;font:600 14px/1 'Inter';
+    display:inline-flex;align-items:center;gap:9px;box-shadow:var(--sh-sm);
+    transition:transform .25s,background .25s,box-shadow .25s}
+  .mbtn:hover{transform:translateY(-2px);background:#1A61B8;box-shadow:var(--sh-md)}
+  .mbtn i{font-size:11px}
+  .bio-dlg{border:0;border-radius:18px;padding:0;max-width:760px;width:calc(100% - 40px);
+    box-shadow:0 40px 90px -20px rgba(3,10,24,.65);overflow:visible}
+  .bio-dlg::backdrop{background:rgba(9,26,56,.62)}
+  .bio-dlg{display:grid;grid-template-columns:200px 1fr;gap:30px;padding:34px}
+  .bio-dlg:not([open]){display:none}
+  .dlg-photo{aspect-ratio:1/1;border-radius:12px;background:linear-gradient(160deg,#E8EEF5,#D1D2D4);
+    display:flex;align-items:center;justify-content:center;color:var(--blue);font-size:40px}
+  .dlg-body{max-height:64vh;overflow-y:auto;padding-right:6px}
+  .dlg-body h3{font-size:28px;color:var(--navy)}
+  .dlg-body p{font:400 15.5px/1.75 'Inter';color:#4A525C;margin-top:12px}
+  .dlg-close{position:absolute;right:-10px;top:-10px;width:40px;height:40px;border-radius:50%;
+    background:#fff;border:1px solid rgba(13,36,77,.16);cursor:pointer;color:var(--navy);
+    display:flex;align-items:center;justify-content:center;box-shadow:var(--sh-md);z-index:2}
+  .dlg-close:hover{background:var(--oat)}
+  @media(max-width:700px){
+    .bio-dlg{grid-template-columns:1fr;padding:26px}
+    .dlg-photo{max-width:140px}
+  }
+</style>
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to main content</a>
+
+<header class="vhead">
+  <div class="wrap">
+    <h1>Card + expand &mdash; three variants</h1>
+    <p>Same client copy in all three, word for word. Every card shows the first paragraph; the rest is one interaction away. What changes is <em>where the rest appears</em> &mdash; and each choice trades something. Nav, hero and footer omitted so the bios are easy to compare.</p>
+  </div>
+</header>
+<div class="vbar">
+  <div class="wrap">
+    <a href="#b1">B1 &middot; Inline reveal</a>
+    <a href="#b2">B2 &middot; Full-width drawer</a>
+    <a href="#b3">B3 &middot; Dialog</a>
+  </div>
+</div>
+<main id="main">
+
+<div class="vlabel" id="b1"><div class="wrap"><h2>B1 &middot; Inline reveal</h2>
+  <span>The bio unfolds inside its own card. Built on native &lt;details&gt;, so it works with JavaScript off and is keyboard-operable with zero custom code &mdash; the most robust of the three. Trade-off: an open card grows taller than its neighbours and the row goes ragged.</span></div></div>
+<section class="sec"><div class="wrap"><div class="vcards">
+      <article class="vcard">
+        <div class="p-photo"><i class="fa-solid fa-user-doctor" aria-hidden="true"></i></div>
+        <div class="p-body">
+          <h3>Dr. Jennifer Dolan</h3>
+          <div class="p-role">Owner &amp; Veterinarian</div>
+          <p class="vlede">Dr. Dolan grew up in Reston, Virginia, a suburb of Washington, D.C. She went to Virginia Tech for her undergraduate studies, earning a B.S. in biology. She went on to earn a M.S. in biology from The College of William and Mary and returned to Virginia Tech to earn her DVM at the Virginia-Maryland Regional College of Veterinary Medicine. She joined Cumberland Valley Veterinary Clinic in 1996.</p>
+          <details class="vmore">
+            <summary><span>Read full bio</span><i class="fa-solid fa-chevron-down" aria-hidden="true"></i></summary>
+            <div class="vmore-body">
+            <p>She is married to a dairy veterinarian, Dr. Edward Wurmb, and has a young daughter, Abigail. Her family also includes 4 horses, 4 dogs &ndash; 2 of which are rescues, 5 cats, 3 rabbits, 3 goats and 2 cows.</p>
+            <p>Dr. Dolan&rsquo;s greatest passion includes horseback riding; she participates in horse trials and combined training. She also enjoys golfing, skiing, antiquing, and gardening. She is a member of Hagerstown Sunrise Rotary Club and prior to the birth of her daughter enjoyed volunteering at a local horseback riding program for the handicapped. Go Hokies!</p>
+            </div>
+          </details>
+        </div>
+      </article>
+
+      <article class="vcard">
+        <div class="p-photo"><i class="fa-solid fa-user-doctor" aria-hidden="true"></i></div>
+        <div class="p-body">
+          <h3>Dr. Michele A. McKenna</h3>
+          <div class="p-role">Veterinarian</div>
+          <p class="vlede">Dr. McKenna is a 1986 graduate of Virginia-Maryland Regional College of Veterinary Medicine. She completed her undergraduate degree at the University of Maryland, College Park. She has been with Cumberland Valley Veterinary Clinic since January 2010. She previously worked in Gaithersburg, Germantown, and did relief work in Montgomery and Frederick counties. She had her own practice in Frederick from 1988-2000.</p>
+          <details class="vmore">
+            <summary><span>Read full bio</span><i class="fa-solid fa-chevron-down" aria-hidden="true"></i></summary>
+            <div class="vmore-body">
+            <p>She currently lives on a horse farm in Boonsboro with her husband, dogs, cats, horses and a pony. She has two grown children; a son who is working on his Masters and PhD degrees in Seattle, Washington and a daughter who is graduating from college and applying to medical school. She and her husband are avid foxhunters and are Whippers-in for the local foxhunting club (New Market-Middletown Valley Hounds).</p>
+            <p>Dr. McKenna enjoys spending time with her family and friends, riding and competing her horses, fox hunting, gardening, and traveling. She believes that being a veterinarian is a great profession, and that patients/pets are AWESOME!</p>
+            </div>
+          </details>
+        </div>
+      </article>
+
+      <article class="vcard">
+        <div class="p-photo"><i class="fa-solid fa-user-doctor" aria-hidden="true"></i></div>
+        <div class="p-body">
+          <h3>Dr. Robert Wesley</h3>
+          <div class="p-role">Veterinarian</div>
+          <p class="vlede">Dr. Wesley went to Gettysburg College and Towson State University for his undergraduate degree in Biology. He then worked at Johns Hopkins School of Medicine as a research technician for several years, and part time at a small animal hospital in Baltimore as a Veterinary Technician. His increased interest in veterinary medicine led him to a full time position at the small animal hospital, and then to the University of Maryland School of Medicine followed by veterinary school at Virginia Maryland Regional College of Veterinary Medicine.</p>
+          <details class="vmore">
+            <summary><span>Read full bio</span><i class="fa-solid fa-chevron-down" aria-hidden="true"></i></summary>
+            <div class="vmore-body">
+            <p>He enjoys ice hockey, reading history and biography, Shakespeare, classic movies and building his own computers. He has two cats named Nick and Nora.</p>
+            </div>
+          </details>
+        </div>
+      </article>
+</div></div></section>
+
+<div class="vlabel" id="b2"><div class="wrap"><h2>B2 &middot; Full-width drawer</h2>
+  <span>The full bio opens in a panel beneath the row, at a comfortable 70ch measure &mdash; the cards themselves never move or change height. One bio at a time, and the whole team stays on screen above it. Trade-off: needs JavaScript, and the drawer pushes anything below it down the page.</span></div></div>
+<section class="sec"><div class="wrap"><div class="dcards">
+      <article class="dcard" data-i="0">
+        <div class="p-photo"><i class="fa-solid fa-user-doctor" aria-hidden="true"></i></div>
+        <div class="p-body">
+          <h3>Dr. Jennifer Dolan</h3>
+          <div class="p-role">Owner &amp; Veterinarian</div>
+          <p class="vlede">Dr. Dolan grew up in Reston, Virginia, a suburb of Washington, D.C. She went to Virginia Tech for her undergraduate studies, earning a B.S. in biology. She went on to earn a M.S. in biology from The College of William and Mary and returned to Virginia Tech to earn her DVM at the Virginia-Maryland Regional College of Veterinary Medicine. She joined Cumberland Valley Veterinary Clinic in 1996.</p>
+          <button class="dbtn" type="button" aria-expanded="false" aria-controls="drawer0">
+            <span>Read full bio</span><i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+          </button>
+        </div>
+      </article>
+
+      <article class="dcard" data-i="1">
+        <div class="p-photo"><i class="fa-solid fa-user-doctor" aria-hidden="true"></i></div>
+        <div class="p-body">
+          <h3>Dr. Michele A. McKenna</h3>
+          <div class="p-role">Veterinarian</div>
+          <p class="vlede">Dr. McKenna is a 1986 graduate of Virginia-Maryland Regional College of Veterinary Medicine. She completed her undergraduate degree at the University of Maryland, College Park. She has been with Cumberland Valley Veterinary Clinic since January 2010. She previously worked in Gaithersburg, Germantown, and did relief work in Montgomery and Frederick counties. She had her own practice in Frederick from 1988-2000.</p>
+          <button class="dbtn" type="button" aria-expanded="false" aria-controls="drawer1">
+            <span>Read full bio</span><i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+          </button>
+        </div>
+      </article>
+
+      <article class="dcard" data-i="2">
+        <div class="p-photo"><i class="fa-solid fa-user-doctor" aria-hidden="true"></i></div>
+        <div class="p-body">
+          <h3>Dr. Robert Wesley</h3>
+          <div class="p-role">Veterinarian</div>
+          <p class="vlede">Dr. Wesley went to Gettysburg College and Towson State University for his undergraduate degree in Biology. He then worked at Johns Hopkins School of Medicine as a research technician for several years, and part time at a small animal hospital in Baltimore as a Veterinary Technician. His increased interest in veterinary medicine led him to a full time position at the small animal hospital, and then to the University of Maryland School of Medicine followed by veterinary school at Virginia Maryland Regional College of Veterinary Medicine.</p>
+          <button class="dbtn" type="button" aria-expanded="false" aria-controls="drawer2">
+            <span>Read full bio</span><i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+          </button>
+        </div>
+      </article>
+</div><div class="drawerwrap">
+      <div class="drawerpanel" id="drawer0" hidden>
+        <div class="dp-inner">
+          <div class="dp-photo"><i class="fa-solid fa-user-doctor" aria-hidden="true"></i></div>
+          <div class="dp-body">
+            <h3>Dr. Jennifer Dolan</h3>
+            <div class="p-role">Owner &amp; Veterinarian</div>
+            <p>Dr. Dolan grew up in Reston, Virginia, a suburb of Washington, D.C. She went to Virginia Tech for her undergraduate studies, earning a B.S. in biology. She went on to earn a M.S. in biology from The College of William and Mary and returned to Virginia Tech to earn her DVM at the Virginia-Maryland Regional College of Veterinary Medicine. She joined Cumberland Valley Veterinary Clinic in 1996.</p>
+            <p>She is married to a dairy veterinarian, Dr. Edward Wurmb, and has a young daughter, Abigail. Her family also includes 4 horses, 4 dogs &ndash; 2 of which are rescues, 5 cats, 3 rabbits, 3 goats and 2 cows.</p>
+            <p>Dr. Dolan&rsquo;s greatest passion includes horseback riding; she participates in horse trials and combined training. She also enjoys golfing, skiing, antiquing, and gardening. She is a member of Hagerstown Sunrise Rotary Club and prior to the birth of her daughter enjoyed volunteering at a local horseback riding program for the handicapped. Go Hokies!</p>
+          </div>
+          <button class="dp-close" type="button" aria-label="Close bio"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+        </div>
+      </div>
+
+      <div class="drawerpanel" id="drawer1" hidden>
+        <div class="dp-inner">
+          <div class="dp-photo"><i class="fa-solid fa-user-doctor" aria-hidden="true"></i></div>
+          <div class="dp-body">
+            <h3>Dr. Michele A. McKenna</h3>
+            <div class="p-role">Veterinarian</div>
+            <p>Dr. McKenna is a 1986 graduate of Virginia-Maryland Regional College of Veterinary Medicine. She completed her undergraduate degree at the University of Maryland, College Park. She has been with Cumberland Valley Veterinary Clinic since January 2010. She previously worked in Gaithersburg, Germantown, and did relief work in Montgomery and Frederick counties. She had her own practice in Frederick from 1988-2000.</p>
+            <p>She currently lives on a horse farm in Boonsboro with her husband, dogs, cats, horses and a pony. She has two grown children; a son who is working on his Masters and PhD degrees in Seattle, Washington and a daughter who is graduating from college and applying to medical school. She and her husband are avid foxhunters and are Whippers-in for the local foxhunting club (New Market-Middletown Valley Hounds).</p>
+            <p>Dr. McKenna enjoys spending time with her family and friends, riding and competing her horses, fox hunting, gardening, and traveling. She believes that being a veterinarian is a great profession, and that patients/pets are AWESOME!</p>
+          </div>
+          <button class="dp-close" type="button" aria-label="Close bio"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+        </div>
+      </div>
+
+      <div class="drawerpanel" id="drawer2" hidden>
+        <div class="dp-inner">
+          <div class="dp-photo"><i class="fa-solid fa-user-doctor" aria-hidden="true"></i></div>
+          <div class="dp-body">
+            <h3>Dr. Robert Wesley</h3>
+            <div class="p-role">Veterinarian</div>
+            <p>Dr. Wesley went to Gettysburg College and Towson State University for his undergraduate degree in Biology. He then worked at Johns Hopkins School of Medicine as a research technician for several years, and part time at a small animal hospital in Baltimore as a Veterinary Technician. His increased interest in veterinary medicine led him to a full time position at the small animal hospital, and then to the University of Maryland School of Medicine followed by veterinary school at Virginia Maryland Regional College of Veterinary Medicine.</p>
+            <p>He enjoys ice hockey, reading history and biography, Shakespeare, classic movies and building his own computers. He has two cats named Nick and Nora.</p>
+          </div>
+          <button class="dp-close" type="button" aria-label="Close bio"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+        </div>
+      </div>
+</div></div></section>
+
+<div class="vlabel" id="b3"><div class="wrap"><h2>B3 &middot; Dialog</h2>
+  <span>The bio opens over the page in a modal. Uses the native &lt;dialog&gt; element, so focus trapping, Esc-to-close and an inert background come for free rather than being hand-rolled. The grid never shifts at all. Trade-off: a modal is a heavier gesture than a disclosure &mdash; and on a phone it covers the whole screen, which can feel like a detour.</span></div></div>
+<section class="sec"><div class="wrap"><div class="vcards">
+      <article class="vcard">
+        <div class="p-photo"><i class="fa-solid fa-user-doctor" aria-hidden="true"></i></div>
+        <div class="p-body">
+          <h3>Dr. Jennifer Dolan</h3>
+          <div class="p-role">Owner &amp; Veterinarian</div>
+          <p class="vlede">Dr. Dolan grew up in Reston, Virginia, a suburb of Washington, D.C. She went to Virginia Tech for her undergraduate studies, earning a B.S. in biology. She went on to earn a M.S. in biology from The College of William and Mary and returned to Virginia Tech to earn her DVM at the Virginia-Maryland Regional College of Veterinary Medicine. She joined Cumberland Valley Veterinary Clinic in 1996.</p>
+          <button class="mbtn" type="button" data-dlg="dlg0">
+            <span>Read full bio</span><i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+          </button>
+        </div>
+      </article>
+
+      <article class="vcard">
+        <div class="p-photo"><i class="fa-solid fa-user-doctor" aria-hidden="true"></i></div>
+        <div class="p-body">
+          <h3>Dr. Michele A. McKenna</h3>
+          <div class="p-role">Veterinarian</div>
+          <p class="vlede">Dr. McKenna is a 1986 graduate of Virginia-Maryland Regional College of Veterinary Medicine. She completed her undergraduate degree at the University of Maryland, College Park. She has been with Cumberland Valley Veterinary Clinic since January 2010. She previously worked in Gaithersburg, Germantown, and did relief work in Montgomery and Frederick counties. She had her own practice in Frederick from 1988-2000.</p>
+          <button class="mbtn" type="button" data-dlg="dlg1">
+            <span>Read full bio</span><i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+          </button>
+        </div>
+      </article>
+
+      <article class="vcard">
+        <div class="p-photo"><i class="fa-solid fa-user-doctor" aria-hidden="true"></i></div>
+        <div class="p-body">
+          <h3>Dr. Robert Wesley</h3>
+          <div class="p-role">Veterinarian</div>
+          <p class="vlede">Dr. Wesley went to Gettysburg College and Towson State University for his undergraduate degree in Biology. He then worked at Johns Hopkins School of Medicine as a research technician for several years, and part time at a small animal hospital in Baltimore as a Veterinary Technician. His increased interest in veterinary medicine led him to a full time position at the small animal hospital, and then to the University of Maryland School of Medicine followed by veterinary school at Virginia Maryland Regional College of Veterinary Medicine.</p>
+          <button class="mbtn" type="button" data-dlg="dlg2">
+            <span>Read full bio</span><i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+          </button>
+        </div>
+      </article>
+</div>
+    <dialog class="bio-dlg" id="dlg0" aria-labelledby="dlgh0">
+      <button class="dlg-close" type="button" aria-label="Close"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+      <div class="dlg-photo"><i class="fa-solid fa-user-doctor" aria-hidden="true"></i></div>
+      <div class="dlg-body">
+        <h3 id="dlgh0">Dr. Jennifer Dolan</h3>
+        <div class="p-role">Owner &amp; Veterinarian</div>
+        <p>Dr. Dolan grew up in Reston, Virginia, a suburb of Washington, D.C. She went to Virginia Tech for her undergraduate studies, earning a B.S. in biology. She went on to earn a M.S. in biology from The College of William and Mary and returned to Virginia Tech to earn her DVM at the Virginia-Maryland Regional College of Veterinary Medicine. She joined Cumberland Valley Veterinary Clinic in 1996.</p>
+            <p>She is married to a dairy veterinarian, Dr. Edward Wurmb, and has a young daughter, Abigail. Her family also includes 4 horses, 4 dogs &ndash; 2 of which are rescues, 5 cats, 3 rabbits, 3 goats and 2 cows.</p>
+            <p>Dr. Dolan&rsquo;s greatest passion includes horseback riding; she participates in horse trials and combined training. She also enjoys golfing, skiing, antiquing, and gardening. She is a member of Hagerstown Sunrise Rotary Club and prior to the birth of her daughter enjoyed volunteering at a local horseback riding program for the handicapped. Go Hokies!</p>
+        <a class="callbtn" style="margin-top:22px" href="tel:3017393121"><i class="fa-solid fa-phone" aria-hidden="true"></i> Call (301) 739-3121</a>
+      </div>
+    </dialog>
+
+    <dialog class="bio-dlg" id="dlg1" aria-labelledby="dlgh1">
+      <button class="dlg-close" type="button" aria-label="Close"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+      <div class="dlg-photo"><i class="fa-solid fa-user-doctor" aria-hidden="true"></i></div>
+      <div class="dlg-body">
+        <h3 id="dlgh1">Dr. Michele A. McKenna</h3>
+        <div class="p-role">Veterinarian</div>
+        <p>Dr. McKenna is a 1986 graduate of Virginia-Maryland Regional College of Veterinary Medicine. She completed her undergraduate degree at the University of Maryland, College Park. She has been with Cumberland Valley Veterinary Clinic since January 2010. She previously worked in Gaithersburg, Germantown, and did relief work in Montgomery and Frederick counties. She had her own practice in Frederick from 1988-2000.</p>
+            <p>She currently lives on a horse farm in Boonsboro with her husband, dogs, cats, horses and a pony. She has two grown children; a son who is working on his Masters and PhD degrees in Seattle, Washington and a daughter who is graduating from college and applying to medical school. She and her husband are avid foxhunters and are Whippers-in for the local foxhunting club (New Market-Middletown Valley Hounds).</p>
+            <p>Dr. McKenna enjoys spending time with her family and friends, riding and competing her horses, fox hunting, gardening, and traveling. She believes that being a veterinarian is a great profession, and that patients/pets are AWESOME!</p>
+        <a class="callbtn" style="margin-top:22px" href="tel:3017393121"><i class="fa-solid fa-phone" aria-hidden="true"></i> Call (301) 739-3121</a>
+      </div>
+    </dialog>
+
+    <dialog class="bio-dlg" id="dlg2" aria-labelledby="dlgh2">
+      <button class="dlg-close" type="button" aria-label="Close"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+      <div class="dlg-photo"><i class="fa-solid fa-user-doctor" aria-hidden="true"></i></div>
+      <div class="dlg-body">
+        <h3 id="dlgh2">Dr. Robert Wesley</h3>
+        <div class="p-role">Veterinarian</div>
+        <p>Dr. Wesley went to Gettysburg College and Towson State University for his undergraduate degree in Biology. He then worked at Johns Hopkins School of Medicine as a research technician for several years, and part time at a small animal hospital in Baltimore as a Veterinary Technician. His increased interest in veterinary medicine led him to a full time position at the small animal hospital, and then to the University of Maryland School of Medicine followed by veterinary school at Virginia Maryland Regional College of Veterinary Medicine.</p>
+            <p>He enjoys ice hockey, reading history and biography, Shakespeare, classic movies and building his own computers. He has two cats named Nick and Nora.</p>
+        <a class="callbtn" style="margin-top:22px" href="tel:3017393121"><i class="fa-solid fa-phone" aria-hidden="true"></i> Call (301) 739-3121</a>
+      </div>
+    </dialog>
+</div></section>
+
+</main>
+
+<footer class="f">
+  <div class="wrap g">
+    <div class="mk"><picture><source srcset="assets/cvvc-logo.webp" type="image/webp"><img src="assets/cvvc-logo.png" alt=""></picture></div>
+
+  <div class="hoursbox" id="hoursbox-footer">
+    <div class="hb-head">
+      <div class="hb-title">Clinic Hours</div>
+      <span class="hb-status" id="hbStatus-footer"><span class="dot"></span><span class="t">Hours</span></span>
+    </div>
+    <div class="hb-rows">
+      <div class="hrow" data-days="Monday,Tuesday,Wednesday,Thursday,Friday"><span>Mon &ndash; Fri</span><span>7:00 AM &ndash; 5:00 PM</span></div>
+      <div class="hrow" data-days="Saturday"><span>Saturday</span><span>7:30 AM &ndash; 1:00 PM</span></div>
+      <div class="hrow" data-days="Sunday"><span>Sunday</span><span class="cl">Closed</span></div>
+    </div>
+  </div>
+    <address class="nap">
+      <div class="nap-name">Cumberland Valley Veterinary Clinic &amp; Pet Resort</div>
+      <a class="nap-addr" href="https://maps.google.com/?q=17747+Virginia+Ave,+Hagerstown,+MD+21740" target="_blank" rel="noopener">
+        <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+        <span>17747 Virginia Ave.<br>Hagerstown, Maryland 21740</span>
+      </a>
+      <a class="nap-tel telinline" href="tel:3017393121" aria-label="Call Cumberland Valley at (301) 739-3121">
+        <i class="fa-solid fa-phone" aria-hidden="true"></i> (301) 739-3121
+      </a>
+    </address>
+  </div>
+</footer>
+
+<script>
+(function(){
+  const nav=document.getElementById('nav');
+  if(nav){
+    const onScroll=()=>nav.classList.toggle('solid',window.scrollY>60);
+    onScroll(); window.addEventListener('scroll',onScroll,{passive:true});
+  }
+
+  /* ---- desktop submenu (About > Team) ----
+     CSS handles hover and focus-within. This adds explicit click/Esc control so the menu is
+     operable by keyboard and on touch, where :hover never fires. */
+  (function(){
+    const subs=document.querySelectorAll('nav .links .has-sub');
+    if(!subs.length) return;
+    /* NOTE: must match BOTH trigger shapes — '.subtoggle' (chevron beside a real link) and
+       '.subtoggle-main' (label-only parent, e.g. About). Matching only the former left the
+       label-only trigger stuck at aria-expanded="true" after closing. */
+    const closeAll=except=>subs.forEach(s=>{
+      if(s===except) return;
+      s.classList.remove('open');
+      s.querySelectorAll(':scope > .subtoggle, :scope > .subtoggle-main, :scope > a[aria-haspopup]')
+       .forEach(el=>el.setAttribute('aria-expanded','false'));
+    });
+    subs.forEach(s=>{
+      // either a chevron next to a real link, or a label-only <button> trigger
+      const btn=s.querySelector(':scope > .subtoggle, :scope > .subtoggle-main');
+      const trig=s.querySelector(':scope > a[aria-haspopup]');
+      if(!btn) return;
+      btn.addEventListener('click',e=>{
+        e.preventDefault(); e.stopPropagation();
+        const open=!s.classList.contains('open');
+        closeAll(s);
+        s.classList.toggle('open',open);
+        btn.setAttribute('aria-expanded',open?'true':'false');
+        if(trig) trig.setAttribute('aria-expanded',open?'true':'false');
+      });
+    });
+    document.addEventListener('click',e=>{ if(!e.target.closest('.has-sub')) closeAll(null); });
+    document.addEventListener('keydown',e=>{
+      if(e.key!=='Escape') return;
+      const open=document.querySelector('nav .links .has-sub.open');
+      if(!open) return;
+      const b=open.querySelector(':scope > .subtoggle, :scope > .subtoggle-main');
+      closeAll(null);
+      if(b) b.focus();     /* focus returns to the trigger; it will NOT re-open (no :focus-within) */
+    });
+    /* Tabbing out of the group closes it — otherwise the panel hangs open behind the rest of the nav. */
+    subs.forEach(s=>{
+      s.addEventListener('focusout',e=>{
+        if(!s.contains(e.relatedTarget)) {
+          s.classList.remove('open');
+          s.querySelectorAll(':scope > .subtoggle, :scope > .subtoggle-main, :scope > a[aria-haspopup]')
+           .forEach(el=>el.setAttribute('aria-expanded','false'));
+        }
+      });
+    });
+  })();
+
+  /* ---- mobile drawer ---- */
+  (function(){
+    const t=document.getElementById('navToggle'), d=document.getElementById('navDrawer');
+    if(!t||!d) return;
+    t.addEventListener('click',()=>{
+      const open=d.classList.toggle('open');
+      t.setAttribute('aria-expanded',open?'true':'false');
+      t.setAttribute('aria-label',open?'Close menu':'Open menu');
+      t.querySelector('i').className=open?'fa-solid fa-xmark':'fa-solid fa-bars';
+    });
+    /* Esc closes and returns focus to the button — keyboard users must not get trapped. */
+    document.addEventListener('keydown',e=>{
+      if(e.key==='Escape'&&d.classList.contains('open')){ t.click(); t.focus(); }
+    });
+  })();
+
+  /* ---- open/closed widget ----
+     CONFIRMED HOURS (client-supplied 2026-07-15). */
+  (function(){
+    const HOURS=[
+      {d:'Sunday', o:null, c:null},
+      {d:'Monday', o:420, c:1020},
+      {d:'Tuesday', o:420, c:1020},
+      {d:'Wednesday', o:420, c:1020},
+      {d:'Thursday', o:420, c:1020},
+      {d:'Friday', o:420, c:1020},
+      {d:'Saturday', o:450, c:780}
+    ];
+    const wrap=document.getElementById('status'), btn=document.getElementById('statusBtn'),
+          dot=document.getElementById('statusDot'), txt=document.getElementById('statusText'),
+          rows=document.getElementById('hoursRows');
+    if(!wrap) return;
+    const fmt=m=>{const h=Math.floor(m/60),mm=m%60,ap=h>=12?'PM':'AM',h12=h%12===0?12:h%12;
+      return h12+(mm?':'+String(mm).padStart(2,'0'):'')+' '+ap;};
+    /* Pinned to the CLINIC's clock, not the visitor's. Someone checking from Denver at 4 PM
+       must see "Closed" — Hagerstown is already at 6 PM. */
+    const clinicNow=()=>{
+      try{ return new Date(new Date().toLocaleString('en-US',{timeZone:'America/New_York'})); }
+      catch(e){ return new Date(); }
+    };
+    const now=clinicNow(), day=now.getDay(), mins=now.getHours()*60+now.getMinutes();
+    const t=HOURS[day];
+    let isOpen=false;
+    if(t.o!==null && mins>=t.o && mins<t.c) isOpen=true;
+    if(isOpen){
+      dot.className='dot on';
+      const left=t.c-mins;
+      txt.textContent = left<=60 ? 'Open · closes in '+left+' min' : 'Open now · until '+fmt(t.c);
+    }else{
+      dot.className='dot off';
+      let n=day, hops=0, nx=null;
+      while(hops<7){ n=(n+1)%7; hops++; if(HOURS[n].o!==null){nx=HOURS[n];break;} }
+      if(t.o!==null && mins<t.o) txt.textContent='Closed · opens '+fmt(t.o);
+      else if(nx) txt.textContent='Closed · opens '+nx.d.slice(0,3)+' '+fmt(nx.o);
+      else txt.textContent='Closed';
+    }
+    rows.innerHTML=HOURS.map((h,i)=>
+      '<div class="hrow'+(i===day?' today':'')+'"><span>'+h.d+'</span><span>'+
+      (h.o===null?'Closed':fmt(h.o)+' – '+fmt(h.c))+'</span></div>').join('');
+    btn.addEventListener('click',()=>{
+      const open=wrap.classList.toggle('open');
+      btn.setAttribute('aria-expanded',open?'true':'false');
+    });
+    document.addEventListener('click',e=>{
+      if(!wrap.contains(e.target)&&wrap.classList.contains('open')){
+        wrap.classList.remove('open'); btn.setAttribute('aria-expanded','false');
+      }
+    });
+    document.addEventListener('keydown',e=>{
+      if(e.key==='Escape'&&wrap.classList.contains('open')){
+        wrap.classList.remove('open'); btn.setAttribute('aria-expanded','false'); btn.focus();
+      }
+    });
+  })();
+
+  /* ---- standalone hours blocks (footer / contact page) ----
+     Driven by the same HOURS + clinic-clock logic as the header widget. */
+  (function(){
+    const boxes=document.querySelectorAll('.hoursbox');
+    if(!boxes.length) return;
+    const HOURS=[
+      {d:'Sunday', o:null, c:null},
+      {d:'Monday', o:420, c:1020},
+      {d:'Tuesday', o:420, c:1020},
+      {d:'Wednesday', o:420, c:1020},
+      {d:'Thursday', o:420, c:1020},
+      {d:'Friday', o:420, c:1020},
+      {d:'Saturday', o:450, c:780}
+    ];
+    const fmt=m=>{const h=Math.floor(m/60),mm=m%60,ap=h>=12?'PM':'AM',h12=h%12===0?12:h%12;
+      return h12+(mm?':'+String(mm).padStart(2,'0'):'')+' '+ap;};
+    const clinicNow=()=>{
+      try{ return new Date(new Date().toLocaleString('en-US',{timeZone:'America/New_York'})); }
+      catch(e){ return new Date(); }
+    };
+    const now=clinicNow(), day=now.getDay(), mins=now.getHours()*60+now.getMinutes();
+    const t=HOURS[day];
+    let isOpen = t.o!==null && mins>=t.o && mins<t.c;
+    let label;
+    if(isOpen){
+      const left=t.c-mins;
+      label = left<=60 ? 'Open · closes in '+left+' min' : 'Open now · until '+fmt(t.c);
+    }else{
+      let n=day,hops=0,nx=null;
+      while(hops<7){ n=(n+1)%7; hops++; if(HOURS[n].o!==null){nx=HOURS[n];break;} }
+      if(t.o!==null && mins<t.o) label='Closed · opens '+fmt(t.o);
+      else if(nx) label='Closed · opens '+nx.d.slice(0,3)+' '+fmt(nx.o);
+      else label='Closed';
+    }
+    boxes.forEach(box=>{
+      const st=box.querySelector('.hb-status');
+      if(st){
+        st.classList.add(isOpen?'on':'off');
+        st.querySelector('.t').textContent=label;
+      }
+      /* rows are day RANGES now — highlight the range that contains today */
+      box.querySelectorAll('.hrow').forEach(r=>{
+        const days=(r.dataset.days||'').split(',');
+        if(days.indexOf(HOURS[day].d)>-1) r.classList.add('today');
+      });
+    });
+  })();
+
+  /* ---- bio sheets (D3 · adaptive sheet) ----
+     showModal() gives focus trapping, Esc and an inert background for free. */
+  (function(){
+    const triggers=document.querySelectorAll('[data-bio]');
+    if(!triggers.length) return;
+    triggers.forEach(b=>{
+      const dlg=document.getElementById(b.dataset.bio);
+      if(!dlg) return;
+      b.addEventListener('click',()=>{
+        dlg.showModal();
+        dlg._trigger=b;
+        const h=dlg.querySelector('h3');
+        if(h) h.focus({preventScroll:true});   /* land on the name, not the close button */
+      });
+    });
+    document.querySelectorAll('dialog.biosheet').forEach(dlg=>{
+      const x=dlg.querySelector('.bs-x');
+      if(x) x.addEventListener('click',()=>dlg.close());
+      /* the backdrop is the dialog element itself — click outside the panel to dismiss */
+      dlg.addEventListener('click',e=>{ if(e.target===dlg) dlg.close(); });
+      dlg.addEventListener('close',()=>{ if(dlg._trigger) dlg._trigger.focus(); });
+    });
+  })();
+
+  /* ---- parallax stone texture ----
+     Same handler as the homepage: drift .whobg as its section crosses the viewport.
+     rAF-throttled, and skipped entirely under prefers-reduced-motion. */
+  (function(){
+    const layers=[...document.querySelectorAll('.whobg')].map(bg=>({bg,sec:bg.parentElement}));
+    if(!layers.length) return;
+    if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const DRIFT=220;
+    let ticking=false;
+    const update=()=>{
+      const vh=window.innerHeight;
+      layers.forEach(({bg,sec})=>{
+        const r=sec.getBoundingClientRect();
+        if(r.bottom>0&&r.top<vh){
+          const p=(vh-r.top)/(vh+r.height);
+          bg.style.transform='translate3d(0,'+((p-.5)*DRIFT).toFixed(1)+'px,0)';
+        }
+      });
+      ticking=false;
+    };
+    const onP=()=>{if(!ticking){ticking=true;requestAnimationFrame(update);}};
+    update();
+    window.addEventListener('scroll',onP,{passive:true});
+    window.addEventListener('resize',onP);
+  })();
+
+  /* ---- scroll reveals ---- */
+  const rv=document.querySelectorAll('.rv');
+  if(rv.length){
+    if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+      rv.forEach(el=>el.classList.add('in'));
+    }else{
+      const io=new IntersectionObserver(es=>es.forEach(e=>{
+        if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+      }),{threshold:.16,rootMargin:'0px 0px -8% 0px'});
+      rv.forEach(el=>io.observe(el));
+    }
+  }
+})();
+</script>
+</body>
+</html>
+
+<script>
+/* ---- B2 drawer ---- */
+(function(){
+  const cards=[...document.querySelectorAll('.dcard')];
+  const panels=[...document.querySelectorAll('.drawerpanel')];
+  if(!cards.length) return;
+  const closeAll=()=>{
+    cards.forEach(c=>{c.classList.remove('active'); c.querySelector('.dbtn').setAttribute('aria-expanded','false');});
+    panels.forEach(p=>p.hidden=true);
+  };
+  cards.forEach((c,i)=>{
+    const btn=c.querySelector('.dbtn');
+    btn.addEventListener('click',()=>{
+      const isOpen=!panels[i].hidden;
+      closeAll();
+      if(!isOpen){
+        panels[i].hidden=false;
+        c.classList.add('active');
+        btn.setAttribute('aria-expanded','true');
+        /* move focus into the panel so keyboard users land on what just appeared */
+        panels[i].querySelector('h3').setAttribute('tabindex','-1');
+        panels[i].querySelector('h3').focus({preventScroll:true});
+      }
+    });
+  });
+  panels.forEach((p,i)=>{
+    p.querySelector('.dp-close').addEventListener('click',()=>{
+      closeAll();
+      cards[i].querySelector('.dbtn').focus();   /* focus returns to the trigger, never lost */
+    });
+  });
+  document.addEventListener('keydown',e=>{
+    if(e.key!=='Escape') return;
+    const open=panels.findIndex(p=>!p.hidden);
+    if(open>-1){ closeAll(); cards[open].querySelector('.dbtn').focus(); }
+  });
+})();
+
+/* ---- B3 dialog ---- */
+(function(){
+  document.querySelectorAll('.mbtn').forEach(b=>{
+    const dlg=document.getElementById(b.dataset.dlg);
+    if(!dlg) return;
+    /* showModal() gives focus trapping + Esc + inert background for free */
+    b.addEventListener('click',()=>dlg.showModal());
+    dlg.querySelector('.dlg-close').addEventListener('click',()=>dlg.close());
+    /* click the backdrop to dismiss */
+    dlg.addEventListener('click',e=>{ if(e.target===dlg) dlg.close(); });
+    dlg.addEventListener('close',()=>b.focus());
+  });
+})();
+</script>

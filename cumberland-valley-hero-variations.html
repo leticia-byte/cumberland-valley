@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cumberland Valley — Hero Variations</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0D244D;--navy-deep:#081832;--blue:#175097;
+    --stone:#808286;--mortar:#D4D5D7;--oat:#F4F1EA;--paper:#FFFFFF;
+    --ink:#141A22;--clay:#A24E32;--clay-lit:#B85838;--hearth:#E8A33D;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:#E7E5DE;color:var(--ink);font-family:'Inter',system-ui,sans-serif;line-height:1.7}
+  h1,h2,h3{font-family:'Fraunces',Georgia,serif;font-weight:600;letter-spacing:-.02em;line-height:1.06}
+  .wrap{max-width:1200px;margin:0 auto;padding:0 32px}
+  .label{max-width:1200px;margin:0 auto;padding:40px 32px 14px}
+  .label .tag{display:inline-block;font:600 11px/1 'Inter';letter-spacing:.2em;text-transform:uppercase;color:#fff;background:var(--clay);padding:8px 13px;border-radius:999px;margin-bottom:14px}
+  .label h2{font-size:30px;color:var(--navy)}
+  .label p{max-width:76ch;color:#3E4650;margin-top:12px;font-size:16px}
+  .label .meta{margin-top:14px;font-size:14px;color:#5A626C}
+  .label .meta b{color:var(--navy)}
+  .frame{max-width:1280px;margin:0 auto 20px;padding:0 20px}
+  .device{border-radius:16px;overflow:hidden;box-shadow:0 40px 90px -50px rgba(13,36,77,.6),0 2px 0 rgba(255,255,255,.6) inset;background:#fff}
+  .btn{display:inline-flex;align-items:center;gap:10px;background:var(--clay);color:#fff;border:none;font:600 18px/1 'Inter';padding:19px 28px;border-radius:999px;text-decoration:none;box-shadow:0 14px 34px -12px rgba(162,78,50,.9);transition:transform .25s,background .25s}
+  .btn:hover{transform:translateY(-3px);background:var(--clay-lit)}
+  .eyebrow{font:600 11px/1 'Inter';letter-spacing:.2em;text-transform:uppercase;color:var(--hearth);margin-bottom:16px}
+  .note{font-size:14px;margin-top:14px}
+  .divider{height:60px}
+
+  /* ======= shared nav bar inside each device ======= */
+  .topbar{display:flex;align-items:center;justify-content:space-between;padding:14px 28px;position:absolute;top:0;left:0;right:0;z-index:6}
+  .topbar .mk{height:64px;background:#fff;border-radius:8px;padding:6px 10px;display:flex;align-items:center}
+  .topbar .mk img{height:100%;width:auto;object-fit:contain;display:block}
+  .topbar .lk{display:flex;gap:24px;font:500 14px/1 'Inter'}
+  .topbar .call{display:inline-flex;align-items:center;gap:8px;background:var(--clay);color:#fff;font:600 14px/1 'Inter';padding:12px 17px;border-radius:999px;text-decoration:none}
+  @media(max-width:820px){.topbar .lk{display:none}}
+
+  /* =====================================================
+     VARIATION 1 — "Rising Wall"
+     Wall as a foreground element the content sits ON TOP of;
+     stone climbs from the bottom like a real dry-stack wall.
+  ====================================================== */
+  .v1{position:relative;min-height:660px;background:linear-gradient(180deg,var(--navy-deep) 0%,var(--navy) 46%,var(--blue) 100%);overflow:hidden;display:flex;align-items:center}
+  .v1 .sky{position:absolute;inset:0;opacity:.5;background:
+    radial-gradient(120% 80% at 50% -10%, rgba(232,163,61,.28), transparent 55%),
+    radial-gradient(80% 60% at 85% 0%, rgba(23,80,151,.6), transparent 60%)}
+  .v1 .grain{position:absolute;inset:0;opacity:.2;background-image:radial-gradient(rgba(255,255,255,.12) 1px,transparent 1px);background-size:3px 3px}
+  .v1 .content{position:relative;z-index:4;padding:120px 0 220px;max-width:640px}
+  .v1 h1{color:#fff;font-size:clamp(36px,4.4vw,60px);text-wrap:balance}
+  .v1 .sub{color:#C7D2E2;font-size:19px;margin-top:20px;max-width:52ch}
+  .v1 .cta-row{margin-top:30px;display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+  .v1 .flag{color:var(--hearth);font:600 13px/1 'Inter';letter-spacing:.06em}
+  /* the wall — sits along the bottom, foreground */
+  .v1 .wall{position:absolute;left:0;right:0;bottom:0;height:270px;z-index:3;-webkit-mask-image:linear-gradient(180deg,transparent,#000 34%);mask-image:linear-gradient(180deg,transparent,#000 34%)}
+  .v1 .wall svg{width:100%;height:100%;display:block;object-fit:cover}
+  .v1 .wall::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(13,36,77,.4),transparent 40%)}
+  /* a couple of stones "breaking loose" above the wall line for depth */
+  .v1 .loose{position:absolute;z-index:3;bottom:250px;border-radius:14px;background:var(--stone);box-shadow:0 20px 30px -14px rgba(0,0,0,.5)}
+
+  /* =====================================================
+     VARIATION 2 — "Split Stone"
+     Wall is a full-height LEFT PANEL (architectural accent);
+     the mark's cat + dog silhouettes conceptually perch on it.
+  ====================================================== */
+  .v2{position:relative;min-height:640px;display:grid;grid-template-columns:.92fr 1.08fr;background:var(--paper)}
+  .v2 .stonepane{position:relative;overflow:hidden;background:var(--mortar)}
+  .v2 .stonepane svg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  .v2 .stonepane::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(13,36,77,.32),transparent 45%,rgba(255,255,255,.55) 100%)}
+  .v2 .silhouettes{position:absolute;z-index:3;left:0;right:0;bottom:0;display:flex;justify-content:center;gap:26px;padding:0 20px 26px;filter:drop-shadow(0 12px 14px rgba(0,0,0,.35))}
+  .v2 .silhouettes svg{position:static;width:120px;height:auto}
+  .v2 .panel{display:flex;flex-direction:column;justify-content:center;padding:80px 64px}
+  .v2 h1{color:var(--navy);font-size:clamp(34px,3.6vw,54px);text-wrap:balance}
+  .v2 .sub{color:#3E4650;font-size:19px;margin-top:20px;max-width:46ch}
+  .v2 .cta-row{margin-top:30px;display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+  .v2 .flag{color:var(--clay);font:600 13px/1 'Inter';letter-spacing:.05em}
+  .v2 .strip{margin-top:34px;display:flex;gap:8px 18px;flex-wrap:wrap;font:500 13px/1.6 'Inter';color:#5A626C}
+  .v2 .strip b{color:var(--navy)}
+  @media(max-width:820px){.v2{grid-template-columns:1fr}.v2 .stonepane{min-height:220px}.v2 .panel{padding:48px 32px}}
+
+  /* =====================================================
+     VARIATION 3 — "Through the Arch"
+     Wall + landscape framed INSIDE the logo's navy arc;
+     stone becomes a landscape feature seen through a window.
+  ====================================================== */
+  .v3{position:relative;min-height:660px;background:var(--oat);display:grid;grid-template-columns:1.06fr .94fr;align-items:center;overflow:hidden}
+  .v3::before{content:"";position:absolute;left:0;top:0;bottom:0;width:8px;background:repeating-linear-gradient(180deg,var(--mortar) 0 26px,var(--stone) 26px 30px)}
+  .v3 .copy{padding:96px 30px 96px 72px;position:relative;z-index:3}
+  .v3 h1{color:var(--navy);font-size:clamp(34px,3.8vw,56px);text-wrap:balance}
+  .v3 .sub{color:#3E4650;font-size:19px;margin-top:20px;max-width:44ch}
+  .v3 .cta-row{margin-top:30px;display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+  .v3 .flag{color:var(--clay);font:600 13px/1 'Inter'}
+  /* the arch window */
+  .v3 .arch{position:relative;height:100%;min-height:660px}
+  .v3 .arch .frame2{position:absolute;inset:56px 56px 56px 0;border-radius:280px 280px 18px 18px;overflow:hidden;background:var(--navy);box-shadow:0 40px 80px -44px rgba(13,36,77,.7);border:6px solid var(--navy)}
+  .v3 .arch .scene{position:absolute;inset:0}
+  .v3 .arch .scene img{width:100%;height:64%;object-fit:cover;filter:saturate(.6)}
+  .v3 .arch .stone{position:absolute;left:0;right:0;bottom:0;height:44%}
+  .v3 .arch .stone svg{width:100%;height:100%;object-fit:cover;display:block}
+  .v3 .arch .horizon{position:absolute;left:0;right:0;top:60%;height:60px;background:linear-gradient(180deg,rgba(13,36,77,.55),transparent);z-index:2}
+  .v3 .arch .dog{position:absolute;z-index:4;right:22%;bottom:16%;width:110px;filter:drop-shadow(0 10px 12px rgba(0,0,0,.4))}
+  @media(max-width:820px){.v3{grid-template-columns:1fr}.v3 .copy{padding:56px 32px 20px}.v3 .arch{min-height:420px}.v3 .arch .frame2{inset:20px}}
+</style>
+</head>
+<body>
+
+<!-- ================= VARIATION 1 ================= -->
+<div class="label">
+  <span class="tag">Variation 1</span>
+  <h2>Rising Wall</h2>
+  <p>The stone wall is a real foreground element — a dry-stack wall built up along the bottom edge of the hero, with the headline standing above it against a dawn-navy sky. A few stones "break loose" above the wall line for depth. This is the most literal reading of the logo: you are standing at the wall out front.</p>
+  <div class="meta"><b>Imagery:</b> golden-hour sky gradient (or a real photo of the clinic's stone sign at dawn dropped behind the wall). <b>Best when:</b> no photography has landed yet — the wall alone carries it.</div>
+</div>
+<div class="frame"><div class="device">
+  <section class="v1">
+    <div class="sky"></div><div class="grain"></div>
+    <div class="topbar">
+      <div class="mk"><img src="assets/cvvc-logo.png" alt="Cumberland Valley"></div>
+      <div class="lk" style="color:#DCE3EE"><span>About</span><span>Services</span><span>Community</span><span>FAQ</span></div>
+      <a class="call" href="#">📞 (301) 739-3121</a>
+    </div>
+    <div class="wrap content">
+      <div class="flag">Open Tuesdays until 10 p.m.</div>
+      <h1 style="margin-top:14px">Hagerstown's veterinarian, keeping care close to home.</h1>
+      <p class="sub">Cumberland Valley Veterinary Clinic has been Hagerstown's privately owned, multi-doctor veterinary practice and pet resort for over 30 years.</p>
+      <div class="cta-row">
+        <a class="btn" href="#">📞 Call (301) 739-3121</a>
+        <span style="color:#9FB0C6;font-size:14px">We answer the phone. No portal, no phone tree.</span>
+      </div>
+    </div>
+    <div class="loose" style="width:64px;height:48px;left:12%;transform:rotate(-8deg)"></div>
+    <div class="loose" style="width:46px;height:40px;left:20%;bottom:262px;background:var(--mortar);transform:rotate(6deg)"></div>
+    <div class="loose" style="width:54px;height:44px;right:16%;bottom:256px;background:#6E7075;transform:rotate(10deg)"></div>
+    <div class="wall">
+      <img src="assets/stone-wall.svg" alt="" style="width:100%;height:100%;object-fit:cover;object-position:bottom;position:absolute;inset:0">
+    </div>
+  </section>
+</div></div>
+
+<div class="divider"></div>
+
+<!-- ================= VARIATION 2 ================= -->
+<div class="label">
+  <span class="tag">Variation 2</span>
+  <h2>Split Stone</h2>
+  <p>The wall becomes a full-height architectural panel on the left — a literal stone wall you've walked up to — with the copy on a clean white right panel. The logo's cat and dog silhouettes perch at the base of the wall, exactly as they do in the mark, so the hero <em>is</em> the logo unfolded to full width. A soft light-wash keeps the copy edge readable.</p>
+  <div class="meta"><b>Imagery:</b> the silhouettes are pulled straight from the brand mark — no photo required. <b>Best when:</b> you want the brand to feel unmistakable above the fold.</div>
+</div>
+<div class="frame"><div class="device">
+  <section class="v2">
+    <div class="stonepane">
+      <img src="assets/stone-wall.svg" alt="Stone wall" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+      <div class="silhouettes">
+        <!-- cat silhouette -->
+        <svg viewBox="0 0 120 90" fill="#0D244D" aria-hidden="true"><path d="M8 78c0-6 3-10 3-16 0-8-2-14 4-22 5-7 14-10 22-10 3-4 5-9 8-13 1 6 0 11-2 15 6 2 12 7 15 14 2 5 2 10 2 15 0 6 3 10 3 17 0 3-2 4-4 4H12c-2 0-4-1-4-4z"/></svg>
+        <!-- dog silhouette -->
+        <svg viewBox="0 0 120 100" fill="#0D244D" aria-hidden="true"><path d="M60 6c4 0 7 4 9 9 3-2 7-2 9 1 2 4-1 8-1 12 2 6 3 12 3 19 0 14-1 27-3 40-1 5-6 6-10 6H40c-4 0-8-2-8-7 0-9 2-17 2-26 0-10-4-19-4-29 0-10 6-19 15-23 4-7 8-12 13-12z"/></svg>
+      </div>
+    </div>
+    <div class="panel">
+      <div class="topbar" style="position:static;padding:0 0 40px;justify-content:flex-start;gap:24px">
+        <div class="mk" style="background:transparent;padding-left:0;height:72px"><img src="assets/cvvc-logo.png" alt="Cumberland Valley"></div>
+      </div>
+      <div class="flag">Open Tuesdays until 10 p.m.</div>
+      <h1 style="margin-top:12px">Hagerstown's veterinarian, keeping care close to home.</h1>
+      <p class="sub">Cumberland Valley Veterinary Clinic has been Hagerstown's privately owned, multi-doctor veterinary practice and pet resort for over 30 years.</p>
+      <div class="cta-row"><a class="btn" href="#">📞 Call (301) 739-3121</a></div>
+      <div class="strip"><span><b>Locally Owned</b></span><span>·</span><span>Surgery In-House</span><span>·</span><span>Dog &amp; Cat Boarding</span><span>·</span><span><b>New Patients Welcome</b></span></div>
+    </div>
+  </section>
+</div></div>
+
+<div class="divider"></div>
+
+<!-- ================= VARIATION 3 ================= -->
+<div class="label">
+  <span class="tag">Variation 3</span>
+  <h2>Through the Arch</h2>
+  <p>The wall becomes a landscape feature seen <em>through</em> the logo's navy arc — the circular mark opened up into a window. Inside: a strip of Washington County sky up top, the stone wall as the ground below, and the logo's dog sitting on it looking up. The copy sits left against oat paper. This is the most editorial of the three and leans hardest on the mark's geometry.</p>
+  <div class="meta"><b>Imagery:</b> any rural sky/landscape photo fills the top 60% of the arch; the wall fills the bottom. <b>Best when:</b> a real landscape or facility photo lands and you want the brand's arc to frame it.</div>
+</div>
+<div class="frame"><div class="device">
+  <section class="v3">
+    <div class="topbar">
+      <div class="mk"><img src="assets/cvvc-logo.png" alt="Cumberland Valley"></div>
+      <div class="lk" style="color:var(--navy)"><span>About</span><span>Services</span><span>Community</span><span>FAQ</span></div>
+      <a class="call" href="#">📞 (301) 739-3121</a>
+    </div>
+    <div class="copy">
+      <div class="flag">Open Tuesdays until 10 p.m.</div>
+      <h1 style="margin-top:12px">Hagerstown's veterinarian, keeping care close to home.</h1>
+      <p class="sub">Privately owned, multi-doctor care and a pet resort — right here in Hagerstown for over 30 years.</p>
+      <div class="cta-row"><a class="btn" href="#">📞 Call (301) 739-3121</a></div>
+    </div>
+    <div class="arch">
+      <div class="frame2">
+        <div class="scene">
+          <img src="https://images.pexels.com/photos/259857/pexels-photo-259857.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=700&w=1000" alt="Washington County landscape (placeholder)">
+          <div class="horizon"></div>
+          <div class="stone"><img src="assets/stone-wall.svg" alt="Stone wall" style="width:100%;height:100%;object-fit:cover"></div>
+        </div>
+        <svg class="dog" viewBox="0 0 120 100" fill="#0D244D" aria-hidden="true"><path d="M60 6c4 0 7 4 9 9 3-2 7-2 9 1 2 4-1 8-1 12 2 6 3 12 3 19 0 14-1 27-3 40-1 5-6 6-10 6H40c-4 0-8-2-8-7 0-9 2-17 2-26 0-10-4-19-4-29 0-10 6-19 15-23 4-7 8-12 13-12z"/></svg>
+      </div>
+    </div>
+  </section>
+</div></div>
+
+<div class="label" style="padding-bottom:70px">
+  <p class="note" style="color:#7C5A12;background:#FFF3D6;border:1px solid #E8C77E;padding:12px 15px;border-radius:8px;display:inline-block">⚠️ The stone wall is a rebuilt SVG in the logo's grays (the uploaded illustration didn't arrive as a usable file). Landscape photo in Variation 3 is placeholder — client Drive image folders are still empty.</p>
+</div>
+
+</body>
+</html>

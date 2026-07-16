@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Direction C — Plain Spoken | Cumberland Valley</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+<style>
+  :root{--navy:#0D244D;--blue:#175097;--stone:#808286;--mist:#E7E8EA;--paper:#FFFFFF;--ink:#111820;--signal:#C2410C}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--mist);color:var(--ink);font-family:'Archivo',sans-serif}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 32px}
+  .board-head{padding:56px 0 32px;border-bottom:3px solid var(--navy);display:flex;gap:32px;align-items:flex-start}
+  .logo{width:150px;flex:0 0 150px;background:#fff;padding:12px;box-shadow:0 20px 40px -24px rgba(13,36,77,.5)}
+  .logo img{width:100%;display:block}
+  .eyebrow{font:800 11px/1 'Archivo';letter-spacing:.2em;text-transform:uppercase;color:var(--signal)}
+  h1.name{font-family:'Archivo',sans-serif;font-weight:800;font-size:clamp(40px,6vw,74px);line-height:.98;margin:12px 0;letter-spacing:-.035em;color:var(--navy);text-transform:uppercase}
+  .concept{font-family:'Source Serif 4',serif;font-size:21px;line-height:1.6;max-width:680px;color:#3C4650}
+  section{padding:52px 0;border-bottom:1px solid rgba(17,24,32,.15)}
+  h2.sec{font:800 11px/1 'Archivo';letter-spacing:.2em;text-transform:uppercase;color:var(--stone);margin-bottom:22px}
+
+  .sw{display:grid;grid-template-columns:repeat(auto-fit,minmax(118px,1fr));gap:0;border:2px solid var(--navy)}
+  .chip{overflow:hidden;border-right:2px solid var(--navy);transition:transform .3s}
+  .chip:last-child{border-right:none}
+  .chip:hover{transform:translateY(-4px)}
+  .chip .fill{height:88px}
+  .chip .meta{background:#fff;padding:10px 12px;border-top:2px solid var(--navy)}
+  .chip .lab{font:800 11px/1.3 'Archivo';text-transform:uppercase;letter-spacing:.04em}
+  .chip .hex{font:500 11px/1.4 'Archivo';color:var(--stone)}
+  .brandtag{display:inline-block;margin-bottom:14px;font:800 10px/1 'Archivo';letter-spacing:.12em;text-transform:uppercase;color:#fff;background:var(--navy);padding:7px 11px}
+
+  /* hero: no photo. type IS the hero. */
+  .hero{background:var(--paper);border:3px solid var(--navy);position:relative;overflow:hidden}
+  .nav{display:flex;align-items:center;justify-content:space-between;padding:16px 28px;border-bottom:3px solid var(--navy);background:#fff}
+  .nav .mark{height:50px}
+  .nav .mark img{height:100%;display:block}
+  .nav .links{display:flex;gap:24px;font:600 15px/1 'Archivo';color:var(--navy)}
+  .navcall{background:var(--signal);color:#fff;font:800 15px/1 'Archivo';padding:14px 18px}
+  .heroBody{padding:64px 44px 52px;position:relative}
+  .rule{height:3px;background:var(--navy);margin:0 0 26px;width:100%;transform-origin:left;animation:draw 1.1s cubic-bezier(.2,.8,.2,1) forwards;transform:scaleX(0)}
+  @keyframes draw{to{transform:scaleX(1)}}
+  .hero h3{font-family:'Archivo',sans-serif;font-weight:800;color:var(--navy);font-size:clamp(34px,4.6vw,68px);line-height:1;letter-spacing:-.035em;max-width:16ch}
+  .hero h3 .hl{background:linear-gradient(transparent 62%, #FFD9A8 62%)}
+  .hero .sub{font-family:'Source Serif 4',serif;color:#3C4650;font-size:20px;line-height:1.6;margin-top:22px;max-width:54ch}
+  .phoneblock{margin-top:34px;display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+  .cta{display:inline-flex;align-items:center;gap:12px;background:var(--signal);color:#fff;border:none;font:800 24px/1 'Archivo';padding:24px 32px;cursor:pointer;letter-spacing:-.01em;box-shadow:8px 8px 0 var(--navy);transition:transform .18s,box-shadow .18s}
+  .cta:hover{transform:translate(4px,4px);box-shadow:4px 4px 0 var(--navy)}
+  .callnote{font:600 14px/1.5 'Archivo';color:var(--stone);max-width:22ch}
+  .hoursflag{position:absolute;right:44px;top:56px;background:var(--navy);color:#fff;font:800 13px/1.4 'Archivo';padding:14px 18px;text-transform:uppercase;letter-spacing:.05em;text-align:right}
+  .hoursflag b{display:block;font-size:22px;letter-spacing:-.02em}
+  .trust{background:var(--navy);color:#fff;padding:16px 24px;font:600 14px/1.5 'Archivo';display:flex;flex-wrap:wrap;gap:8px 20px;justify-content:center;border:3px solid var(--navy);border-top:none}
+
+  .type-demo{display:grid;grid-template-columns:1fr 1fr;gap:44px}
+  .type-demo .h{font-family:'Archivo';font-weight:800;font-size:46px;line-height:1;letter-spacing:-.035em;color:var(--navy);text-transform:uppercase}
+  .type-demo p{font-family:'Source Serif 4',serif;font-size:19px;line-height:1.7;color:#3C4650;max-width:44ch}
+  .fontname{font:800 11px/1 'Archivo';letter-spacing:.16em;text-transform:uppercase;color:var(--signal);margin-bottom:12px}
+
+  .rhythm{display:flex;flex-direction:column;gap:8px}
+  .row{display:flex;align-items:center;gap:16px;opacity:0;transform:translateY(14px);transition:all .55s cubic-bezier(.2,.8,.2,1)}
+  .row.in{opacity:1;transform:none}
+  .bar{height:var(--h);flex:1;background:var(--c);position:relative;border:2px solid var(--navy)}
+  .bar span{position:absolute;left:14px;top:50%;transform:translateY(-50%);font:800 12px/1 'Archivo';color:#fff;letter-spacing:.04em;text-transform:uppercase}
+  .tag{font:600 11px/1 'Archivo';color:var(--stone);width:110px;text-align:right;letter-spacing:.06em;text-transform:uppercase}
+
+  .photos{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .photo{overflow:hidden;position:relative;aspect-ratio:4/3;border:3px solid var(--navy)}
+  .photo img{width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.1);transition:filter .5s,transform .8s}
+  .photo:hover img{filter:grayscale(0);transform:scale(1.05)}
+  .photo .cap{position:absolute;left:0;right:0;bottom:0;padding:12px 14px;background:var(--navy);color:#fff;font:600 12px/1.4 'Archivo'}
+  .warn{display:inline-block;margin-top:12px;font:800 10px/1 'Archivo';letter-spacing:.1em;text-transform:uppercase;color:#7C2D12;background:#FFD9A8;padding:7px 11px}
+  .rationale{font-family:'Source Serif 4',serif;font-size:19px;line-height:1.7;max-width:70ch;color:#2C3640}
+  .rationale strong{font-family:'Archivo';font-weight:800;font-size:16px;color:var(--signal);text-transform:uppercase;letter-spacing:.02em}
+  footer{padding:40px 0 72px;color:var(--stone);font-size:13px}
+  @media(max-width:860px){.type-demo,.photos{grid-template-columns:1fr}.board-head{flex-direction:column}.hoursflag{position:static;margin-bottom:20px;display:inline-block;text-align:left}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="board-head">
+    <div class="logo"><img src="../assets/cvvc-logo.png" alt="Cumberland Valley Veterinary Clinic logo"></div>
+    <div>
+      <div class="eyebrow">Direction C · Cumberland Valley Veterinary Clinic &amp; Pet Resort</div>
+      <h1 class="name">Plain Spoken</h1>
+      <p class="concept">No hero photo. No mood. The words are the hero, set enormous, and the phone number is the biggest thing on the page. This direction takes the audience constraint — older, blue-collar, farming, some low-vision — and makes it the aesthetic instead of a compromise.</p>
+    </div>
+  </div>
+
+  <section>
+    <h2 class="sec">Hero concept</h2>
+    <div class="hero">
+      <div class="nav">
+        <div class="mark"><img src="../assets/cvvc-logo.png" alt=""></div>
+        <div class="links"><span>Services</span><span>Our Team</span><span>Pet Resort</span><span>Contact</span></div>
+        <div class="navcall">(301) 739-3121</div>
+      </div>
+      <div class="heroBody">
+        <div class="hoursflag">Tuesdays until<b>10 P.M.</b></div>
+        <div class="rule"></div>
+        <h3>Hagerstown's veterinarian, <span class="hl">keeping care close to home.</span></h3>
+        <p class="sub">Cumberland Valley Veterinary Clinic has been Hagerstown's privately owned, multi-doctor veterinary practice and pet resort for over 30 years.</p>
+        <div class="phoneblock">
+          <button class="cta">📞 Call (301) 739-3121</button>
+          <div class="callnote">We answer the phone. No booking form, no portal, no phone tree.</div>
+        </div>
+      </div>
+    </div>
+    <div class="trust"><span>Locally Owned Since [YEAR]</span><span>·</span><span>Community-Based Care</span><span>·</span><span>Comprehensive Surgical Services</span><span>·</span><span>Dog &amp; Cat Boarding</span><span>·</span><span>New Patients Welcome</span></div>
+    <p class="rationale" style="margin-top:24px">Everything is oversized, high-contrast, and unmissable. The CTA has a hard navy drop-shadow — it looks like a physical button. <strong>The story the motion tells:</strong> one 3px rule draws itself left-to-right under the nav on load, like a line ruled in a ledger, and then the page stops moving. That's the entire animation budget. Zero parallax. Zero fade-ins on body copy.</p>
+  </section>
+
+  <section>
+    <h2 class="sec">Palette — pulled from the logo</h2>
+    <div class="brandtag">✦ Navy + stone sampled from CVVC-final-logo_color.jpg</div>
+    <div class="sw">
+      <div class="chip"><div class="fill" style="background:#0D244D"></div><div class="meta"><div class="lab">Logo Navy</div><div class="hex">#0D244D</div></div></div>
+      <div class="chip"><div class="fill" style="background:#175097"></div><div class="meta"><div class="lab">Signal Blue</div><div class="hex">#175097</div></div></div>
+      <div class="chip"><div class="fill" style="background:#FFFFFF"></div><div class="meta"><div class="lab">Paper</div><div class="hex">#FFFFFF</div></div></div>
+      <div class="chip"><div class="fill" style="background:#E7E8EA"></div><div class="meta"><div class="lab">Mortar</div><div class="hex">#E7E8EA</div></div></div>
+      <div class="chip"><div class="fill" style="background:#808286"></div><div class="meta"><div class="lab">Fieldstone</div><div class="hex">#808286</div></div></div>
+      <div class="chip"><div class="fill" style="background:#C2410C"></div><div class="meta"><div class="lab">Signal ✦ CTA</div><div class="hex">#C2410C</div></div></div>
+      <div class="chip"><div class="fill" style="background:#FFD9A8"></div><div class="meta"><div class="lab">Highlighter ✦ surprise</div><div class="hex">#FFD9A8</div></div></div>
+    </div>
+    <p class="rationale" style="margin-top:20px"><strong>The surprise is Highlighter.</strong> A literal marker-pen swipe under the phrase that matters. It's the most human mark in the system — the thing a practice manager would do with an actual highlighter on an actual printout. Used exactly twice on the page.</p>
+  </section>
+
+  <section>
+    <h2 class="sec">Typography</h2>
+    <div class="type-demo">
+      <div>
+        <div class="fontname">Headings — Archivo 800, tight</div>
+        <div class="h">We give you options, not ultimatums.</div>
+        <p style="margin-top:14px">Archivo Black-adjacent, tracked tight. It's a signage face — DMV, feed store, county fair. It has no opinion about being tasteful, which is exactly right for a practice that says "I just want something functional."</p>
+      </div>
+      <div>
+        <div class="fontname">Body — Source Serif 4 / 19px / 1.7</div>
+        <p>Not every pet owner can afford every test, every procedure, or every referral. We help you understand what's possible, what matters most for your dog or cat, and how to make it fit for you.</p>
+        <p style="margin-top:14px">Body copy runs at <b>19px</b> — two full steps above the fleet default. Serif body at large sizes reads faster for older eyes than sans does.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="sec">Client photo candidates</h2>
+    <p class="rationale" style="margin-bottom:20px">⚠️ <strong>Drive image folders are still empty</strong> — only the logo has landed. This is the one direction that <em>survives</em> that: no hero photo means the page works even if Dr. Dolan never uploads a thing. Photos become a bonus, not a dependency.</p>
+    <div class="photos">
+      <div class="photo"><img src="https://images.pexels.com/photos/37805787/pexels-photo-37805787.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt=""><div class="cap">TEAM — grayscale by default, color on hover</div></div>
+      <div class="photo"><img src="https://images.pexels.com/photos/259857/pexels-photo-259857.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt=""><div class="cap">COMMUNITY — the farmland the clientele actually drives in from</div></div>
+      <div class="photo"><img src="https://images.pexels.com/photos/6235244/pexels-photo-6235244.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt=""><div class="cap">SERVICES — one photo per service row, small, functional</div></div>
+    </div>
+    <div class="warn">Photo-optional by design — ships without client uploads</div>
+  </section>
+
+  <section>
+    <h2 class="sec">Scroll rhythm</h2>
+    <div class="rhythm">
+      <div class="row"><div class="tag">Hero</div><div class="bar" style="--h:84px;--c:#FFFFFF"><span style="color:#0D244D">TYPE ONLY · no image · design leads</span></div></div>
+      <div class="row"><div class="tag">Trust bar</div><div class="bar" style="--h:34px;--c:#0D244D"><span>LIVE TEXT · SEO required</span></div></div>
+      <div class="row"><div class="tag">Who We Are</div><div class="bar" style="--h:76px;--c:#E7E8EA"><span style="color:#0D244D">TWO COLUMNS · 19px serif · copy leads</span></div></div>
+      <div class="row"><div class="tag">What We Believe</div><div class="bar" style="--h:68px;--c:#0D244D"><span>3 HARD-RULED BLOCKS · numbered 01/02/03</span></div></div>
+      <div class="row"><div class="tag">Services</div><div class="bar" style="--h:72px;--c:#175097"><span>TABLE, NOT CARDS · scannable rows</span></div></div>
+      <div class="row"><div class="tag">Community</div><div class="bar" style="--h:52px;--c:#808286"><span>TOWN LIST · plain text, no map graphic</span></div></div>
+      <div class="row"><div class="tag">FAQ</div><div class="bar" style="--h:60px;--c:#FFFFFF"><span style="color:#0D244D">OPEN BY DEFAULT · no accordion click (FAQ schema)</span></div></div>
+      <div class="row"><div class="tag">CTA close</div><div class="bar" style="--h:80px;--c:#C2410C"><span>PHONE NUMBER AT 72PX · the loudest thing on the site</span></div></div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="sec">Rationale</h2>
+    <p class="rationale">Dr. Dolan told you exactly what she wanted: <em>"I just want something that is functional and works. I don't have a lot of high— just something that's nice."</em> Most directions treat that as a floor to clear. This one treats it as the brief. It also solves the hardest constraint in the thesis — the CTA is a phone call, and here the phone number is genuinely, physically the biggest element on every screen. <strong>The risk:</strong> it may read as under-designed to Dr. Dolan, who is about to go compare her site to Funkstown's. That's a conversation worth having.</p>
+  </section>
+
+  <footer>Concept board C · Cumberland Valley · Design Lab · for Leticia Mora</footer>
+</div>
+<script>
+  const rows=[...document.querySelectorAll('.row')];
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)setTimeout(()=>e.target.classList.add('in'),rows.indexOf(e.target)%8*60)}),{threshold:.2});
+  rows.forEach(r=>io.observe(r));
+</script>
+</body>
+</html>

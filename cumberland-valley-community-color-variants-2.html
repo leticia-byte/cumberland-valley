@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cumberland Valley — 3 combinaciones más</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,ital,wght@9..144,0,400;9..144,0,500;9..144,0,600;9..144,0,700;9..144,1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<style>
+  :root{
+    --navy:#0D244D; --blue:#16529B; --blue-lit:#1E63B5; --band:#0D254D;
+    --oat:#F4F1EA; --ink:#141A22;
+    --sh-sm:0 1px 2px rgba(13,36,77,.10), 0 3px 8px -2px rgba(13,36,77,.16);
+    --sh-md:0 2px 4px rgba(13,36,77,.10), 0 10px 22px -8px rgba(13,36,77,.32);
+    --sh-md-dark:0 2px 5px rgba(3,10,24,.40), 0 12px 26px -8px rgba(3,10,24,.55);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:#E9E7E1;color:var(--ink);font-family:'Inter',system-ui,sans-serif;font-size:17px;line-height:1.7}
+  h1,h2,h3{font-family:'Fraunces',Georgia,serif;font-weight:600;letter-spacing:-.02em;line-height:1.08}
+  .label{max-width:1280px;margin:0 auto;padding:44px 40px 14px}
+  .label .tag{display:inline-block;font:600 11px/1 'Inter';letter-spacing:.2em;text-transform:uppercase;color:#fff;background:var(--blue);padding:8px 13px;border-radius:999px;margin-bottom:12px}
+  .label h2{font-size:28px;color:var(--navy)}
+  .label p{max-width:82ch;color:#3E4650;margin-top:10px;font-size:16px}
+  .sw{display:inline-block;width:12px;height:12px;border-radius:3px;vertical-align:-2px;margin-right:6px;border:1px solid rgba(13,36,77,.2)}
+  .aa{display:inline-block;margin-top:10px;font:600 11px/1 'Inter';letter-spacing:.08em;text-transform:uppercase;
+      color:#1B5E20;background:#E6F4E9;border:1px solid #A5D6A9;padding:6px 10px;border-radius:999px}
+  .frame{max-width:1320px;margin:0 auto 24px;padding:0 20px}
+  .divider{height:34px}
+
+  /* ---------- estructura común — banda #0D254D en las tres ---------- */
+  .community{background:var(--band);padding:72px 0;position:relative}
+  .community .shell{position:relative;max-width:1200px;margin:0 auto;border-radius:18px;overflow:hidden;
+    min-height:520px;display:flex;align-items:center}
+  .community .mapbg{position:absolute;right:clamp(20px,2.5vw,44px);top:50%;transform:translateY(-50%);width:min(58%,620px)}
+  .community .glow{position:absolute;right:2%;top:50%;transform:translateY(-50%);width:440px;height:440px;border-radius:50%;pointer-events:none}
+  .community .cwrap{position:relative;z-index:3;width:100%;padding:clamp(48px,5vw,70px) clamp(28px,4vw,52px)}
+  .community .panel{max-width:450px}
+  .community h2.big{font-size:clamp(26px,3vw,40px);max-width:14ch;text-wrap:balance}
+  .community .lede{font-size:18px;margin-top:16px;max-width:40ch}
+  .community .close{margin-top:22px;font-family:'Fraunces',serif;font-style:italic;font-size:clamp(18px,2vw,25px);max-width:20ch}
+  .community .mapaddr{font-style:normal;margin-top:20px}
+  .community .mapaddr a{display:inline-flex;gap:11px;align-items:flex-start;text-decoration:none;line-height:1.5;font-size:15px;transition:color .25s}
+  .callbtn{display:inline-flex;align-items:center;gap:9px;font:600 16px/1 'Inter';
+    padding:15px 22px;border-radius:999px;text-decoration:none;transition:transform .25s,background .25s}
+  .callbtn:hover{transform:translateY(-2px)}
+  .cta{margin-top:18px}
+  .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px;max-width:430px}
+  .chip{border-radius:999px;padding:8px 15px;font:500 13.5px/1 'Inter';cursor:pointer;transition:all .3s cubic-bezier(.2,.8,.2,1)}
+  .chip.soft{background:transparent;border-style:dashed;cursor:default;box-shadow:none}
+  .chip.soft:hover{background:transparent;transform:none;box-shadow:none}
+  .readout{margin-top:20px;display:inline-block;border-radius:10px;padding:11px 15px;min-width:220px}
+  .readout .rt{font-family:'Fraunces',serif;font-weight:600;font-size:16px}
+  .readout .rs{font:500 12px/1.5 'Inter';margin-top:2px}
+
+  /* ---------- mapa base ---------- */
+  .map{width:100%;height:auto;display:block;overflow:visible}
+  .road{fill:none;stroke-width:3;stroke-linecap:round}
+  .road.major{stroke-width:4;opacity:.9}
+  .roadlabel{font:600 10px 'Inter';letter-spacing:.06em}
+  .waterlabel{font:italic 600 12px 'Fraunces'}
+  .map text{filter:drop-shadow(0 1px 2px rgba(5,15,34,.55))}
+  .town{cursor:pointer}
+  .town .hit{fill:transparent}
+  .city-dot{stroke-width:2.5;transition:r .3s cubic-bezier(.2,.8,.2,1),fill .3s,stroke .3s}
+  .town-label{font:700 13px 'Inter';transition:fill .3s}
+  .town:hover .city-dot,.town.on .city-dot{r:7}
+  .link{stroke-width:2;stroke-dasharray:5 6;opacity:0;transition:opacity .35s}
+  .town:hover .link,.town.on .link{opacity:.9;animation:dash 9s linear infinite}
+  @keyframes dash{to{stroke-dashoffset:-220}}
+  .cv-ring{fill:none;stroke-width:2;opacity:.6;transform-origin:222.2px 236.4px;animation:cvpulse 3.4s ease-out infinite}
+  @keyframes cvpulse{0%{transform:scale(.55);opacity:.65}100%{transform:scale(1.25);opacity:0}}
+  .cv-marker{stroke-width:3}
+  .cv-label{font:700 15px 'Inter'}
+  .cv-sub{font:600 10px 'Inter';letter-spacing:.14em;text-transform:uppercase}
+  .cv-addr{font:500 11px 'Inter'}
+  .compass{opacity:.75}
+  .compass text{font:700 11px 'Inter'}
+
+  /* ===== D · SIN TARJETA — el mapa flota sobre la banda ===== */
+  .vD .shell{background:transparent;box-shadow:none}
+  .vD .glow{background:radial-gradient(circle,rgba(78,134,201,.16),transparent 66%)}
+  .vD .mapbg::after{content:"";position:absolute;inset:0;pointer-events:none;
+    background:linear-gradient(90deg,#0D254D 0%,rgba(13,37,77,.92) 20%,rgba(13,37,77,.55) 40%,rgba(13,37,77,0) 66%)}
+  .vD h2.big{color:#FFFFFF} .vD .lede{color:#C7D4E6} .vD .close{color:#8FBEEF}
+  .vD .mapaddr a{color:#C7D4E6} .vD .mapaddr a:hover{color:#fff} .vD .mapaddr i{margin-top:4px;color:#8FBEEF}
+  .vD .callbtn{background:var(--blue);color:#fff;box-shadow:var(--sh-md-dark)}
+  .vD .callbtn:hover{background:var(--blue-lit)}
+  .vD .chip{background:transparent;border:1px solid rgba(255,255,255,.32);color:#DCE6F2;box-shadow:var(--sh-sm)}
+  .vD .chip:hover,.vD .chip.on{background:#8FBEEF;border-color:#8FBEEF;color:#04142E;transform:translateY(-2px);box-shadow:var(--sh-md-dark)}
+  .vD .chip.soft{border-color:rgba(255,255,255,.3);color:#A9BCD4}
+  .vD .readout{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);box-shadow:var(--sh-md-dark)}
+  .vD .readout .rt{color:#fff} .vD .readout .rs{color:#C3D3E8}
+  .vD .land{fill:#26508B;stroke:#FFFFFF;stroke-width:2.5}
+  .vD .water{fill:#16345F;stroke:#FFFFFF;stroke-width:1.5}
+  .vD .road{stroke:#5B8AC8} .vD .road.major{stroke:#FFFFFF}
+  .vD .roadlabel{fill:#C2D5EC} .vD .waterlabel{fill:#BDD5EE}
+  .vD .city-dot{fill:#0D244D;stroke:#FFFFFF} .vD .town-label{fill:#EAF1FA}
+  .vD .town:hover .city-dot,.vD .town.on .city-dot{fill:#FFFFFF;stroke:#FFFFFF}
+  .vD .town:hover .town-label,.vD .town.on .town-label{fill:#fff}
+  .vD .link{stroke:#FFFFFF} .vD .cv-ring{stroke:#BBD8F7}
+  .vD .cv-marker{fill:#FFFFFF;stroke:#0D244D} .vD .cv-label{fill:#fff}
+  .vD .cv-sub{fill:#BBD8F7} .vD .cv-addr{fill:#C2D5EC}
+  .vD .compass text,.vD .compass path{fill:#C2D5EC} .vD .compass circle{fill:none;stroke:#FFFFFF;opacity:.7;stroke-width:1.5}
+
+  /* ===== E · TARJETA AZUL ACENTO ===== */
+  .vE .shell{background:#16529B;box-shadow:0 3px 8px rgba(3,10,24,.34), 0 18px 36px -10px rgba(3,10,24,.46), 0 48px 80px -30px rgba(3,10,24,.6)}
+  .vE .glow{background:radial-gradient(circle,rgba(255,255,255,.14),transparent 66%)}
+  .vE .mapbg::after{content:"";position:absolute;inset:0;pointer-events:none;
+    background:linear-gradient(90deg,#16529B 0%,rgba(22,82,155,.92) 20%,rgba(22,82,155,.55) 40%,rgba(22,82,155,0) 66%)}
+  .vE h2.big{color:#FFFFFF} .vE .lede{color:#DCE9F8} .vE .close{color:#BBD8F7}
+  .vE .mapaddr a{color:#DCE9F8} .vE .mapaddr a:hover{color:#fff} .vE .mapaddr i{margin-top:4px;color:#BBD8F7}
+  .vE .callbtn{background:#FFFFFF;color:#0D244D;box-shadow:var(--sh-md-dark)}
+  .vE .callbtn:hover{background:#EAF1F9}
+  .vE .chip{background:#FFFFFF;border:1px solid rgba(255,255,255,.6);color:#0D244D;box-shadow:var(--sh-sm)}
+  .vE .chip:hover,.vE .chip.on{background:#0D244D;border-color:#0D244D;color:#fff;transform:translateY(-2px);box-shadow:var(--sh-md-dark)}
+  .vE .chip.soft{border-color:rgba(255,255,255,.5);color:#DCE9F8}
+  .vE .readout{background:#FFFFFF;border:1px solid rgba(255,255,255,.4);box-shadow:var(--sh-md-dark)}
+  .vE .readout .rt{color:#0D244D} .vE .readout .rs{color:#4A525C}
+  .vE .land{fill:#0D244D;stroke:#FFFFFF;stroke-width:2.5}
+  .vE .water{fill:#081B39;stroke:#FFFFFF;stroke-width:1.5}
+  .vE .road{stroke:#2F5794} .vE .road.major{stroke:#FFFFFF}
+  .vE .roadlabel{fill:#C2D5EC} .vE .waterlabel{fill:#BDD5EE}
+  .vE .city-dot{fill:#16529B;stroke:#FFFFFF} .vE .town-label{fill:#EAF1FA}
+  .vE .town:hover .city-dot,.vE .town.on .city-dot{fill:#FFFFFF;stroke:#FFFFFF}
+  .vE .town:hover .town-label,.vE .town.on .town-label{fill:#fff}
+  .vE .link{stroke:#FFFFFF} .vE .cv-ring{stroke:#BBD8F7}
+  .vE .cv-marker{fill:#FFFFFF;stroke:#0D244D} .vE .cv-label{fill:#fff}
+  .vE .cv-sub{fill:#BBD8F7} .vE .cv-addr{fill:#C2D5EC}
+  .vE .compass text,.vE .compass path{fill:#C2D5EC} .vE .compass circle{fill:none;stroke:#FFFFFF;opacity:.7;stroke-width:1.5}
+
+  /* ===== F · NAVY CLARO + MAPA INVERTIDO (tierra gris) ===== */
+  .vF .shell{background:#1B3C6E;box-shadow:0 3px 8px rgba(3,10,24,.34), 0 18px 36px -10px rgba(3,10,24,.46), 0 48px 80px -30px rgba(3,10,24,.6)}
+  .vF .glow{background:radial-gradient(circle,rgba(143,190,239,.14),transparent 66%)}
+  .vF .mapbg::after{content:"";position:absolute;inset:0;pointer-events:none;
+    background:linear-gradient(90deg,#1B3C6E 0%,rgba(27,60,110,.92) 20%,rgba(27,60,110,.55) 40%,rgba(27,60,110,0) 66%)}
+  .vF h2.big{color:#FFFFFF} .vF .lede{color:#CFDCEC} .vF .close{color:#8FBEEF}
+  .vF .mapaddr a{color:#CFDCEC} .vF .mapaddr a:hover{color:#fff} .vF .mapaddr i{margin-top:4px;color:#8FBEEF}
+  .vF .callbtn{background:#8FBEEF;color:#04142E;box-shadow:var(--sh-md-dark)}
+  .vF .callbtn:hover{background:#A9CEF5}
+  .vF .chip{background:#FFFFFF;border:1px solid rgba(255,255,255,.5);color:#0D244D;box-shadow:var(--sh-sm)}
+  .vF .chip:hover,.vF .chip.on{background:#8FBEEF;border-color:#8FBEEF;color:#04142E;transform:translateY(-2px);box-shadow:var(--sh-md-dark)}
+  .vF .chip.soft{border-color:rgba(255,255,255,.4);color:#B6C7DC}
+  .vF .readout{background:#FFFFFF;border:1px solid rgba(255,255,255,.4);box-shadow:var(--sh-md-dark)}
+  .vF .readout .rt{color:#0D244D} .vF .readout .rs{color:#4A525C}
+  /* mapa invertido: tierra gris -> etiquetas OSCURAS (las claras daban 1.01–1.33) */
+  .vF .land{fill:#D1D2D4;stroke:#FFFFFF;stroke-width:2.5}
+  .vF .water{fill:#16345F;stroke:#FFFFFF;stroke-width:1.5}
+  .vF .road{stroke:#A7A9AC} .vF .road.major{stroke:#FFFFFF}
+  .vF .roadlabel{fill:#4E5661} .vF .waterlabel{fill:#BDD5EE}
+  .vF .city-dot{fill:#FFFFFF;stroke:#0D244D} .vF .town-label{fill:#0D244D}
+  .vF .town:hover .city-dot,.vF .town.on .city-dot{fill:#16529B;stroke:#16529B}
+  .vF .town:hover .town-label,.vF .town.on .town-label{fill:#16529B}
+  .vF .link{stroke:#16529B} .vF .cv-ring{stroke:#16529B}
+  .vF .cv-marker{fill:#16529B;stroke:#FFFFFF} .vF .cv-label{fill:#0D244D}
+  .vF .cv-sub{fill:#16529B} .vF .cv-addr{fill:#4A525C}
+  .vF .map text{filter:drop-shadow(0 1px 2px rgba(255,255,255,.6))}
+  .vF .waterlabel{filter:drop-shadow(0 1px 2px rgba(5,15,34,.7))}
+  .vF .compass text,.vF .compass path{fill:#4E5661} .vF .compass circle{fill:none;stroke:#0D244D;opacity:.4;stroke-width:1.5}
+
+  @media(max-width:900px){
+    .community .shell{display:block;min-height:0;margin:0 20px}
+    .community .mapbg{position:relative;right:auto;top:auto;transform:none;width:100%;margin:0 0 -16px}
+    .community .glow{display:none}
+    .community .panel{max-width:none}
+  }
+  @media (prefers-reduced-motion: reduce){
+    .cv-ring{animation:none;opacity:.4}
+    .town:hover .link,.town.on .link{animation:none}
+  }
+</style>
+</head>
+<body>
+
+<template id="mapTpl">
+<svg class="map" viewBox="0 0 500 600" role="img" aria-label="Mapa del condado de Washington, Maryland, con Cumberland Valley en Hagerstown y los pueblos cercanos.">
+  <defs><clipPath id="clipX"><rect x="18" y="26" width="464" height="548" rx="22" ry="22"/></clipPath></defs>
+  <rect class="land" x="18" y="26" width="464" height="548" rx="22" ry="22"/>
+  <g clip-path="url(#clipX)">
+    <path class="water" d="M18,286 C70,300 92,330 108,352 C128,380 128,420 150,452 C176,490 214,516 246,548 C262,564 268,570 272,574 L214,574 C196,552 168,530 142,500 C112,466 96,430 82,398 C64,358 44,330 18,318 Z"/>
+    <path class="road major" d="M206,26 C210,110 216,180 222,236 C228,300 232,420 236,574"/>
+    <path class="road major" d="M18,258 C90,250 160,242 222,236 C300,230 400,224 482,220"/>
+    <path class="road" d="M222,236 C260,268 292,330 316,507"/>
+    <path class="road" d="M222,236 C300,228 380,216 427,210"/>
+  </g>
+  <text class="waterlabel" x="52" y="430" transform="rotate(52 52 430)">Potomac River</text>
+  <text class="waterlabel" x="462" y="330" transform="rotate(90 462 330)">South Mountain</text>
+  <text class="roadlabel" x="188" y="70">I-81</text>
+  <text class="roadlabel" x="440" y="212">I-70</text>
+  <g class="town" data-town="maugansville"><line class="link" x1="187.2" y1="116" x2="222.2" y2="236.4"/><circle class="city-dot" cx="187.2" cy="116" r="4.5"/><text class="town-label" x="176" y="102" text-anchor="end">Maugansville</text><circle class="hit" cx="187.2" cy="116" r="26"/></g>
+  <g class="town" data-town="smithsburg"><line class="link" x1="427.5" y1="209.8" x2="222.2" y2="236.4"/><circle class="city-dot" cx="427.5" cy="209.8" r="4.5"/><text class="town-label" x="427.5" y="194" text-anchor="middle">Smithsburg</text><circle class="hit" cx="427.5" cy="209.8" r="26"/></g>
+  <g class="town" data-town="funkstown"><line class="link" x1="238.1" y1="302.6" x2="222.2" y2="236.4"/><circle class="city-dot" cx="238.1" cy="302.6" r="4.5"/><text class="town-label" x="250" y="308">Funkstown</text><circle class="hit" cx="238.1" cy="302.6" r="24"/></g>
+  <g class="town" data-town="williamsport"><line class="link" x1="83.3" y1="321.4" x2="222.2" y2="236.4"/><circle class="city-dot" cx="83.3" cy="321.4" r="4.5"/><text class="town-label" x="83.3" y="345" text-anchor="middle">Williamsport</text><circle class="hit" cx="83.3" cy="321.4" r="26"/></g>
+  <g class="town" data-town="boonsboro"><line class="link" x1="316.8" y1="507" x2="222.2" y2="236.4"/><circle class="city-dot" cx="316.8" cy="507" r="4.5"/><text class="town-label" x="316.8" y="530" text-anchor="middle">Boonsboro</text><circle class="hit" cx="316.8" cy="507" r="26"/></g>
+  <g class="cv">
+    <circle class="cv-ring" cx="222.2" cy="236.4" r="34"/>
+    <circle class="cv-marker" cx="222.2" cy="236.4" r="8"/>
+    <text class="cv-label" x="222.2" y="212" text-anchor="middle">Hagerstown</text>
+    <text class="cv-sub" x="222.2" y="198" text-anchor="middle">Cumberland Valley</text>
+    <text class="cv-addr" x="222.2" y="262" text-anchor="middle">17747 Virginia Ave.</text>
+  </g>
+  <g class="compass" transform="translate(444,540)"><circle cx="0" cy="0" r="20"/><path d="M0,-13 L4.5,2 L0,-1.5 L-4.5,2 Z"/><text x="0" y="-22" text-anchor="middle">N</text></g>
+</svg>
+</template>
+
+<template id="panelTpl">
+  <div class="panel">
+    <h2 class="big">Your Veterinarian in Hagerstown, MD</h2>
+    <p class="lede">Cumberland Valley Veterinary Clinic and Pet Resort is based in Hagerstown, MD. Families come to us from:</p>
+    <div class="chips">
+      <button class="chip" data-town="funkstown" type="button">Funkstown</button>
+      <button class="chip" data-town="williamsport" type="button">Williamsport</button>
+      <button class="chip" data-town="boonsboro" type="button">Boonsboro</button>
+      <button class="chip" data-town="smithsburg" type="button">Smithsburg</button>
+      <button class="chip" data-town="maugansville" type="button">Maugansville</button>
+      <span class="chip soft">…and the surrounding area</span>
+    </div>
+    <p class="close">because a good veterinarian is worth the drive.</p>
+    <address class="mapaddr"><a href="https://maps.google.com/?q=17747+Virginia+Ave,+Hagerstown,+MD+21740" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot" aria-hidden="true"></i><span>17747 Virginia Ave.<br>Hagerstown, Maryland 21740</span></a></address>
+    <div class="cta"><a class="callbtn" href="tel:3017393121" aria-label="Llamar a Cumberland Valley al (301) 739-3121"><i class="fa-solid fa-phone" aria-hidden="true"></i> Call (301) 739-3121</a></div>
+    <div class="readout" aria-live="polite"><div class="rt" data-rt>Cumberland Valley</div><div class="rs" data-rs>17747 Virginia Ave., Hagerstown, MD 21740</div></div>
+  </div>
+</template>
+
+<div class="label">
+  <span class="tag">Variante D · Sin tarjeta</span>
+  <h2><span class="sw" style="background:#0D254D"></span>El mapa flota sobre la banda navy</h2>
+  <p>Se elimina la tarjeta por completo: el mapa se disuelve directamente en el navy y el texto va en claro. Es la opción más limpia y cinematográfica — sin marco, sin caja. Recupera el efecto original de "mapa como fondo" que elegiste en el Layout C, ahora a ancho de sitio.</p>
+  <span class="aa">✓ AA — par más bajo 7.76:1</span>
+</div>
+<div class="frame"><section class="community vD"><div class="shell"><div class="glow"></div><div class="mapbg" data-map></div><div class="cwrap" data-panel></div></div></section></div>
+
+<div class="divider"></div>
+
+<div class="label">
+  <span class="tag">Variante E · Azul acento</span>
+  <h2><span class="sw" style="background:#16529B"></span>Tarjeta #16529B — monocromo intenso</h2>
+  <p>Tarjeta en el azul de acento sobre la banda navy: dos azules de la paleta, uno dentro del otro. La tierra del mapa se oscurece a navy para separarse de la tarjeta, y el botón se invierte a blanco. El más saturado y con más carácter.</p>
+  <span class="aa">✓ AA — par más bajo 5.26:1</span>
+  <p style="font-size:14px;color:#7C5A12;background:#FFF3D6;border:1px solid #E8C77E;padding:9px 12px;border-radius:8px;display:inline-block;margin-top:10px">Ojo: #16529B es el color de los botones de llamada. Una superficie grande de ese azul diluye la señal de "azul = llamar".</p>
+</div>
+<div class="frame"><section class="community vE"><div class="shell"><div class="glow"></div><div class="mapbg" data-map></div><div class="cwrap" data-panel></div></div></section></div>
+
+<div class="divider"></div>
+
+<div class="label">
+  <span class="tag">Variante F · Mapa invertido</span>
+  <h2><span class="sw" style="background:#1B3C6E"></span>Tarjeta navy claro + tierra gris #D1D2D4</h2>
+  <p>La única que invierte el mapa: el condado pasa a gris claro (el secundario de la marca) sobre una tarjeta navy más clara. El mapa se convierte en el elemento más brillante de la sección — imposible no verlo — y el gris enlaza con la piedra del logo.</p>
+  <span class="aa">✓ AA — par más bajo 4.91:1</span>
+  <p style="font-size:14px;color:#3E4650;margin-top:8px">Todas las etiquetas del mapa se invirtieron a oscuro: en gris claro las claras daban <strong>1.01–1.33:1</strong> (invisibles).</p>
+</div>
+<div class="frame"><section class="community vF"><div class="shell"><div class="glow"></div><div class="mapbg" data-map></div><div class="cwrap" data-panel></div></div></section></div>
+
+<div class="label" style="padding-bottom:60px">
+  <p style="font-size:14px;color:#5A626C">Banda <strong>#0D254D</strong> en las tres. Todas verificadas contra WCAG AA <em>antes</em> de construirlas.</p>
+</div>
+
+<script>
+  const mapT=document.getElementById('mapTpl').content, panT=document.getElementById('panelTpl').content;
+  let n=0;
+  document.querySelectorAll('[data-map]').forEach(h=>{
+    const c=mapT.cloneNode(true);
+    const cid='clipV'+(++n); c.querySelector('clipPath').id=cid;
+    c.querySelector('[clip-path]').setAttribute('clip-path',`url(#${cid})`);
+    h.appendChild(c);
+  });
+  document.querySelectorAll('[data-panel]').forEach(h=>h.appendChild(panT.cloneNode(true)));
+
+  const HOME={t:'Cumberland Valley',s:'17747 Virginia Ave., Hagerstown, MD 21740'};
+  const COPY={funkstown:{t:'Funkstown',s:'Families drive in from Funkstown.'},
+    williamsport:{t:'Williamsport',s:'Families drive in from Williamsport.'},
+    boonsboro:{t:'Boonsboro',s:'Families drive in from Boonsboro.'},
+    smithsburg:{t:'Smithsburg',s:'Families drive in from Smithsburg.'},
+    maugansville:{t:'Maugansville',s:'Families drive in from Maugansville.'}};
+  document.querySelectorAll('.community').forEach(sec=>{
+    const towns=sec.querySelectorAll('.town'), chips=sec.querySelectorAll('.chip[data-town]');
+    const rt=sec.querySelector('[data-rt]'), rs=sec.querySelector('[data-rs]');
+    const set=k=>{const d=k?COPY[k]:HOME; rt.textContent=d.t; rs.textContent=d.s;
+      towns.forEach(g=>g.classList.toggle('on',!!k&&g.dataset.town===k));
+      chips.forEach(c=>c.classList.toggle('on',!!k&&c.dataset.town===k));};
+    const bind=(el,k)=>{['mouseenter','focus'].forEach(e=>el.addEventListener(e,()=>set(k)));
+      ['mouseleave','blur'].forEach(e=>el.addEventListener(e,()=>set(null)));
+      el.addEventListener('click',()=>set(k));};
+    towns.forEach(g=>bind(g,g.dataset.town)); chips.forEach(c=>bind(c,c.dataset.town));
+  });
+</script>
+</body>
+</html>

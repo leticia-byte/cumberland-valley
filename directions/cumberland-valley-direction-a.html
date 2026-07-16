@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Direction A — The Stone That Stayed | Cumberland Valley</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{--navy:#0D244D;--blue:#175097;--stone:#808286;--mist:#D4D5D7;--oat:#F4F1EA;--ink:#141A22;--clay:#A24E32;--hearth:#E8A33D}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--oat);color:var(--ink);font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 32px}
+  .board-head{padding:56px 0 32px;border-bottom:1px solid rgba(20,26,34,.12);display:flex;gap:32px;align-items:flex-start}
+  .logo{width:150px;flex:0 0 150px;background:#fff;border-radius:12px;padding:12px;box-shadow:0 20px 40px -24px rgba(13,36,77,.5)}
+  .logo img{width:100%;display:block}
+  .eyebrow{font:600 11px/1 'Inter';letter-spacing:.18em;text-transform:uppercase;color:var(--clay)}
+  h1.name{font-family:'Fraunces',serif;font-size:clamp(38px,5.4vw,66px);font-weight:600;line-height:1.02;margin:12px 0 12px;letter-spacing:-.02em;color:var(--navy)}
+  .concept{font-size:19px;line-height:1.6;max-width:660px;color:#4A5058}
+  section{padding:52px 0;border-bottom:1px solid rgba(20,26,34,.1)}
+  h2.sec{font:600 11px/1 'Inter';letter-spacing:.18em;text-transform:uppercase;color:var(--stone);margin-bottom:22px}
+
+  .sw{display:grid;grid-template-columns:repeat(auto-fit,minmax(118px,1fr));gap:14px}
+  .chip{border-radius:10px;overflow:hidden;box-shadow:0 8px 24px -12px rgba(13,36,77,.4);transition:transform .35s cubic-bezier(.2,.8,.2,1)}
+  .chip:hover{transform:translateY(-6px)}
+  .chip .fill{height:88px}
+  .chip .meta{background:#fff;padding:10px 12px}
+  .chip .lab{font:600 12px/1.3 'Inter'}
+  .chip .hex{font:400 11px/1.4 'Inter';color:var(--stone)}
+  .brandtag{display:inline-block;margin-bottom:14px;font:600 10px/1 'Inter';letter-spacing:.12em;text-transform:uppercase;color:#fff;background:var(--navy);padding:7px 11px;border-radius:999px}
+
+  .hero{position:relative;height:520px;border-radius:16px 16px 0 0;overflow:hidden;box-shadow:0 40px 80px -40px rgba(13,36,77,.6)}
+  .hero img.bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(.6);transform:scale(1.06);transition:transform 9s ease-out}
+  .hero:hover img.bg{transform:scale(1.12)}
+  .hero .veil{position:absolute;inset:0;background:linear-gradient(100deg,rgba(13,36,77,.93) 0%,rgba(13,36,77,.7) 44%,rgba(13,36,77,.2) 100%)}
+  .hero .grain{position:absolute;inset:0;opacity:.22;background-image:radial-gradient(rgba(255,255,255,.1) 1px,transparent 1px);background-size:3px 3px}
+  .nav{position:absolute;top:0;left:0;right:0;display:flex;align-items:center;justify-content:space-between;padding:20px 32px;z-index:3}
+  .nav .mark{height:52px;background:#fff;border-radius:8px;padding:5px 9px}
+  .nav .mark img{height:100%;display:block}
+  .nav .links{display:flex;gap:26px;font:500 14px/1 'Inter';color:#DCE3EE}
+  .hero .content{position:absolute;left:0;bottom:0;padding:44px;max-width:780px;z-index:2}
+  .hero h3{font-family:'Fraunces',serif;font-weight:600;color:#fff;font-size:clamp(30px,3.5vw,52px);line-height:1.06;letter-spacing:-.02em}
+  .hero .sub{color:#C7D2E2;font-size:17px;line-height:1.6;margin-top:16px;max-width:52ch}
+  .cta{display:inline-flex;align-items:center;gap:10px;margin-top:24px;background:var(--clay);color:#fff;border:none;font:600 17px/1 'Inter';padding:18px 26px;border-radius:999px;cursor:pointer;box-shadow:0 12px 30px -10px rgba(162,78,50,.85);transition:transform .25s,box-shadow .25s,background .25s}
+  .cta:hover{transform:translateY(-3px);background:#B85838;box-shadow:0 18px 44px -12px rgba(162,78,50,1)}
+  .stamp{position:absolute;top:96px;right:28px;font:600 10px/1 'Inter';letter-spacing:.14em;text-transform:uppercase;color:#C7D2E2;border:1px solid rgba(255,255,255,.3);padding:9px 13px;border-radius:999px;backdrop-filter:blur(6px);z-index:3}
+  .trust{background:var(--navy);color:#C7D2E2;padding:16px 24px;border-radius:0 0 16px 16px;font:500 13px/1.5 'Inter';display:flex;flex-wrap:wrap;gap:8px 20px;justify-content:center;border-top:1px solid rgba(255,255,255,.12)}
+
+  .type-demo{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+  .type-demo .h{font-family:'Fraunces',serif;font-weight:600;font-size:42px;line-height:1.1;letter-spacing:-.02em;color:var(--navy)}
+  .type-demo p{font-size:16px;line-height:1.7;color:#4A5058;max-width:44ch}
+  .fontname{font:600 11px/1 'Inter';letter-spacing:.14em;text-transform:uppercase;color:var(--clay);margin-bottom:12px}
+
+  .rhythm{display:flex;flex-direction:column;gap:10px}
+  .row{display:flex;align-items:center;gap:16px;opacity:0;transform:translateY(14px);transition:all .6s cubic-bezier(.2,.8,.2,1)}
+  .row.in{opacity:1;transform:none}
+  .bar{height:var(--h);border-radius:8px;flex:1;background:var(--c);position:relative}
+  .bar span{position:absolute;left:16px;top:50%;transform:translateY(-50%);font:600 12px/1 'Inter';color:#fff;letter-spacing:.05em}
+  .tag{font:500 11px/1 'Inter';color:var(--stone);width:110px;text-align:right;letter-spacing:.06em;text-transform:uppercase}
+
+  .photos{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .photo{border-radius:12px;overflow:hidden;position:relative;aspect-ratio:4/3;box-shadow:0 20px 40px -24px rgba(13,36,77,.6)}
+  .photo img{width:100%;height:100%;object-fit:cover;filter:saturate(.65);transition:transform .8s cubic-bezier(.2,.8,.2,1)}
+  .photo:hover img{transform:scale(1.07)}
+  .photo .cap{position:absolute;left:0;right:0;bottom:0;padding:12px 14px;background:linear-gradient(transparent,rgba(13,36,77,.92));color:#fff;font:500 12px/1.4 'Inter'}
+  .warn{display:inline-block;margin-top:12px;font:600 10px/1 'Inter';letter-spacing:.1em;text-transform:uppercase;color:#8B5E12;background:#F6E6C4;padding:7px 11px;border-radius:999px}
+  .rationale{font-size:17px;line-height:1.7;max-width:70ch;color:#3A4048}
+  .rationale strong{color:var(--clay)}
+  footer{padding:40px 0 72px;color:var(--stone);font-size:13px}
+  @media(max-width:860px){.type-demo,.photos{grid-template-columns:1fr}.board-head{flex-direction:column}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="board-head">
+    <div class="logo"><img src="../assets/cvvc-logo.png" alt="Cumberland Valley Veterinary Clinic logo"></div>
+    <div>
+      <div class="eyebrow">Direction A · Cumberland Valley Veterinary Clinic &amp; Pet Resort</div>
+      <h1 class="name">The Stone That Stayed</h1>
+      <p class="concept">The clinic burned to the ground in 1996. The stone sign holder out front was the only thing left standing — and it became the logo. This direction makes that the whole site: what endures when everything around it gets sold, consolidated, or rebuilt.</p>
+    </div>
+  </div>
+
+  <section>
+    <h2 class="sec">Hero concept</h2>
+    <div class="hero">
+      <img class="bg" src="https://images.pexels.com/photos/10925209/pexels-photo-10925209.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=900&w=1600" alt="Fieldstone wall, rural countryside">
+      <div class="veil"></div><div class="grain"></div>
+      <div class="nav">
+        <div class="mark"><img src="../assets/cvvc-logo.png" alt=""></div>
+        <div class="links"><span>Services</span><span>Our Team</span><span>Pet Resort</span><span>Contact</span></div>
+      </div>
+      <div class="stamp">Placeholder — swap for the real stone sign</div>
+      <div class="content">
+        <h3>Hagerstown's veterinarian,<br>keeping care close to home.</h3>
+        <p class="sub">Cumberland Valley Veterinary Clinic has been Hagerstown's privately owned, multi-doctor veterinary practice and pet resort for over 30 years.</p>
+        <button class="cta">📞 Call (301) 739-3121</button>
+      </div>
+    </div>
+    <div class="trust"><span>Locally Owned Since [YEAR]</span><span>·</span><span>Community-Based Care</span><span>·</span><span>Comprehensive Surgical Services</span><span>·</span><span>Dog &amp; Cat Boarding</span><span>·</span><span>New Patients Welcome</span></div>
+    <p class="rationale" style="margin-top:24px">The logo's navy carries the whole frame — the photograph is desaturated into it, so the site and the mark are the same object. Headline sits bottom-left, weighted and unhurried. Barn clay is the only warm thing on screen, and it's the phone button. <strong>The story the motion tells:</strong> the landscape drifts on a slow 9-second push; the stone wall never moves.</p>
+  </section>
+
+  <section>
+    <h2 class="sec">Palette — pulled from the logo</h2>
+    <div class="brandtag">✦ Navy + stone are sampled directly from CVVC-final-logo_color.jpg</div>
+    <div class="sw">
+      <div class="chip"><div class="fill" style="background:#0D244D"></div><div class="meta"><div class="lab">Logo Navy</div><div class="hex">#0D244D</div></div></div>
+      <div class="chip"><div class="fill" style="background:#175097"></div><div class="meta"><div class="lab">Signal Blue</div><div class="hex">#175097</div></div></div>
+      <div class="chip"><div class="fill" style="background:#808286"></div><div class="meta"><div class="lab">Fieldstone</div><div class="hex">#808286</div></div></div>
+      <div class="chip"><div class="fill" style="background:#D4D5D7"></div><div class="meta"><div class="lab">Mortar</div><div class="hex">#D4D5D7</div></div></div>
+      <div class="chip"><div class="fill" style="background:#F4F1EA"></div><div class="meta"><div class="lab">Oat Paper</div><div class="hex">#F4F1EA</div></div></div>
+      <div class="chip"><div class="fill" style="background:#A24E32"></div><div class="meta"><div class="lab">Barn Clay · CTA</div><div class="hex">#A24E32</div></div></div>
+      <div class="chip"><div class="fill" style="background:#E8A33D"></div><div class="meta"><div class="lab">Hearth ✦ surprise</div><div class="hex">#E8A33D</div></div></div>
+    </div>
+    <p class="rationale" style="margin-top:20px"><strong>The surprise is Hearth.</strong> The logo is navy and gray — cold, correct, a little institutional. Barn clay and hearth amber are what the logo can't say on its own: this is a farm practice, and there's a fire in it. Used once per screen, never twice.</p>
+  </section>
+
+  <section>
+    <h2 class="sec">Typography</h2>
+    <div class="type-demo">
+      <div>
+        <div class="fontname">Headings — Fraunces 600</div>
+        <div class="h">Hagerstown's veterinarian, keeping care close to home.</div>
+        <p style="margin-top:14px">Fraunces has weight and a little wobble in the serifs — it reads carved, not printed. It's the type equivalent of a hand-lettered sign set into stone. Not corporate, not cutesy.</p>
+      </div>
+      <div>
+        <div class="fontname">Body — Inter 400 / 17px / 1.7</div>
+        <p>Dr. Jen Dolan has worked at Cumberland Valley Veterinary Clinic for over thirty years. In [YEAR], she bought the practice, and from that day forward she committed to keeping it independent. Today, Cumberland Valley is one of the last few independent veterinary practices in Washington County.</p>
+        <p style="margin-top:14px">Inter at 17px is the accessibility floor for this audience — large, high-contrast, boring in the best way. Body never drops below 17px anywhere on the site.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="sec">Client photo candidates</h2>
+    <p class="rationale" style="margin-bottom:20px">⚠️ <strong>The client's Drive image folders are still empty</strong> — only the logo has landed. Everything below is a stand-in for a shot we know exists and have asked for.</p>
+    <div class="photos">
+      <div class="photo"><img src="https://images.pexels.com/photos/10925209/pexels-photo-10925209.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt=""><div class="cap">HERO — stands in for the real stone sign holder out front (the 1996 survivor)</div></div>
+      <div class="photo"><img src="https://images.pexels.com/photos/16428610/pexels-photo-16428610.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt=""><div class="cap">FACILITY — stands in for the two stained-glass logo windows still hanging inside</div></div>
+      <div class="photo"><img src="https://images.pexels.com/photos/37805787/pexels-photo-37805787.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt=""><div class="cap">TEAM — documentary register: staff who've been here 20+ years</div></div>
+    </div>
+    <div class="warn">No manifest — needs client upload · stained-glass photos · GoPro tour ("This is Stan")</div>
+  </section>
+
+  <section>
+    <h2 class="sec">Scroll rhythm</h2>
+    <div class="rhythm">
+      <div class="row"><div class="tag">Hero</div><div class="bar" style="--h:88px;--c:#0D244D"><span>FULL-BLEED · design leads</span></div></div>
+      <div class="row"><div class="tag">Trust bar</div><div class="bar" style="--h:34px;--c:#175097"><span>LIVE TEXT · SEO required</span></div></div>
+      <div class="row"><div class="tag">Who We Are</div><div class="bar" style="--h:72px;--c:#808286"><span>CONTAINED · copy leads, stone texture in the margin</span></div></div>
+      <div class="row"><div class="tag">What We Believe</div><div class="bar" style="--h:78px;--c:#A24E32"><span>3 STACKED SLABS · design leads</span></div></div>
+      <div class="row"><div class="tag">Services</div><div class="bar" style="--h:64px;--c:#0D244D"><span>QUIET GRID · design recedes</span></div></div>
+      <div class="row"><div class="tag">Community</div><div class="bar" style="--h:80px;--c:#175097"><span>FULL-BLEED MAP · Funkstown → Boonsboro</span></div></div>
+      <div class="row"><div class="tag">FAQ</div><div class="bar" style="--h:56px;--c:#D4D5D7"><span style="color:#0D244D">PLAIN ACCORDION · copy leads (FAQ schema)</span></div></div>
+      <div class="row"><div class="tag">CTA close</div><div class="bar" style="--h:72px;--c:#E8A33D"><span style="color:#3A2A08">HEARTH · phone number at 48px</span></div></div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="sec">Rationale</h2>
+    <p class="rationale">This direction answers the thesis's core tension — <strong>independent vs. corporate</strong> — with permanence instead of argument. It never says "we're not a chain." It shows a stone that outlasted a fire and a woman who's been here thirty years. For a blue-collar, farming, older clientele, that reads as true rather than sold. The restraint on motion is deliberate: this audience will not tolerate a site that moves more than it has to.</p>
+  </section>
+
+  <footer>Concept board A · Cumberland Valley · Design Lab · for Leticia Mora</footer>
+</div>
+<script>
+  const rows=[...document.querySelectorAll('.row')];
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)setTimeout(()=>e.target.classList.add('in'),rows.indexOf(e.target)%8*70)}),{threshold:.2});
+  rows.forEach(r=>io.observe(r));
+</script>
+</body>
+</html>

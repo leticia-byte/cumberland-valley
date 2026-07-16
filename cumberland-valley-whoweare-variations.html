@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cumberland Valley — "Who We Are" layout variations</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<style>
+  :root{
+    --navy:#0D244D; --navy-deep:#081832; --blue:#16529B; --blue-lit:#1E63B5;
+    --stone:#9A9CA0; --mortar:#D1D2D4; --oat:#F4F1EA; --paper:#FFFFFF;
+    --ink:#141A22; --sky:#4E86C9;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:#E9E7E1;color:var(--ink);font-family:'Inter',system-ui,sans-serif;font-size:17px;line-height:1.7}
+  h1,h2,h3{font-family:'Fraunces',Georgia,serif;font-weight:600;letter-spacing:-.02em;line-height:1.08}
+  .wrap{max-width:1200px;margin:0 auto;padding:0 40px}
+  .label{max-width:1280px;margin:0 auto;padding:46px 40px 16px}
+  .label .tag{display:inline-block;font:600 11px/1 'Inter';letter-spacing:.2em;text-transform:uppercase;color:#fff;background:var(--blue);padding:8px 13px;border-radius:999px;margin-bottom:14px}
+  .label h2{font-size:30px;color:var(--navy)}
+  .label p{max-width:80ch;color:#3E4650;margin-top:12px;font-size:16px}
+  .frame{max-width:1320px;margin:0 auto 26px;padding:0 20px}
+  .device{border-radius:16px;overflow:hidden;box-shadow:0 44px 90px -52px rgba(13,36,77,.6);background:#fff}
+  .eyebrow{font:600 11px/1 'Inter';letter-spacing:.2em;text-transform:uppercase;color:var(--blue);margin-bottom:16px}
+  .ph{position:absolute;left:10px;bottom:10px;z-index:5;background:rgba(13,36,77,.86);color:#fff;font:600 10px/1.3 'Inter';padding:7px 9px;border-radius:6px;max-width:190px}
+  .divider{height:40px}
+
+  /* ============ A · QUOTE LEDGER ============ */
+  .vA{background:var(--paper);padding:96px 0;position:relative}
+  .vA .top{display:grid;grid-template-columns:1.15fr .85fr;gap:60px;align-items:end}
+  .vA h2{font-size:clamp(30px,3.2vw,44px);color:var(--navy);max-width:20ch}
+  .vA .intro{color:#3E4650;font-size:19px;margin-top:18px}
+  .vA .portrait{position:relative;aspect-ratio:1/1;border-radius:999px;overflow:hidden;border:8px solid var(--mortar);box-shadow:0 30px 60px -34px rgba(13,36,77,.7);max-width:300px;margin-left:auto}
+  .vA .portrait img{width:100%;height:100%;object-fit:cover;filter:saturate(.7)}
+  .vA .quote{margin:56px 0;padding:44px 0;border-top:2px solid var(--mortar);border-bottom:2px solid var(--mortar);text-align:center}
+  .vA .quote p{font-family:'Fraunces',serif;font-weight:500;font-size:clamp(24px,2.8vw,38px);line-height:1.25;color:var(--navy);max-width:24ch;margin:0 auto;text-wrap:balance}
+  .vA .quote .who{margin-top:16px;font:600 12px/1 'Inter';letter-spacing:.16em;text-transform:uppercase;color:var(--blue)}
+  .vA .cols{column-count:2;column-gap:56px;color:#3E4650}
+  .vA .cols p{break-inside:avoid;margin-bottom:18px}
+  .vA .stats{margin-top:56px;display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--mortar);border-radius:14px;overflow:hidden}
+  .vA .stat{padding:26px 28px;border-right:1px solid var(--mortar)}
+  .vA .stat:last-child{border-right:none}
+  .vA .stat b{display:block;font-family:'Fraunces',serif;font-size:34px;color:var(--navy);line-height:1}
+  .vA .stat span{display:block;margin-top:6px;font:500 13px/1.5 'Inter';color:var(--stone);text-transform:uppercase;letter-spacing:.08em}
+  @media(max-width:900px){.vA .top{grid-template-columns:1fr}.vA .cols{column-count:1}.vA .stats{grid-template-columns:1fr}.vA .stat{border-right:none;border-bottom:1px solid var(--mortar)}.vA .portrait{margin:0}}
+
+  /* ============ B · NAVY PANEL + OFFSET PORTRAIT ============ */
+  .vB{background:var(--paper);padding:96px 0;position:relative;overflow:hidden}
+  .vB .grid{display:grid;grid-template-columns:.9fr 1.1fr;align-items:center;gap:0}
+  .vB .shot{position:relative;aspect-ratio:4/5;border-radius:14px;overflow:hidden;box-shadow:0 50px 90px -44px rgba(13,36,77,.75);z-index:3}
+  .vB .shot img{width:100%;height:100%;object-fit:cover;filter:saturate(.7)}
+  .vB .panel{background:var(--navy);color:#fff;padding:72px 64px 72px 104px;margin-left:-64px;border-radius:14px;position:relative;z-index:2}
+  .vB .panel .eyebrow{color:var(--sky)}
+  .vB h2{font-size:clamp(28px,3vw,42px);color:#fff;max-width:22ch}
+  .vB .panel p{color:#B8C6DA;margin-top:18px;max-width:52ch}
+  .vB .panel p + p{margin-top:16px}
+  .vB .rule{margin-top:28px;width:64px;height:3px;background:var(--sky);border-radius:99px}
+  .vB .tags{margin-top:26px;display:flex;flex-wrap:wrap;gap:10px}
+  .vB .tags span{border:1px solid rgba(255,255,255,.28);color:#DCE6F2;font:500 13px/1 'Inter';padding:10px 14px;border-radius:999px}
+  @media(max-width:900px){.vB .grid{grid-template-columns:1fr}.vB .panel{margin-left:0;margin-top:-40px;padding:64px 32px 48px}}
+
+  /* ============ C · FACTS RAIL (no big photo needed) ============ */
+  .vC{background:var(--oat);padding:96px 0;position:relative;overflow:hidden}
+  .vC .stoneedge{position:absolute;left:0;top:0;bottom:0;width:120px;opacity:.5;
+    -webkit-mask:linear-gradient(90deg,#000 0%,transparent 100%);mask:linear-gradient(90deg,#000 0%,transparent 100%)}
+  .vC .stoneedge img{width:100%;height:100%;object-fit:cover}
+  .vC .grid{display:grid;grid-template-columns:1.05fr .95fr;gap:72px;align-items:start;position:relative;z-index:2}
+  .vC h2{font-size:clamp(30px,3.2vw,44px);color:var(--navy);max-width:19ch}
+  .vC .body{color:#3E4650;margin-top:22px}
+  .vC .body p + p{margin-top:18px}
+  .vC .drop::first-letter{float:left;font-family:'Fraunces',serif;font-weight:700;font-size:76px;line-height:.82;padding:6px 12px 0 0;color:var(--blue)}
+  .vC .rail{border-left:2px solid var(--mortar);padding-left:0}
+  .vC .item{position:relative;padding:22px 0 22px 30px;border-bottom:1px solid var(--mortar)}
+  .vC .item:last-child{border-bottom:none}
+  .vC .item::before{content:"";position:absolute;left:-7px;top:30px;width:12px;height:12px;border-radius:50%;background:var(--blue);box-shadow:0 0 0 4px var(--oat)}
+  .vC .item b{display:block;font-family:'Fraunces',serif;font-weight:600;font-size:19px;color:var(--navy)}
+  .vC .item span{display:block;margin-top:4px;color:#5A626C;font-size:15px}
+  .vC .kicker{margin-top:30px;background:#fff;border:1px solid var(--mortar);border-radius:12px;padding:22px 24px;display:flex;gap:14px;align-items:flex-start}
+  .vC .kicker i{color:var(--blue);font-size:18px;margin-top:3px}
+  .vC .kicker p{font-size:15px;color:#3E4650;margin:0}
+  @media(max-width:900px){.vC .grid{grid-template-columns:1fr;gap:40px}.vC .stoneedge{display:none}}
+</style>
+</head>
+<body>
+
+<!-- ================= A ================= -->
+<div class="label">
+  <span class="tag">Variation A · Quote Ledger</span>
+  <h2>The claim gets its own stage</h2>
+  <p>Headline and a round portrait up top, then the section's single most important sentence — <em>one of the last few independent practices in Washington County</em> — pulled out huge between two rules, like a ledger entry. The remaining story runs underneath in two newspaper columns, closing on a three-fact strip. Editorial and quietly authoritative.</p>
+</div>
+<div class="frame"><div class="device">
+  <section class="vA"><div class="wrap">
+    <div class="top">
+      <div>
+        <div class="eyebrow">Who we are</div>
+        <h2>What It Means to Choose an Independent Veterinarian in Hagerstown, MD</h2>
+        <p class="intro">Dr. Jen Dolan has worked at Cumberland Valley Veterinary Clinic for over thirty years. In [VERIFY: YEAR], she bought the practice, and from that day forward she committed to keeping it independent.</p>
+      </div>
+      <div class="portrait">
+        <img src="https://images.pexels.com/photos/37805790/pexels-photo-37805790.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=700&w=700" alt="">
+        <div class="ph">PLACEHOLDER — Dr. Dolan</div>
+      </div>
+    </div>
+    <div class="quote">
+      <p>One of the last few independent veterinary practices in Washington County.</p>
+      <div class="who">Cumberland Valley · Privately owned since [YEAR]</div>
+    </div>
+    <div class="cols">
+      <p>Dr. Dolan lives here, too. She raises horses, goats, and cows on a local farm, competes in horse trials, is married to a dairy veterinarian, and belongs to the Hagerstown Sunrise Rotary Club. This is not just her workplace, it's also her community.</p>
+      <p>Being a small business means you'll see a lot of familiar faces here. Many of our doctors, technicians, and receptionists have been at Cumberland Valley longer than Dr. Dolan has. That's part of what being privately owned means to us: continuity of care, knowing your name, knowing your pet's name, and showing up for our community year after year.</p>
+    </div>
+    <div class="stats">
+      <div class="stat"><b>30+</b><span>Years at the practice</span></div>
+      <div class="stat"><b>Privately owned</b><span>Decisions stay local</span></div>
+      <div class="stat"><b>Washington County</b><span>Her home, too</span></div>
+    </div>
+  </div></section>
+</div></div>
+
+<div class="divider"></div>
+
+<!-- ================= B ================= -->
+<div class="label">
+  <span class="tag">Variation B · Navy Panel</span>
+  <h2>Portrait against the brand</h2>
+  <p>A tall portrait of Dr. Dolan overlaps a deep navy panel that carries the copy in white. It's the most cinematic of the three and the most on-brand — the navy does the talking, and the photo makes it personal. Her community details become chips under the text.</p>
+  <div class="label" style="padding:10px 0 0"><p style="color:#7C5A12;background:#FFF3D6;border:1px solid #E8C77E;padding:10px 13px;border-radius:8px;display:inline-block;font-size:14px;margin:0">Needs a real, strong portrait of Dr. Dolan to work — it's the whole section.</p></div>
+</div>
+<div class="frame"><div class="device">
+  <section class="vB"><div class="wrap">
+    <div class="grid">
+      <div class="shot">
+        <img src="https://images.pexels.com/photos/37805790/pexels-photo-37805790.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=1000&w=800" alt="">
+        <div class="ph">PLACEHOLDER — Dr. Dolan on her farm</div>
+      </div>
+      <div class="panel">
+        <div class="eyebrow">Who we are</div>
+        <h2>What It Means to Choose an Independent Veterinarian in Hagerstown, MD</h2>
+        <div class="rule"></div>
+        <p>Dr. Jen Dolan has worked at Cumberland Valley Veterinary Clinic for over thirty years. In [VERIFY: YEAR], she bought the practice, and from that day forward she committed to keeping it independent. Today, Cumberland Valley is one of the last few independent veterinary practices in Washington County.</p>
+        <p>Being a small business means you'll see a lot of familiar faces here. Many of our doctors, technicians, and receptionists have been at Cumberland Valley longer than Dr. Dolan has — continuity of care, knowing your name, knowing your pet's name, year after year.</p>
+        <div class="tags"><span>Raises horses, goats &amp; cows</span><span>Competes in horse trials</span><span>Married to a dairy vet</span><span>Hagerstown Sunrise Rotary</span></div>
+      </div>
+    </div>
+  </div></section>
+</div></div>
+
+<div class="divider"></div>
+
+<!-- ================= C ================= -->
+<div class="label">
+  <span class="tag">Variation C · Facts Rail</span>
+  <h2>Story left, proof right</h2>
+  <p>The narrative reads as one clean column with a large blue drop-cap, and everything that makes her <em>local</em> becomes a scannable rail on the right — a timeline of proof rather than a paragraph. The stone wall returns as a thin left edge. This is the only one that ships without a single client photo.</p>
+</div>
+<div class="frame"><div class="device">
+  <section class="vC">
+    <div class="stoneedge"><img src="assets/stone-background-cut.png" alt=""></div>
+    <div class="wrap">
+      <div class="grid">
+        <div>
+          <div class="eyebrow">Who we are</div>
+          <h2>What It Means to Choose an Independent Veterinarian in Hagerstown, MD</h2>
+          <div class="body">
+            <p class="drop">Dr. Jen Dolan has worked at Cumberland Valley Veterinary Clinic for over thirty years. In [VERIFY: YEAR], she bought the practice, and from that day forward she committed to keeping it independent. Today, Cumberland Valley is one of the last few independent veterinary practices in Washington County.</p>
+            <p>Being a small business means you'll see a lot of familiar faces here. Many of our doctors, technicians, and receptionists have been at Cumberland Valley longer than Dr. Dolan has. That's part of what being privately owned means to us: continuity of care, knowing your name, knowing your pet's name, and showing up for our community year after year.</p>
+          </div>
+        </div>
+        <div>
+          <div class="rail">
+            <div class="item"><b>She lives here, too</b><span>Raises horses, goats, and cows on a local farm</span></div>
+            <div class="item"><b>Competes in horse trials</b><span>And is married to a dairy veterinarian</span></div>
+            <div class="item"><b>Hagerstown Sunrise Rotary Club</b><span>This isn't just her workplace — it's her community</span></div>
+            <div class="item"><b>A team that stayed</b><span>Many of our doctors, techs, and receptionists have been here longer than Dr. Dolan</span></div>
+          </div>
+          <div class="kicker">
+            <i class="fa-solid fa-quote-left" aria-hidden="true"></i>
+            <p>Independent ownership means our decisions stay local — who we hire, what we invest in, and how long we spend with each patient.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div></div>
+
+<div class="label" style="padding-bottom:70px">
+  <p style="color:#7C5A12;background:#FFF3D6;border:1px solid #E8C77E;padding:12px 15px;border-radius:8px;display:inline-block;font-size:14px">⚠️ Portraits are placeholder — client Drive photo folders are still empty. [VERIFY: YEAR] still open with Alie/Dr. Dolan.</p>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Direction B — Not On The Clock | Cumberland Valley</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500&family=Karla:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{--deep:#081832;--navy:#0D244D;--blue:#175097;--lamp:#F0C579;--cream:#FAF8F4;--stone:#808286;--mist:#D4D5D7}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--cream);color:var(--deep);font-family:'Karla',sans-serif}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 32px}
+  .board-head{padding:56px 0 32px;border-bottom:1px solid rgba(8,24,50,.12);display:flex;gap:32px;align-items:flex-start}
+  .logo{width:150px;flex:0 0 150px;background:#fff;border-radius:2px;padding:12px;box-shadow:0 20px 40px -24px rgba(8,24,50,.5)}
+  .logo img{width:100%;display:block}
+  .eyebrow{font:700 11px/1 'Karla';letter-spacing:.2em;text-transform:uppercase;color:var(--blue)}
+  h1.name{font-family:'Newsreader',serif;font-weight:400;font-size:clamp(38px,5.4vw,70px);line-height:1.02;margin:12px 0;letter-spacing:-.015em;color:var(--navy)}
+  .concept{font-family:'Newsreader',serif;font-size:21px;line-height:1.6;max-width:680px;color:#46526A}
+  section{padding:52px 0;border-bottom:1px solid rgba(8,24,50,.1)}
+  h2.sec{font:700 11px/1 'Karla';letter-spacing:.2em;text-transform:uppercase;color:var(--stone);margin-bottom:22px}
+
+  .sw{display:grid;grid-template-columns:repeat(auto-fit,minmax(118px,1fr));gap:14px}
+  .chip{border-radius:2px;overflow:hidden;box-shadow:0 10px 30px -16px rgba(8,24,50,.5);transition:transform .35s cubic-bezier(.2,.8,.2,1)}
+  .chip:hover{transform:translateY(-6px)}
+  .chip .fill{height:88px}
+  .chip .meta{background:#fff;padding:10px 12px}
+  .chip .lab{font:700 12px/1.3 'Karla'}
+  .chip .hex{font:400 11px/1.4 'Karla';color:var(--stone)}
+  .brandtag{display:inline-block;margin-bottom:14px;font:700 10px/1 'Karla';letter-spacing:.12em;text-transform:uppercase;color:#fff;background:var(--navy);padding:7px 11px;border-radius:2px}
+
+  .hero{display:grid;grid-template-columns:1.05fr .95fr;min-height:540px;background:var(--deep);overflow:hidden;box-shadow:0 50px 90px -50px rgba(8,24,50,.75);position:relative}
+  .nav{position:absolute;top:0;left:0;right:0;display:flex;align-items:center;justify-content:space-between;padding:20px 32px;z-index:4}
+  .nav .mark{height:52px;background:#fff;padding:5px 9px;border-radius:2px}
+  .nav .mark img{height:100%;display:block}
+  .nav .links{display:flex;gap:26px;font:500 14px/1 'Karla';color:#B8C6DA}
+  .hero .left{padding:104px 56px 64px;display:flex;flex-direction:column;justify-content:center;position:relative}
+  .hero .glow{position:absolute;width:440px;height:440px;left:-150px;top:-80px;border-radius:50%;background:radial-gradient(circle,rgba(240,197,121,.24),transparent 65%);filter:blur(8px);animation:breathe 9s ease-in-out infinite}
+  @keyframes breathe{0%,100%{transform:scale(1);opacity:.7}50%{transform:scale(1.14);opacity:1}}
+  .hero h3{font-family:'Newsreader',serif;font-weight:300;color:var(--cream);font-size:clamp(29px,3.2vw,48px);line-height:1.14;letter-spacing:-.015em;position:relative}
+  .hero h3 em{font-style:italic;color:var(--lamp)}
+  .hero .sub{color:#9FB0C6;font-size:17px;line-height:1.7;margin-top:20px;max-width:44ch;position:relative}
+  .cta{align-self:flex-start;display:inline-flex;align-items:center;gap:10px;margin-top:28px;background:var(--lamp);color:#221806;border:none;font:700 18px/1 'Karla';padding:19px 28px;border-radius:2px;cursor:pointer;position:relative;transition:transform .25s,box-shadow .25s}
+  .cta:hover{transform:translateY(-3px);box-shadow:0 20px 44px -14px rgba(240,197,121,.7)}
+  .hero .right{position:relative;overflow:hidden}
+  .hero .right img{width:100%;height:100%;object-fit:cover;filter:saturate(.75) contrast(1.05);transform:scale(1.04);transition:transform 9s ease-out}
+  .hero:hover .right img{transform:scale(1.1)}
+  .hero .right::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,var(--deep),transparent 36%),linear-gradient(0deg,rgba(8,24,50,.6),transparent 55%)}
+  .clock{position:absolute;right:26px;bottom:24px;z-index:3;font:700 10px/1 'Karla';letter-spacing:.14em;text-transform:uppercase;color:var(--lamp);border:1px solid rgba(240,197,121,.45);padding:9px 13px;backdrop-filter:blur(6px)}
+  .trust{background:var(--navy);color:#B8C6DA;padding:16px 24px;font:500 13px/1.5 'Karla';display:flex;flex-wrap:wrap;gap:8px 20px;justify-content:center}
+
+  .type-demo{display:grid;grid-template-columns:1fr 1fr;gap:44px}
+  .type-demo .h{font-family:'Newsreader',serif;font-weight:300;font-size:44px;line-height:1.15;letter-spacing:-.015em;color:var(--navy)}
+  .type-demo p{font-size:16px;line-height:1.75;color:#46526A;max-width:44ch}
+  .fontname{font:700 11px/1 'Karla';letter-spacing:.16em;text-transform:uppercase;color:var(--blue);margin-bottom:12px}
+
+  .rhythm{display:flex;flex-direction:column;gap:10px}
+  .row{display:flex;align-items:center;gap:16px;opacity:0;transform:translateY(14px);transition:all .6s cubic-bezier(.2,.8,.2,1)}
+  .row.in{opacity:1;transform:none}
+  .bar{height:var(--h);border-radius:2px;flex:1;background:var(--c);position:relative}
+  .bar span{position:absolute;left:16px;top:50%;transform:translateY(-50%);font:700 12px/1 'Karla';color:#fff;letter-spacing:.05em}
+  .tag{font:500 11px/1 'Karla';color:var(--stone);width:110px;text-align:right;letter-spacing:.06em;text-transform:uppercase}
+
+  .photos{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .photo{border-radius:2px;overflow:hidden;position:relative;aspect-ratio:4/3;box-shadow:0 20px 40px -24px rgba(8,24,50,.6)}
+  .photo img{width:100%;height:100%;object-fit:cover;filter:saturate(.8);transition:transform .8s cubic-bezier(.2,.8,.2,1)}
+  .photo:hover img{transform:scale(1.07)}
+  .photo .cap{position:absolute;left:0;right:0;bottom:0;padding:12px 14px;background:linear-gradient(transparent,rgba(8,24,50,.92));color:#fff;font:500 12px/1.4 'Karla'}
+  .warn{display:inline-block;margin-top:12px;font:700 10px/1 'Karla';letter-spacing:.1em;text-transform:uppercase;color:#8B5E12;background:#F6E6C4;padding:7px 11px}
+  .rationale{font-family:'Newsreader',serif;font-size:19px;line-height:1.7;max-width:70ch;color:#3A465C}
+  .rationale strong{font-family:'Karla';font-weight:700;font-size:16px;color:var(--blue)}
+  footer{padding:40px 0 72px;color:var(--stone);font-size:13px}
+  @media(max-width:860px){.hero{grid-template-columns:1fr}.type-demo,.photos{grid-template-columns:1fr}.board-head{flex-direction:column}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="board-head">
+    <div class="logo"><img src="../assets/cvvc-logo.png" alt="Cumberland Valley Veterinary Clinic logo"></div>
+    <div>
+      <div class="eyebrow">Direction B · Cumberland Valley Veterinary Clinic &amp; Pet Resort</div>
+      <h1 class="name">Not On The Clock</h1>
+      <p class="concept">"Your pet's case isn't on a clock." The site is built to feel like the Tuesday-night 9pm appointment — lamplight, no rush, someone still there after everyone else has closed. Editorial, dark, quiet.</p>
+    </div>
+  </div>
+
+  <section>
+    <h2 class="sec">Hero concept</h2>
+    <div class="hero">
+      <div class="nav">
+        <div class="mark"><img src="../assets/cvvc-logo.png" alt=""></div>
+        <div class="links"><span>Services</span><span>Our Team</span><span>Pet Resort</span><span>Contact</span></div>
+      </div>
+      <div class="left">
+        <div class="glow"></div>
+        <h3>Hagerstown's veterinarian,<br><em>keeping care close to home.</em></h3>
+        <p class="sub">Cumberland Valley Veterinary Clinic has been Hagerstown's privately owned, multi-doctor veterinary practice and pet resort for over 30 years.</p>
+        <button class="cta">📞 Call (301) 739-3121</button>
+      </div>
+      <div class="right">
+        <img src="https://images.pexels.com/photos/6235650/pexels-photo-6235650.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=900&w=1200" alt="Veterinarian with a small dog, unhurried">
+        <div class="clock">Open Tuesdays until 10 p.m.</div>
+      </div>
+    </div>
+    <div class="trust"><span>Locally Owned Since [YEAR]</span><span>·</span><span>Community-Based Care</span><span>·</span><span>Comprehensive Surgical Services</span><span>·</span><span>Dog &amp; Cat Boarding</span><span>·</span><span>New Patients Welcome</span></div>
+    <p class="rationale" style="margin-top:24px">The logo's navy, pushed one stop deeper into night. <em>"Keeping care close to home"</em> sets in lamp-amber italic — the one warm thing in a cold frame. <strong>The story the motion tells:</strong> the amber glow behind the headline breathes on a 9-second cycle, like a lamp someone left on. Nothing else moves. The Tuesday-10pm badge sits on the photo because it's the practice's hardest-to-copy fact.</p>
+  </section>
+
+  <section>
+    <h2 class="sec">Palette — pulled from the logo</h2>
+    <div class="brandtag">✦ Navy family sampled from CVVC-final-logo_color.jpg</div>
+    <div class="sw">
+      <div class="chip"><div class="fill" style="background:#081832"></div><div class="meta"><div class="lab">Night Navy</div><div class="hex">#081832</div></div></div>
+      <div class="chip"><div class="fill" style="background:#0D244D"></div><div class="meta"><div class="lab">Logo Navy</div><div class="hex">#0D244D</div></div></div>
+      <div class="chip"><div class="fill" style="background:#175097"></div><div class="meta"><div class="lab">Signal Blue</div><div class="hex">#175097</div></div></div>
+      <div class="chip"><div class="fill" style="background:#808286"></div><div class="meta"><div class="lab">Fieldstone</div><div class="hex">#808286</div></div></div>
+      <div class="chip"><div class="fill" style="background:#FAF8F4"></div><div class="meta"><div class="lab">Cream</div><div class="hex">#FAF8F4</div></div></div>
+      <div class="chip"><div class="fill" style="background:#F0C579"></div><div class="meta"><div class="lab">Lamp ✦ surprise · CTA</div><div class="hex">#F0C579</div></div></div>
+    </div>
+    <p class="rationale" style="margin-top:20px"><strong>The surprise is Lamp.</strong> The logo gives us navy and gray and nothing else — which is exactly the problem with the current site: it's cold. One amber, used only for the phone CTA and one italic phrase, turns the whole navy system from "clinic" into "someone's still here."</p>
+  </section>
+
+  <section>
+    <h2 class="sec">Typography</h2>
+    <div class="type-demo">
+      <div>
+        <div class="fontname">Headings — Newsreader 300</div>
+        <div class="h">We take as long as the visit needs.</div>
+        <p style="margin-top:14px">A light serif with real optical sizing. It reads like a book, not a brochure — which is the point. This practice doesn't shout.</p>
+      </div>
+      <div>
+        <div class="fontname">Body — Karla 400 / 17px / 1.75</div>
+        <p>Some visits are quick, some aren't. Either way, your pet's case isn't on a clock. We're here to answer your questions, and to make decisions with you, not for you.</p>
+        <p style="margin-top:14px">Karla is a grotesque with slightly quirky letterforms — warm without going soft. Body sits at 17px minimum, 1.75 line-height, for the older readers.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="sec">Client photo candidates</h2>
+    <p class="rationale" style="margin-bottom:20px">⚠️ <strong>Drive image folders are still empty</strong> — only the logo has landed. This direction is the most photo-dependent of the four: it needs real, warm, low-light interiors or it collapses into stock.</p>
+    <div class="photos">
+      <div class="photo"><img src="https://images.pexels.com/photos/6235650/pexels-photo-6235650.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt=""><div class="cap">HERO — an unhurried exam, evening light, no clock in frame</div></div>
+      <div class="photo"><img src="https://images.pexels.com/photos/16428610/pexels-photo-16428610.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt=""><div class="cap">FACILITY — the stained-glass logo windows, lit from behind at night</div></div>
+      <div class="photo"><img src="https://images.pexels.com/photos/6235244/pexels-photo-6235244.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt=""><div class="cap">TEAM — a tech and a doctor mid-conversation, not posed</div></div>
+    </div>
+    <div class="warn">No manifest — needs a real evening shoot at the clinic</div>
+  </section>
+
+  <section>
+    <h2 class="sec">Scroll rhythm</h2>
+    <div class="rhythm">
+      <div class="row"><div class="tag">Hero</div><div class="bar" style="--h:88px;--c:#081832"><span>SPLIT · dark, contained, design leads</span></div></div>
+      <div class="row"><div class="tag">Trust bar</div><div class="bar" style="--h:34px;--c:#0D244D"><span>LIVE TEXT · SEO required</span></div></div>
+      <div class="row"><div class="tag">Who We Are</div><div class="bar" style="--h:82px;--c:#FAF8F4"><span style="color:#0D244D">LIGHT REVERSAL · long-form editorial, copy leads</span></div></div>
+      <div class="row"><div class="tag">What We Believe</div><div class="bar" style="--h:70px;--c:#175097"><span>3 CARDS · one belief per lamp-lit panel</span></div></div>
+      <div class="row"><div class="tag">Services</div><div class="bar" style="--h:64px;--c:#0D244D"><span>DARK LIST · design recedes, scannable</span></div></div>
+      <div class="row"><div class="tag">Community</div><div class="bar" style="--h:56px;--c:#808286"><span>TOWN NAMES AS TYPE · Funkstown · Boonsboro</span></div></div>
+      <div class="row"><div class="tag">FAQ</div><div class="bar" style="--h:56px;--c:#FAF8F4"><span style="color:#0D244D">CREAM ACCORDION · copy leads (FAQ schema)</span></div></div>
+      <div class="row"><div class="tag">CTA close</div><div class="bar" style="--h:78px;--c:#F0C579"><span style="color:#221806">LAMP · full-bleed amber, phone number at 48px</span></div></div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="sec">Rationale</h2>
+    <p class="rationale">This is the direction that takes Dr. Dolan's own words most literally. <strong>The risk:</strong> dark sites are harder for older, low-vision users, so every contrast ratio has to clear AA and the dark stretches stay short. <strong>The reward:</strong> nobody in the Hagerstown market looks like this. Every competitor is white-and-blue — and so, right now, is Cumberland Valley.</p>
+  </section>
+
+  <footer>Concept board B · Cumberland Valley · Design Lab · for Leticia Mora</footer>
+</div>
+<script>
+  const rows=[...document.querySelectorAll('.row')];
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)setTimeout(()=>e.target.classList.add('in'),rows.indexOf(e.target)%8*70)}),{threshold:.2});
+  rows.forEach(r=>io.observe(r));
+</script>
+</body>
+</html>

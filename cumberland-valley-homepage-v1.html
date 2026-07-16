@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cumberland Valley Veterinary Clinic | Veterinarian in Hagerstown, MD</title>
+<meta name="description" content="Cumberland Valley Veterinary Clinic has been Hagerstown's privately owned, multi-doctor veterinary practice and pet resort for 30 years.">
+
+<!-- favicons — the emblem only (no wordmark), squared so the arc isn't distorted -->
+<link rel="icon" href="assets/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+<link rel="manifest" href="assets/site.webmanifest">
+<meta name="theme-color" content="#0D244D">
+
+<!-- LocalBusiness / VeterinaryCare schema — flagged as required in Alie's internal SEO notes.
+     openingHours now populated from the client's confirmed hours (2026-07-15). This is what
+     Google reads for the "Hours" panel in search, so it must match the Contact page exactly. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "VeterinaryCare",
+  "name": "Cumberland Valley Veterinary Clinic & Pet Resort",
+  "description": "Hagerstown's privately owned, multi-doctor veterinary practice and pet resort for over 30 years.",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "17747 Virginia Ave.",
+    "addressLocality": "Hagerstown",
+    "addressRegion": "MD",
+    "postalCode": "21740",
+    "addressCountry": "US"
+  },
+  "telephone": "+1-301-739-3121",
+  "url": "https://cumberlandvalleyvets.com/",
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+      "opens": "07:00",
+      "closes": "17:00"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": "Saturday",
+      "opens": "07:30",
+      "closes": "13:00"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": "Sunday",
+      "opens": "00:00",
+      "closes": "00:00"
+    }
+  ],
+  "areaServed": [
+    { "@type": "City", "name": "Hagerstown" },
+    { "@type": "City", "name": "Funkstown" },
+    { "@type": "City", "name": "Williamsport" },
+    { "@type": "City", "name": "Boonsboro" },
+    { "@type": "City", "name": "Smithsburg" },
+    { "@type": "City", "name": "Maugansville" }
+  ]
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to main content</a>
+
+<div class="topstrip">
+  <div class="bar2">
+    <a class="loc" href="https://maps.google.com/?q=17747+Virginia+Ave,+Hagerstown,+MD+21740" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot" aria-hidden="true"></i> 17747 Virginia Ave., Hagerstown, MD</a>
+    <div class="status" id="status">
+      <button class="pill" id="statusBtn" type="button" aria-expanded="false" aria-controls="hoursPanel">
+        <span class="dot" id="statusDot"></span>
+        <span id="statusText">Hours</span>
+        <i class="fa-solid fa-chevron-down chev" aria-hidden="true"></i>
+      </button>
+      <div class="panel" id="hoursPanel" role="region" aria-label="Opening hours">
+        <div class="panel-title">Our Hours</div>
+        <div id="hoursRows"></div>
+        <a class="callrow" href="tel:3017393121"><i class="fa-solid fa-phone" aria-hidden="true"></i> Call (301) 739-3121</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<nav id="nav" aria-label="Primary">
+  <div class="wrap bar">
+    <div class="mark"><a href="index.html" aria-label="Cumberland Valley Veterinary Clinic & Pet Resort — home"><picture><source srcset="assets/cvvc-logo.webp" type="image/webp"><img src="assets/cvvc-logo.png" alt="Cumberland Valley Veterinary Clinic & Pet Resort"></picture></a></div>
+    <div class="links">
+      <a href="index.html" aria-current="page">Home</a><a href="about.html">About</a><a href="services.html">Services</a><a href="client-corner.html">Client Corner</a><a href="contact.html">Contact</a>
+    </div>
+    <a class="callbtn" href="tel:3017393121" aria-label="Call Cumberland Valley at (301) 739-3121"><i class="fa-solid fa-phone" aria-hidden="true"></i> (301) 739-3121</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <!-- Real footage. Drop hero-home.mp4 into /assets and it plays here; until then the CSS dawn sky shows as fallback. -->
+  <video class="bgvid" aria-hidden="true" autoplay muted loop playsinline preload="auto"
+         poster="assets/hero-home-poster.jpg">
+    <source src="assets/hero-home.mp4" type="video/mp4">
+  </video>
+  <div class="scenetint"></div>
+  <div class="stars"></div>
+  <div class="hills">
+    <svg viewBox="0 0 1440 260" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 180 C 220 120 360 150 560 160 C 820 172 980 120 1200 150 C 1320 166 1400 180 1440 172 L1440 260 L0 260 Z" fill="#0B1E3E"/>
+      <path d="M0 210 C 260 170 420 200 640 198 C 900 196 1060 168 1280 192 C 1360 200 1410 210 1440 206 L1440 260 L0 260 Z" fill="#0A1932"/>
+    </svg>
+  </div>
+  <div class="grain"></div>
+  <div class="wrap inner">
+    <h1>
+      <span class="ln"><span>Hagerstown's veterinarian,</span></span>
+      <span class="ln"><span><em>keeping care close to home.</em></span></span>
+    </h1>
+    <p class="sub">Cumberland Valley Veterinary Clinic has been Hagerstown's privately owned, multi-doctor veterinary practice and pet resort for over 30 years.</p>
+    <a class="cta-big" href="tel:3017393121" aria-label="Call Cumberland Valley at (301) 739-3121"><i class="fa-solid fa-phone" aria-hidden="true"></i> Call (301) 739-3121</a>
+    <div class="note">We answer the phone. No portal, no booking form, no phone tree.</div>
+  </div>
+  <div class="wall">
+    <div class="tex">
+      <!-- true vector, extracted from the client's stone-background.ai — no resolution ceiling -->
+      <img src="assets/stone-background.svg" alt="" aria-hidden="true">
+    </div>
+    <div class="topshade"></div><div class="graze"></div>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- trust bar — must render as live text (SEO requirement from Alie's internal notes) -->
+<div class="trust">
+  <div class="wrap">
+    <span>Locally Owned Since [YEAR]</span><span class="dot" aria-hidden="true"><i class="fa-solid fa-paw"></i></span>
+    <span>Community-Based Care</span><span class="dot" aria-hidden="true"><i class="fa-solid fa-paw"></i></span>
+    <span>Comprehensive Surgical Services</span><span class="dot" aria-hidden="true"><i class="fa-solid fa-paw"></i></span>
+    <span>Dog &amp; Cat Boarding</span><span class="dot" aria-hidden="true"><i class="fa-solid fa-paw"></i></span>
+    <span>New Patients Welcome</span>
+  </div>
+</div>
+
+<section class="who" id="who">
+  <div class="whobg" aria-hidden="true"></div>
+  <div class="wrap whogrid">
+    <div class="whophoto rv">
+      <img src="assets/home-s2.jpg" alt="A dog rising to greet its owner at dusk">
+    </div>
+    <div class="whopanel rv">
+      <h2 class="big">What It Means to Choose an Independent Veterinarian in Hagerstown, MD</h2>
+      <div class="rule"></div>
+      <p>Dr. Jen Dolan has worked at Cumberland Valley Veterinary Clinic for over thirty years. In [VERIFY: YEAR], she bought the practice, and from that day forward she committed to keeping it independent. Today, Cumberland Valley is one of the last few independent veterinary practices in Washington County.</p>
+      <p>Being a small business means you'll see a lot of familiar faces here. Many of our doctors, technicians, and receptionists have been at Cumberland Valley longer than Dr. Dolan has. That's part of what being privately owned means to us: continuity of care, knowing your name, knowing your pet's name, and showing up for our community year after year.</p>
+      <div class="whotags">
+        <span>Raises horses, goats &amp; cows</span><span>Competes in horse trials</span><span>Married to a dairy vet</span><span>Hagerstown Sunrise Rotary</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="believe">
+  <div class="wrap">
+    <div class="rv">
+      <h2 class="big">What Community-Based Veterinary Care Looks Like</h2>
+      <p class="sub">Three things we hold to, every visit.</p>
+    </div>
+    <div class="slabs">
+      <div class="slab">
+        <div class="slabimg">
+          <img src="assets/home-s3-1.jpg" alt="A cat resting on its owner's chest at home">
+          <span class="num">01</span>
+        </div>
+        <div class="body">
+          <h3>We give you options, not ultimatums.</h3>
+          <p>Not every pet owner can afford every test, every procedure, or every referral. We help you understand what's possible, what matters most for your dog or cat, and how to make it fit for you.</p>
+        </div>
+      </div>
+
+      <div class="slab">
+        <div class="slabimg">
+          <img src="assets/home-s3-2.jpg" alt="A man resting his forehead against his dog's">
+          <span class="num">02</span>
+        </div>
+        <div class="body">
+          <h3>We keep care close to home.</h3>
+          <p>We do our best to provide the majority of your dog or cat's care in-house. Surgery, dentistry, diagnostics, and most complex cases for pets can be handled here.</p>
+        </div>
+      </div>
+
+      <div class="slab">
+        <div class="slabimg">
+          <img src="assets/home-s3-3.jpg" alt="A girl holding her rabbit">
+          <span class="num">03</span>
+        </div>
+        <div class="body">
+          <h3>We take as long as the visit needs.</h3>
+          <p>Some visits are quick, some aren't. Either way, your pet's case isn't on a clock. We're here to answer your questions, and to make decisions with you, not for you.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="services" id="services">
+  <div class="whobg" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="rv">
+      <h2 class="big">Comprehensive Veterinary Services in Hagerstown, MD</h2>
+    </div>
+    <div class="cards">
+      <div class="card rv"><div class="top"></div><div class="body">
+        <div class="ico"><i class="fa-solid fa-shield-heart" aria-hidden="true"></i></div>
+        <h3>Preventive &amp; Wellness Care</h3>
+        <p>Annual exams, vaccinations, bloodwork, and parasite prevention for every life stage. We build a baseline for your pet so we can catch changes early.</p>
+      </div></div>
+      <div class="card rv"><div class="top"></div><div class="body">
+        <div class="ico"><i class="fa-solid fa-scissors" aria-hidden="true"></i></div>
+        <h3>Surgery for Dogs and Cats</h3>
+        <p>Soft-tissue surgery, CCL repair, mass removals, and spay/neuter, all handled in-house. The goal is to keep more of what your pet needs under one roof.</p>
+      </div></div>
+      <div class="card rv"><div class="top"></div><div class="body">
+        <div class="ico"><i class="fa-solid fa-tooth" aria-hidden="true"></i></div>
+        <h3>Dental Care</h3>
+        <p>Dental exams, cleanings under anesthesia, extractions, and oral surgery. Your pet is monitored continuously from pre-op through recovery.</p>
+      </div></div>
+      <div class="card rv"><div class="top"></div><div class="body">
+        <div class="ico"><i class="fa-solid fa-truck-medical" aria-hidden="true"></i></div>
+        <h3>Emergency &amp; Urgent Care</h3>
+        <p>When something's wrong and you need to be seen, call us. We keep time in the schedule for the days that don't go as planned, and we stay open Tuesday evenings until 10 p.m. for visits that don't fit a 9-to-5 week.</p>
+      </div></div>
+      <div class="card rv"><div class="top"></div><div class="body">
+        <div class="ico"><svg class="rabbit" viewBox="0 0 512 512" fill="currentColor" aria-hidden="true"><ellipse cx="212" cy="126" rx="31" ry="98" transform="rotate(-11 212 126)"/><ellipse cx="300" cy="126" rx="31" ry="98" transform="rotate(11 300 126)"/><circle cx="256" cy="262" r="84"/><ellipse cx="256" cy="392" rx="116" ry="88"/><ellipse cx="196" cy="462" rx="44" ry="22"/><ellipse cx="316" cy="462" rx="44" ry="22"/><circle cx="392" cy="404" r="27"/></svg></div>
+        <h3>Pocket Pet Medicine &amp; Surgery</h3>
+        <p>We treat rabbits, ferrets, guinea pigs, and other small-mammal patients. Wellness exams, preventive care, and other services.</p>
+      </div></div>
+      <div class="card rv"><div class="top"></div><div class="body">
+        <div class="ico"><i class="fa-solid fa-dove" aria-hidden="true"></i></div>
+        <h3>Avian Medicine &amp; Care</h3>
+        <p>Wellness exams, wing clipping, nail trims, and beak trims for pet birds.</p>
+      </div></div>
+      <div class="card wide rv">
+        <div class="body">
+          <div class="top" style="height:5px;margin-bottom:24px;background:var(--clay);border-radius:99px;width:56px"></div>
+          <div class="ico"><svg class="moonzz" viewBox="0 0 512 512" aria-hidden="true"><g transform="translate(4,104) scale(0.76)"><path fill="currentColor" d="M223.5 32C100 32 0 132.3 0 256S100 480 223.5 480c60.6 0 115.5-24.2 155.8-63.4 5-4.9 6.3-12.5 3.1-18.7s-10.1-9.7-17-8.5c-9.8 1.7-19.8 2.6-30.1 2.6-96.9 0-175.5-78.8-175.5-176 0-65.8 36-123.1 89.3-153.3 6.1-3.5 9.2-10.5 7.7-17.3s-7.3-11.9-14.3-12.5c-6.3-.5-12.6-.8-19-.8z"/></g><path fill="none" stroke="currentColor" stroke-width="30" stroke-linecap="round" stroke-linejoin="round" d="M258,34 H340 L258,134 H340"/><path fill="none" stroke="currentColor" stroke-width="26" stroke-linecap="round" stroke-linejoin="round" d="M388,140 H460 L388,230 H460"/></svg></div>
+        <h3>Dog &amp; Cat Boarding at the Cumberland Valley Pet Resort</h3>
+          <p>Boarding and daycare for dogs and cats, next door to the clinic. If your pet needs an appointment during their stay, we can do that here, too.</p>
+          <a class="callbtn" style="margin-top:22px" href="tel:3017393121"><i class="fa-solid fa-phone" aria-hidden="true"></i> Call (301) 739-3121</a>
+        </div>
+        <div class="img"><img src="assets/home-s4.jpg" alt="A golden retriever resting on a bed at the Pet Resort"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="community" id="community">
+ <div class="shell">
+  <div class="glow" aria-hidden="true"></div>
+  <div class="mapbg">
+    <svg class="map" viewBox="0 0 500 600" role="img" aria-label="Map of Washington County, Maryland showing Cumberland Valley Veterinary Clinic in Hagerstown and the surrounding towns of Funkstown, Williamsport, Boonsboro, Smithsburg and Maugansville.">
+      <defs>
+        <clipPath id="cvLandClip">
+          <rect x="18" y="26" width="464" height="548" rx="22" ry="22"/>
+        </clipPath>
+      </defs>
+      <rect class="land" x="18" y="26" width="464" height="548" rx="22" ry="22"/>
+      <!-- river + highways run to the county edge, so clip them to the rounded shape -->
+      <g clip-path="url(#cvLandClip)">
+        <path class="water" d="M18,286 C70,300 92,330 108,352 C128,380 128,420 150,452 C176,490 214,516 246,548 C262,564 268,570 272,574 L214,574 C196,552 168,530 142,500 C112,466 96,430 82,398 C64,358 44,330 18,318 Z"/>
+        <path class="road major" d="M206,26 C210,110 216,180 222,236 C228,300 232,420 236,574"/>
+        <path class="road major" d="M18,258 C90,250 160,242 222,236 C300,230 400,224 482,220"/>
+        <path class="road" d="M222,236 C260,268 292,330 316,507"/>
+        <path class="road" d="M222,236 C300,228 380,216 427,210"/>
+      </g>
+      <text class="waterlabel" x="52" y="430" transform="rotate(52 52 430)">Potomac River</text>
+      <text class="waterlabel" x="462" y="330" transform="rotate(90 462 330)">South Mountain</text>
+      <text class="roadlabel" x="188" y="70">I-81</text>
+      <text class="roadlabel" x="440" y="212">I-70</text>
+
+      <g class="town" data-town="maugansville">
+        <line class="link" x1="187.2" y1="116" x2="222.2" y2="236.4"/>
+        <circle class="city-dot" cx="187.2" cy="116" r="4.5"/>
+        <text class="town-label" x="176" y="102" text-anchor="end">Maugansville</text>
+        <circle class="hit" cx="187.2" cy="116" r="26"/>
+      </g>
+      <g class="town" data-town="smithsburg">
+        <line class="link" x1="427.5" y1="209.8" x2="222.2" y2="236.4"/>
+        <circle class="city-dot" cx="427.5" cy="209.8" r="4.5"/>
+        <text class="town-label" x="427.5" y="194" text-anchor="middle">Smithsburg</text>
+        <circle class="hit" cx="427.5" cy="209.8" r="26"/>
+      </g>
+      <g class="town" data-town="funkstown">
+        <line class="link" x1="238.1" y1="302.6" x2="222.2" y2="236.4"/>
+        <circle class="city-dot" cx="238.1" cy="302.6" r="4.5"/>
+        <text class="town-label" x="250" y="308">Funkstown</text>
+        <circle class="hit" cx="238.1" cy="302.6" r="24"/>
+      </g>
+      <g class="town" data-town="williamsport">
+        <line class="link" x1="83.3" y1="321.4" x2="222.2" y2="236.4"/>
+        <circle class="city-dot" cx="83.3" cy="321.4" r="4.5"/>
+        <text class="town-label" x="83.3" y="345" text-anchor="middle">Williamsport</text>
+        <circle class="hit" cx="83.3" cy="321.4" r="26"/>
+      </g>
+      <g class="town" data-town="boonsboro">
+        <line class="link" x1="316.8" y1="507" x2="222.2" y2="236.4"/>
+        <circle class="city-dot" cx="316.8" cy="507" r="4.5"/>
+        <text class="town-label" x="316.8" y="530" text-anchor="middle">Boonsboro</text>
+        <circle class="hit" cx="316.8" cy="507" r="26"/>
+      </g>
+
+      <g class="cv">
+        <circle class="cv-ring" cx="222.2" cy="236.4" r="34"/>
+        <circle class="cv-ring2" cx="222.2" cy="236.4" r="34"/>
+        <circle class="cv-marker" cx="222.2" cy="236.4" r="8"/>
+        <text class="cv-label" x="222.2" y="212" text-anchor="middle">Hagerstown</text>
+        <text class="cv-sub" x="222.2" y="198" text-anchor="middle">Cumberland Valley</text>
+        <text class="cv-addr" x="222.2" y="262" text-anchor="middle">17747 Virginia Ave.</text>
+      </g>
+      <g class="compass" transform="translate(444,540)">
+        <circle cx="0" cy="0" r="20"/>
+        <path d="M0,-13 L4.5,2 L0,-1.5 L-4.5,2 Z"/>
+        <text x="0" y="-22" text-anchor="middle">N</text>
+      </g>
+    </svg>
+  </div>
+
+  <div class="cwrap">
+    <div class="panel rv">
+      <h2 class="big">Your Veterinarian in Hagerstown, MD</h2>
+      <p class="lede">Cumberland Valley Veterinary Clinic and Pet Resort is based in Hagerstown, MD. Families come to us from:</p>
+      <div class="chips">
+        <button class="chip" data-town="funkstown" type="button">Funkstown</button>
+        <button class="chip" data-town="williamsport" type="button">Williamsport</button>
+        <button class="chip" data-town="boonsboro" type="button">Boonsboro</button>
+        <button class="chip" data-town="smithsburg" type="button">Smithsburg</button>
+        <button class="chip" data-town="maugansville" type="button">Maugansville</button>
+        <span class="chip soft">…and the surrounding area</span>
+      </div>
+      <p class="close">because a good veterinarian is worth the drive.</p>
+      <address class="mapaddr">
+        <a href="https://maps.google.com/?q=17747+Virginia+Ave,+Hagerstown,+MD+21740" target="_blank" rel="noopener">
+          <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+          <span>17747 Virginia Ave.<br>Hagerstown, Maryland 21740</span>
+        </a>
+      </address>
+      <div class="cta"><a class="callbtn" href="tel:3017393121" aria-label="Call Cumberland Valley at (301) 739-3121"><i class="fa-solid fa-phone" aria-hidden="true"></i> Call (301) 739-3121</a></div>
+      <div class="readout" aria-live="polite">
+        <div class="rt" data-rt>Cumberland Valley</div>
+        <div class="rs" data-rs>17747 Virginia Ave., Hagerstown, MD 21740</div>
+      </div>
+    </div>
+  </div>
+ </div>
+</section>
+
+<section class="faq" id="faq">
+  <div class="whobg" aria-hidden="true"></div>
+  <div class="wrap narrow">
+    <div class="rv">
+      <h2 class="big" style="max-width:26ch">Frequently Asked Questions About Cumberland Valley Veterinary Clinic</h2>
+    </div>
+    <div class="qs rv">
+      <details open>
+        <summary>How much does a typical vet visit cost?</summary>
+        <p>The cost of a vet visit depends on what your pet needs. A typical wellness exam at Cumberland Valley includes a head-to-tail physical exam, any vaccinations due, and time for your questions. More complex or sick visits may involve diagnostics like bloodwork or imaging, which come with additional costs. We'll always explain what we recommend and why, walk through the options with you, and give you an estimate before anything moves forward. If a treatment plan feels out of reach, tell us. We'll help you figure out what's possible for your pet.</p>
+      </details>
+      <details>
+        <summary>Is Cumberland Valley independently owned?</summary>
+        <p>Yes. Cumberland Valley Veterinary Clinic has been privately owned since [VERIFY: YEAR], when Dr. Jen Dolan bought the practice. Independent ownership means our decisions stay local. That includes who we hire, what equipment we invest in, how long we spend with each patient, and what we charge. We're one of the last few independent veterinary practices in the Hagerstown area, and Dr. Dolan plans to keep it that way. When you come to Cumberland Valley, you're supporting a small business that's grounded in this community.</p>
+      </details>
+      <details>
+        <summary>What kinds of surgery do you perform at your veterinary clinic?</summary>
+        <p>Cumberland Valley performs a range of surgeries in-house, including soft-tissue procedures, CCL repair for orthopedic cases, mass removals, spay and neuter, and dental surgery. Our team monitors every patient continuously from pre-op through recovery, so your dog or cat is never left unwatched during any part of the procedure. Our surgical menu is broad enough that most of what your pet needs can be handled here, without a referral to a specialist an hour away. If we do recommend a referral, we'll explain why and help coordinate the appointment.</p>
+      </details>
+      <details>
+        <summary>What are your hours?</summary>
+        <p>Cumberland Valley is open Monday through Saturday for regular appointments, with extended Tuesday evening hours until 10 p.m. Our Pet Resort has its own schedule for boarding drop-offs and pickups throughout the week. For same-day appointments call <a class="telinline" href="tel:3017393121">(301) 739-3121</a>.</p>
+      </details>
+      <details>
+        <summary>Do you have evening or after-work appointments?</summary>
+        <p>Yes. Cumberland Valley stays open Tuesday evenings until 10 p.m. specifically for families who can't make it to a veterinarian during a standard workday. Between school pickups, shift work, and everything else on a family's calendar, a 9-to-5 schedule leaves too many pets waiting for a visit that should happen sooner. Our Tuesday evening appointments are the same kind of visit you'd get during the day: the same doctors, the same attention, the same unrushed conversation. To book an evening appointment, call <a class="telinline" href="tel:3017393121">(301) 739-3121</a>.</p>
+      </details>
+      <details>
+        <summary>What should I look for when choosing a veterinarian?</summary>
+        <p>A good veterinarian listens more than they lecture, takes time with both you and your pet, walks you through the options instead of handing you ultimatums, and treats your family like neighbors rather than transactions. Look for a practice where the same team has stayed together for years. That kind of continuity usually shows up in the details: how well they remember your pet, how carefully they explain what they're seeing, and how they handle the hard conversations. At Cumberland Valley, that's what we've been building for over thirty years.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section class="close-cta">
+  <div class="wrap inner rv">
+    <h2>We'd Be Glad to Meet You.</h2>
+    <p>Cumberland Valley is accepting new patients. Call us to schedule an appointment.</p>
+    <a class="phone" href="tel:3017393121" aria-label="Call Cumberland Valley at (301) 739-3121">(301) 739-3121</a>
+    <div class="sm">Monday – Saturday · Tuesdays until 10 p.m.</div>
+  </div>
+</section>
+</main>
+
+<footer class="f">
+  <div class="wrap g">
+    <div class="mk"><picture><source srcset="assets/cvvc-logo.webp" type="image/webp"><img src="assets/cvvc-logo.png" alt=""></picture></div>
+    <address class="nap">
+      <div class="nap-name">Cumberland Valley Veterinary Clinic &amp; Pet Resort</div>
+      <a class="nap-addr" href="https://maps.google.com/?q=17747+Virginia+Ave,+Hagerstown,+MD+21740" target="_blank" rel="noopener">
+        <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+        <span>17747 Virginia Ave.<br>Hagerstown, Maryland 21740</span>
+      </a>
+      <a class="nap-tel telinline" href="tel:3017393121" aria-label="Call Cumberland Valley at (301) 739-3121">
+        <i class="fa-solid fa-phone" aria-hidden="true"></i> (301) 739-3121
+      </a>
+    </address>
+  </div>
+</footer>
+
+<div class="flagnote" aria-hidden="true">⚠️ All photography is placeholder. Client Drive folders are empty — only the logo has landed.</div>
+
+<script>
+  const nav=document.getElementById('nav');
+  const onScroll=()=>nav.classList.toggle('solid',window.scrollY>60);
+  onScroll(); window.addEventListener('scroll',onScroll,{passive:true});
+
+  /* ---- open/closed widget ----
+     CONFIRMED HOURS (client-supplied, 2026-07-15). These replace the earlier invented placeholders.
+     NOTE: these hours close Tuesday at 5 PM, which CONTRADICTS the "open Tuesdays until 10 p.m."
+     line still present in the page copy. The client's hours win here; the copy is flagged separately. */
+  (function(){
+    const HOURS=[
+      {d:'Sunday',    o:null,     c:null },
+      {d:'Monday',    o:7*60,     c:17*60},
+      {d:'Tuesday',   o:7*60,     c:17*60},
+      {d:'Wednesday', o:7*60,     c:17*60},
+      {d:'Thursday',  o:7*60,     c:17*60},
+      {d:'Friday',    o:7*60,     c:17*60},
+      {d:'Saturday',  o:7*60+30,  c:13*60}
+    ];
+    const wrap=document.getElementById('status'), btn=document.getElementById('statusBtn'),
+          dot=document.getElementById('statusDot'), txt=document.getElementById('statusText'),
+          rows=document.getElementById('hoursRows');
+    if(!wrap) return;
+    const fmt=m=>{const h=Math.floor(m/60),mm=m%60,ap=h>=12?'PM':'AM',h12=h%12===0?12:h%12;
+      return h12+(mm?':'+String(mm).padStart(2,'0'):'')+' '+ap;};
+    /* Pinned to the CLINIC's clock, not the visitor's. A pet owner in Denver checking at 4 PM their
+       time must see "Closed" — Hagerstown is already at 6 PM. Reading the local clock got that wrong. */
+    const clinicNow=()=>{
+      try{ return new Date(new Date().toLocaleString('en-US',{timeZone:'America/New_York'})); }
+      catch(e){ return new Date(); }   // ancient browser without IANA tz data — degrade to local
+    };
+    const now=clinicNow(), day=now.getDay(), mins=now.getHours()*60+now.getMinutes();
+    const t=HOURS[day];
+    let isOpen=false;
+    if(t.o!==null && mins>=t.o && mins<t.c) isOpen=true;
+    if(isOpen){
+      dot.className='dot on';
+      const left=t.c-mins;
+      txt.textContent = left<=60 ? 'Open · closes in '+left+' min' : 'Open now · until '+fmt(t.c);
+    }else{
+      dot.className='dot off';
+      let n=day, hops=0, nx=null;
+      while(hops<7){ n=(n+1)%7; hops++; if(HOURS[n].o!==null){nx=HOURS[n];break;} }
+      if(t.o!==null && mins<t.o) txt.textContent='Closed · opens '+fmt(t.o);
+      else if(nx) txt.textContent='Closed · opens '+nx.d.slice(0,3)+' '+fmt(nx.o);
+      else txt.textContent='Closed';
+    }
+    rows.innerHTML=HOURS.map((h,i)=>
+      '<div class="row'+(i===day?' today':'')+'"><span>'+h.d+'</span><span>'+
+      (h.o===null?'Closed':fmt(h.o)+' – '+fmt(h.c))+'</span></div>').join('');
+    const setOpen=s=>{wrap.classList.toggle('open',s);btn.setAttribute('aria-expanded',s?'true':'false');};
+    btn.addEventListener('click',e=>{e.stopPropagation();setOpen(!wrap.classList.contains('open'));});
+    document.addEventListener('click',e=>{if(!wrap.contains(e.target))setOpen(false);});
+    document.addEventListener('keydown',e=>{if(e.key==='Escape')setOpen(false);});
+  })();
+
+  /* beliefs: deal the three cards out from behind the first, once the row scrolls in */
+  (function(){
+    const deck=document.querySelector('.slabs');
+    if(!deck) return;
+    if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){deck.classList.add('dealt');return;}
+    const io=new IntersectionObserver(es=>es.forEach(e=>{
+      if(e.isIntersecting){e.target.classList.add('dealt');io.unobserve(e.target);}
+    }),{threshold:.25});
+    io.observe(deck);
+  })();
+
+  /* county map: hover/tap a town (on the map or a chip) — they stay in sync */
+  (function(){
+    const HOME={t:'Cumberland Valley',s:'17747 Virginia Ave., Hagerstown, MD 21740'};
+    const COPY={
+      funkstown:{t:'Funkstown',s:'Families drive in from Funkstown.'},
+      williamsport:{t:'Williamsport',s:'Families drive in from Williamsport.'},
+      boonsboro:{t:'Boonsboro',s:'Families drive in from Boonsboro.'},
+      smithsburg:{t:'Smithsburg',s:'Families drive in from Smithsburg.'},
+      maugansville:{t:'Maugansville',s:'Families drive in from Maugansville.'}
+    };
+    const towns=document.querySelectorAll('.community .town');
+    const chips=document.querySelectorAll('.community .chip[data-town]');
+    const rt=document.querySelector('.community [data-rt]'), rs=document.querySelector('.community [data-rs]');
+    if(!towns.length||!rt) return;
+    const set=key=>{
+      const d=key?COPY[key]:HOME;
+      rt.textContent=d.t; rs.textContent=d.s;
+      towns.forEach(g=>g.classList.toggle('on',!!key&&g.dataset.town===key));
+      chips.forEach(c=>c.classList.toggle('on',!!key&&c.dataset.town===key));
+    };
+    const bind=(el,key)=>{
+      el.addEventListener('mouseenter',()=>set(key));
+      el.addEventListener('focus',()=>set(key));
+      el.addEventListener('mouseleave',()=>set(null));
+      el.addEventListener('blur',()=>set(null));
+      el.addEventListener('click',()=>set(key));
+    };
+    towns.forEach(g=>bind(g,g.dataset.town));
+    chips.forEach(c=>bind(c,c.dataset.town));
+  })();
+
+  /* parallax: drift the stone-wall background of the "Who We Are" section as it passes through the viewport */
+  (function(){
+    const layers=[...document.querySelectorAll('.whobg')].map(bg=>({bg,sec:bg.parentElement}));
+    if(!layers.length) return;
+    if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const DRIFT=220; // total px of travel — needs to be generous to read at 8% opacity
+    let ticking=false;
+    const update=()=>{
+      const vh=window.innerHeight;
+      layers.forEach(({bg,sec})=>{
+        const r=sec.getBoundingClientRect();
+        if(r.bottom>0&&r.top<vh){
+          const p=(vh-r.top)/(vh+r.height);        // 0 entering → 1 leaving
+          bg.style.transform='translate3d(0,'+((p-.5)*DRIFT).toFixed(1)+'px,0)';
+        }
+      });
+      ticking=false;
+    };
+    const onP=()=>{if(!ticking){ticking=true;requestAnimationFrame(update);}};
+    update();
+    window.addEventListener('scroll',onP,{passive:true});
+    window.addEventListener('resize',onP);
+  })();
+
+  const items=[...document.querySelectorAll('.rv')];
+  const io=new IntersectionObserver((es)=>{
+    es.forEach(e=>{
+      if(e.isIntersecting){
+        const sibs=[...e.target.parentElement.children].filter(c=>c.classList.contains('rv'));
+        setTimeout(()=>e.target.classList.add('in'), Math.min(sibs.indexOf(e.target),5)*90);
+        io.unobserve(e.target);
+      }
+    });
+  },{threshold:.12,rootMargin:'0px 0px -8% 0px'});
+  items.forEach(i=>io.observe(i));
+</script>
+</body>
+</html>

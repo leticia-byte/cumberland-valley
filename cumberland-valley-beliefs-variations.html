@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cumberland Valley — "What Community-Based Care Looks Like" variations</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,ital,wght@9..144,0,400;9..144,0,500;9..144,0,600;9..144,0,700;9..144,1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<style>
+  :root{
+    --navy:#0D244D; --navy-deep:#081832; --blue:#16529B; --blue-lit:#1E63B5;
+    --stone:#9A9CA0; --mortar:#D1D2D4; --oat:#F4F1EA; --paper:#FFFFFF;
+    --ink:#141A22; --sky:#4E86C9;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:#E9E7E1;color:var(--ink);font-family:'Inter',system-ui,sans-serif;font-size:17px;line-height:1.7}
+  h1,h2,h3{font-family:'Fraunces',Georgia,serif;font-weight:600;letter-spacing:-.02em;line-height:1.08}
+  .wrap{max-width:1200px;margin:0 auto;padding:0 40px}
+  .label{max-width:1280px;margin:0 auto;padding:46px 40px 16px}
+  .label .tag{display:inline-block;font:600 11px/1 'Inter';letter-spacing:.2em;text-transform:uppercase;color:#fff;background:var(--blue);padding:8px 13px;border-radius:999px;margin-bottom:14px}
+  .label h2{font-size:30px;color:var(--navy)}
+  .label p{max-width:80ch;color:#3E4650;margin-top:12px;font-size:16px}
+  .frame{max-width:1320px;margin:0 auto 26px;padding:0 20px}
+  .device{border-radius:16px;overflow:hidden;box-shadow:0 44px 90px -52px rgba(13,36,77,.6)}
+  .divider{height:40px}
+  h2.big{font-size:clamp(28px,3.2vw,44px);max-width:20ch;text-wrap:balance}
+
+  /* ========== A · EDITORIAL CARDS (light) ========== */
+  .vA{background:var(--oat);padding:96px 0}
+  .vA h2.big{color:var(--navy)}
+  .vA .grid{margin-top:56px;display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+  .vA .card{background:#fff;border-radius:16px;overflow:hidden;display:flex;flex-direction:column;
+    box-shadow:0 2px 3px rgba(13,36,77,.05),0 30px 56px -34px rgba(13,36,77,.5);
+    transition:transform .5s cubic-bezier(.2,.8,.2,1),box-shadow .5s}
+  .vA .card:hover{transform:translateY(-8px);box-shadow:0 46px 74px -34px rgba(13,36,77,.62)}
+  .vA .card .shot{position:relative;aspect-ratio:4/3;overflow:hidden}
+  .vA .card .shot img{width:100%;height:100%;object-fit:cover;transition:transform .9s cubic-bezier(.2,.8,.2,1)}
+  .vA .card:hover .shot img{transform:scale(1.07)}
+  .vA .card .n{position:absolute;left:14px;top:14px;width:38px;height:38px;border-radius:50%;
+    background:rgba(13,36,77,.9);color:#fff;font:700 14px/38px 'Inter';text-align:center;backdrop-filter:blur(4px)}
+  .vA .card .body{padding:26px 24px 30px}
+  .vA .card h3{font-size:22px;color:var(--navy)}
+  .vA .card p{margin-top:10px;color:#4A525C;font-size:16px}
+  @media(max-width:900px){.vA .grid{grid-template-columns:1fr}}
+
+  /* ========== B · FULL-BLEED ALTERNATING BANDS ========== */
+  .vB{background:var(--navy)}
+  .vB .head{padding:88px 0 8px}
+  .vB .head h2.big{color:#fff}
+  .vB .head p{color:#9FB3CC;margin-top:14px;max-width:56ch}
+  .vB .band{display:grid;grid-template-columns:1fr 1fr;align-items:stretch;min-height:340px}
+  .vB .band:nth-child(even) .shot{order:2}
+  .vB .shot{position:relative;overflow:hidden}
+  .vB .shot img{width:100%;height:100%;object-fit:cover;transition:transform 1.1s cubic-bezier(.2,.8,.2,1)}
+  .vB .band:hover .shot img{transform:scale(1.05)}
+  .vB .txt{display:flex;flex-direction:column;justify-content:center;padding:64px clamp(28px,5vw,80px);position:relative}
+  .vB .txt .n{font-family:'Fraunces',serif;font-size:15px;color:var(--sky);letter-spacing:.2em;margin-bottom:14px}
+  .vB .txt h3{font-size:clamp(24px,2.4vw,34px);color:#fff;max-width:18ch}
+  .vB .txt p{color:#B8C6DA;margin-top:14px;max-width:46ch}
+  .vB .band:nth-child(odd) .txt{background:#0F2A57}
+  .vB .band:nth-child(even) .txt{background:var(--navy)}
+  @media(max-width:900px){.vB .band{grid-template-columns:1fr}.vB .band:nth-child(even) .shot{order:0}.vB .shot{min-height:220px}}
+
+  /* ========== C · QUIET LIST, PHOTO ON HOVER ========== */
+  .vC{background:var(--paper);padding:96px 0;position:relative;overflow:hidden}
+  .vC h2.big{color:var(--navy)}
+  .vC .list{margin-top:48px;border-top:1px solid var(--mortar)}
+  .vC .item{position:relative;display:grid;grid-template-columns:64px 1fr auto;gap:28px;align-items:center;
+    padding:38px 0;border-bottom:1px solid var(--mortar);cursor:default;transition:padding .4s ease}
+  .vC .item:hover{padding-left:14px}
+  .vC .item .n{font-family:'Fraunces',serif;font-size:34px;color:var(--mortar);line-height:1;transition:color .4s}
+  .vC .item:hover .n{color:var(--blue)}
+  .vC .item h3{font-size:clamp(22px,2.2vw,30px);color:var(--navy);transition:color .4s}
+  .vC .item p{color:#4A525C;margin-top:8px;max-width:62ch;font-size:16px}
+  .vC .item .peek{width:112px;height:84px;border-radius:8px;overflow:hidden;opacity:0;transform:translateX(14px) scale(.96);
+    transition:opacity .45s cubic-bezier(.2,.8,.2,1),transform .45s cubic-bezier(.2,.8,.2,1);
+    box-shadow:0 18px 30px -16px rgba(13,36,77,.6)}
+  .vC .item:hover .peek{opacity:1;transform:none}
+  .vC .item .peek img{width:100%;height:100%;object-fit:cover}
+  .vC .rulehint{margin-top:26px;font:500 13px/1 'Inter';color:var(--stone);letter-spacing:.06em}
+  @media(max-width:900px){.vC .item{grid-template-columns:44px 1fr}.vC .item .peek{display:none}}
+</style>
+</head>
+<body>
+
+<!-- ============ A ============ -->
+<div class="label">
+  <span class="tag">Variation A · Editorial Cards</span>
+  <h2>Three cards, photo-led</h2>
+  <p>Each belief becomes a white card on the oat background: photo on top with a small numbered chip, headline and copy beneath. Light, familiar, and it matches the Services grid further down the page — the most cohesive with what's already built, and the easiest to scan.</p>
+</div>
+<div class="frame"><div class="device">
+  <section class="vA"><div class="wrap">
+    <h2 class="big">What Community-Based Veterinary Care Looks Like</h2>
+    <div class="grid">
+      <div class="card">
+        <div class="shot"><img src="assets/home-s3-1.jpg" alt=""><span class="n">01</span></div>
+        <div class="body"><h3>We give you options, not ultimatums.</h3>
+        <p>Not every pet owner can afford every test, every procedure, or every referral. We help you understand what's possible, what matters most for your dog or cat, and how to make it fit for you.</p></div>
+      </div>
+      <div class="card">
+        <div class="shot"><img src="assets/home-s3-2.jpg" alt=""><span class="n">02</span></div>
+        <div class="body"><h3>We keep care close to home.</h3>
+        <p>We do our best to provide the majority of your dog or cat's care in-house. Surgery, dentistry, diagnostics, and most complex cases for pets can be handled here.</p></div>
+      </div>
+      <div class="card">
+        <div class="shot"><img src="assets/home-s3-3.jpg" alt=""><span class="n">03</span></div>
+        <div class="body"><h3>We take as long as the visit needs.</h3>
+        <p>Some visits are quick, some aren't. Either way, your pet's case isn't on a clock. We're here to answer your questions, and to make decisions with you, not for you.</p></div>
+      </div>
+    </div>
+  </div></section>
+</div></div>
+
+<div class="divider"></div>
+
+<!-- ============ B ============ -->
+<div class="label">
+  <span class="tag">Variation B · Alternating Bands</span>
+  <h2>Full-bleed, cinematic</h2>
+  <p>Three edge-to-edge bands on navy, photo and text swapping sides as you scroll. The photos run huge — half the screen each — so the emotion carries. This is the most immersive option and the biggest tonal shift from the rest of the page; it turns the beliefs into the emotional centre of the homepage.</p>
+</div>
+<div class="frame"><div class="device">
+  <section class="vB">
+    <div class="wrap head">
+      <h2 class="big">What Community-Based Veterinary Care Looks Like</h2>
+      <p>Three things we hold to, every visit.</p>
+    </div>
+    <div class="band">
+      <div class="shot"><img src="assets/home-s3-1.jpg" alt=""></div>
+      <div class="txt"><div class="n">01</div><h3>We give you options, not ultimatums.</h3>
+      <p>Not every pet owner can afford every test, every procedure, or every referral. We help you understand what's possible, what matters most for your dog or cat, and how to make it fit for you.</p></div>
+    </div>
+    <div class="band">
+      <div class="shot"><img src="assets/home-s3-2.jpg" alt=""></div>
+      <div class="txt"><div class="n">02</div><h3>We keep care close to home.</h3>
+      <p>We do our best to provide the majority of your dog or cat's care in-house. Surgery, dentistry, diagnostics, and most complex cases for pets can be handled here.</p></div>
+    </div>
+    <div class="band">
+      <div class="shot"><img src="assets/home-s3-3.jpg" alt=""></div>
+      <div class="txt"><div class="n">03</div><h3>We take as long as the visit needs.</h3>
+      <p>Some visits are quick, some aren't. Either way, your pet's case isn't on a clock. We're here to answer your questions, and to make decisions with you, not for you.</p></div>
+    </div>
+  </section>
+</div></div>
+
+<div class="divider"></div>
+
+<!-- ============ C ============ -->
+<div class="label">
+  <span class="tag">Variation C · Quiet List</span>
+  <h2>Type-led, photo on hover</h2>
+  <p>The beliefs are set as a plain ruled list — big serif statements, nothing shouting. The photo only appears as a small thumbnail when you hover a row. It's the most restrained and the most "unhurried," which is arguably the most honest expression of <em>"your pet's case isn't on a clock."</em></p>
+  <div class="label" style="padding:10px 0 0"><p style="color:#7C5A12;background:#FFF3D6;border:1px solid #E8C77E;padding:10px 13px;border-radius:8px;display:inline-block;font-size:14px;margin:0">Note: hover-only photos don't exist on touch devices — on mobile this becomes a clean text list (photos hidden).</p></div>
+</div>
+<div class="frame"><div class="device">
+  <section class="vC"><div class="wrap">
+    <h2 class="big">What Community-Based Veterinary Care Looks Like</h2>
+    <div class="list">
+      <div class="item">
+        <div class="n">01</div>
+        <div><h3>We give you options, not ultimatums.</h3>
+        <p>Not every pet owner can afford every test, every procedure, or every referral. We help you understand what's possible, what matters most for your dog or cat, and how to make it fit for you.</p></div>
+        <div class="peek"><img src="assets/home-s3-1.jpg" alt=""></div>
+      </div>
+      <div class="item">
+        <div class="n">02</div>
+        <div><h3>We keep care close to home.</h3>
+        <p>We do our best to provide the majority of your dog or cat's care in-house. Surgery, dentistry, diagnostics, and most complex cases for pets can be handled here.</p></div>
+        <div class="peek"><img src="assets/home-s3-2.jpg" alt=""></div>
+      </div>
+      <div class="item">
+        <div class="n">03</div>
+        <div><h3>We take as long as the visit needs.</h3>
+        <p>Some visits are quick, some aren't. Either way, your pet's case isn't on a clock. We're here to answer your questions, and to make decisions with you, not for you.</p></div>
+        <div class="peek"><img src="assets/home-s3-3.jpg" alt=""></div>
+      </div>
+    </div>
+  </div></section>
+</div></div>
+
+<div class="divider"></div>
+</body>
+</html>
