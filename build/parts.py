@@ -59,6 +59,20 @@ HOURS = [
     ("Saturday",  7*60+30,   13*60),
 ]
 
+# PREVIEW ONLY — Feedbucket review widget. Lets the client click any element and leave a
+# comment in place, instead of emailing "the thing under the map is wrong".
+#
+# REMOVE AT LAUNCH. Same category as robots.txt: a tool for us, not something a pet owner
+# should ever load. It injects a third-party script and a floating UI on every page.
+# See PREVIEW-GUARD.md. Delete this constant and its {FEEDBUCKET} slot in head(), rebuild.
+FEEDBUCKET = '''<script type="text/javascript">
+    (function(k) {
+        let s=document.createElement('script');s.defer=true;
+        s.src="https://cdn.feedbucket.app/assets/feedbucket.js";
+        s.dataset.feedbucket=k;document.head.appendChild(s);
+    })('ZOAyEcFW5aqJM55YV6R0')
+</script>'''
+
 def head(title, desc, extra_css="", schema=""):
     return f'''<!DOCTYPE html>
 <html lang="en">
@@ -78,6 +92,7 @@ def head(title, desc, extra_css="", schema=""):
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 <link rel="stylesheet" href="assets/site.css">
+{FEEDBUCKET}
 {extra_css}</head>
 <body>
 
