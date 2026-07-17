@@ -3,10 +3,6 @@
   "trailingSlash": false,
   "headers": [
     {
-      "//": "PREVIEW GUARD — remove this block at launch. The site is live on a production",
-      "//2": "vercel.app URL while the copy still says 'open Tuesdays until 10 p.m.' and the",
-      "//3": "LocalBusiness schema says Tuesday closes at 5. noindex keeps Google from reading",
-      "//4": "the contradictory hours. The URL still works and stays shareable.",
       "source": "/(.*)",
       "headers": [
         { "key": "X-Robots-Tag", "value": "noindex, nofollow" }
