@@ -1,0 +1,6 @@
+# PREVIEW GUARD — delete this file at launch.
+# The site is live on a production vercel.app URL while the homepage copy still claims
+# "open Tuesdays until 10 p.m." and the LocalBusiness schema says Tuesday closes at 5.
+# Belt and braces alongside the X-Robots-Tag header in vercel.json.
+User-agent: *
+Disallow: /
